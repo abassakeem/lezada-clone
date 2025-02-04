@@ -1,25 +1,25 @@
 <template>
   <header class="bg-white">
-    <div class="container mx-auto px-4 py-4 flex justify-between items-center">
-      <a href="/" class="text-[#7e7e7e] font-bold text-xl">
+    <div class="container mx-auto px-2 py-4 flex justify-between items-center">
+      <a href="/" class="text-[#7e7e7e] font-bold">
         <img
           src="https://lezada.jamstacktemplates.dev/assets/images/logo.png"
         />
       </a>
 
-      <nav class="hidden md:flex space-x-16 ">
+      <nav class="hidden text-[#7e7e7e] hover:text-[#333] md:flex space-x-16">
         <a
           v-for="link in navLinks"
           :key="link.label"
           :href="link.url"
-          class="text-[#7e7e7e] hover:text-[#333] flex items-center"
+          class="flex items-center text-lg my-4"
         >
           {{ link.label }}
-          <i class="pi pi-angle-down ml-1"></i>
+          <i class="pi pi-angle-down ml-1 h-4 w-4"></i>
         </a>
       </nav>
 
-      <div class="flex items-center space-x-4">
+      <div class="flex items-center space-x-8">
         <div class="relative">
           <!-- <input
             type="text"
