@@ -7,16 +7,23 @@
         />
       </a>
 
-      <nav class="hidden text-[#7e7e7e] hover:text-[#333] md:flex space-x-16">
-        <a
-          v-for="link in navLinks"
-          :key="link.label"
-          :href="link.url"
-          class="flex items-center text-lg my-4"
-        >
-          {{ link.label }}
-          <i class="pi pi-angle-down ml-1 h-4 w-4"></i>
-        </a>
+      <nav class="hidden md:flex space-x-16">
+        <nav class="hidden md:flex space-x-16">
+          <a
+            v-for="link in navLinks"
+            :key="link.label"
+            :href="link.url"
+            class="flex items-center text-lg my-4 text-[#7e7e7e] hover:text-[#333] group relative duration-300"
+          >
+            {{ link.label }}
+            <i
+              class="pi pi-angle-down ml-1 h-4 w-4 text-[#d0d0d0] group-hover:text-[#333] duration-300"
+            ></i>
+            <span
+              class="absolute bottom-0 left-0 w-full h-[1px] bg-[#333] transform scale-x-0 origin-right transition-transform duration-300 group-hover:scale-x-100 group-hover:origin-left "
+            ></span>
+          </a>
+        </nav>
       </nav>
 
       <div class="flex items-center space-x-8">
