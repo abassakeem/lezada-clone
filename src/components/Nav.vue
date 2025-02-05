@@ -1,13 +1,12 @@
 <template>
-  <header class="bg-white">
-    <div class="container mx-auto px-3 py-8 flex justify-between items-center">
-      <a href="/" class="text-[#7e7e7e] font-bold">
-        <img
-          src="https://lezada.jamstacktemplates.dev/assets/images/logo.png"
-        />
-      </a>
-
-      <nav class="hidden md:flex space-x-16">
+    <header class="bg-white">
+      <div class="container mx-auto px-3 py-8 flex justify-between items-center">
+        <a href="/" class="text-[#7e7e7e] font-bold">
+          <img
+            src="https://lezada.jamstacktemplates.dev/assets/images/logo.png"
+          />
+        </a>
+  
         <nav class="hidden md:flex space-x-16">
           <a
             v-for="link in navLinks"
@@ -24,56 +23,73 @@
             ></span>
           </a>
         </nav>
-      </nav>
-      <div class="block lg:hidden flex items-center space-x-4">
-        <button href="#" class="text-[#333] hover:text-gray-800 cursor:pointer text-xl">
-          <i class="pi pi-heart"></i>
-        </button>
-        <button href="#" class="text-[#333] hover:text-gray-800 cursor:pointer text-xl">
-          <i class="pi pi-shopping-cart"></i></button
-        ><button>
-          <i
-            class="pi pi-bars text-[#333] hover:text-gray-800 cursor:pointer text-xl"
-          ></i>
-        </button>
-      </div>
-      <div class="flex items-center space-x-8 hidden lg:block">
-        <div class="relative">
-          <a class="cursor-pointer">
+  
+        
+        <div class="lg:hidden flex items-center space-x-4">
+          <button class="text-[#333] hover:text-gray-800 cursor-pointer text-xl">
+            <i class="pi pi-heart"></i>
+          </button>
+          <button class="text-[#333] hover:text-gray-800 cursor-pointer text-xl">
+            <i class="pi pi-shopping-cart"></i>
+          </button>
+          <button @click="toggleNav">
             <i
-              class="pi pi-search text-[#333] hover:text-gray-800  cursor:pointer"
+              class="pi pi-bars text-[#333] hover:text-gray-800 cursor-pointer text-xl"
             ></i>
-          </a>
+          </button>
         </div>
-        <a href="#" class="text-[#333] hover:text-gray-800 cursor:pointer">
-          <i class="pi pi-user"></i>
-        </a>
-        <a href="#" class="text-[#333] hover:text-gray-800 cursor:pointer">
-          <i class="pi pi-heart"></i>
-        </a>
-        <a href="#" class="text-[#333] hover:text-gray-800 cursor:pointer">
-          <i class="pi pi-shopping-cart"></i>
-        </a>
+  
+     
+        <div class="hidden lg:block">
+          <div class="flex items-center space-x-8">
+            <div class="relative">
+              <a class="cursor-pointer">
+                <i
+                  class="pi pi-search text-[#333] hover:text-gray-800 cursor-pointer"
+                ></i>
+              </a>
+            </div>
+            <a href="#" class="text-[#333] hover:text-gray-800 cursor-pointer">
+              <i class="pi pi-user"></i>
+            </a>
+            <a href="#" class="text-[#333] hover:text-gray-800 cursor-pointer">
+              <i class="pi pi-heart"></i>
+            </a>
+            <a href="#" class="text-[#333] hover:text-gray-800 cursor-pointer">
+              <i class="pi pi-shopping-cart"></i>
+            </a>
+          </div>
+        </div>
       </div>
-    </div>
-  </header>
-</template>
-
-<script>
-export default {
-  name: "Nav",
-  data() {
-    return {
-      navLinks: [
-        { label: "Home", url: "#" },
-        { label: "Shop", url: "#" },
-        { label: "Elements", url: "#" },
-        { label: "Pages", url: "#" },
-        { label: "Blog", url: "#" },
-      ],
-    };
-  },
-};
-</script>
-
-<style></style>
+  
+     
+      <NavMenu v-if="isNavOpen" @close="isNavOpen = false" />
+    </header>
+  </template>
+  
+  <script>
+  import NavMenu from "@/components/Modals/NavMenu.vue";
+  
+  export default {
+    components: { NavMenu },
+    name: "Nav",
+    data() {
+      return {
+        navLinks: [
+          { label: "Home", url: "#" },
+          { label: "Shop", url: "#" },
+          { label: "Elements", url: "#" },
+          { label: "Pages", url: "#" },
+          { label: "Blog", url: "#" },
+        ],
+        isNavOpen: false,
+      };
+    },
+    methods: {
+      toggleNav() {
+        this.isNavOpen = !this.isNavOpen;
+      },
+    },
+  };
+  </script>
+  
