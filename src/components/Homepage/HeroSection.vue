@@ -22,14 +22,15 @@
         class="relative flex justify-center items-center"
       >
         <div
-          class="h-full w-full bg-cover bg-center flex items-center justify-center"
+          class="h-full w-full bg-cover bg-center flex items-center justify-start"
           :style="{ backgroundImage: `url(${slide.image})` }"
         >
-          <div class="text-center bg-black bg-opacity-50 p-8 rounded-lg">
-            <h2 class="text-white text-3xl font-bold mb-4">
+          <div class="text-start  p-8 rounded-lg">
+            <h2 class="text-[#68aaeb] font-bold mb-4 uppercase ">{{slide.header}}</h2>
+            <p class="text-[#333] text-5xl font-bold mb-4">
               {{ slide.title }}
-            </h2>
-            <button class="px-6 py-2 bg-white text-black text-sm font-bold">
+            </p>
+            <button class="py-[15px] px-[40px] text-md  text-white bg-[#333] text-sm font-bold">
               Shop Now
             </button>
           </div>
@@ -53,17 +54,17 @@ export default {
   name: "HeroSection",
   setup() {
     const slides = [
-      {
+      { header: "Accessories",
         title: "Bottle Grinder, Small, 2-Piece",
         image:
           "https://lezada.jamstacktemplates.dev/assets/images/hero-slider/hero-slider-one/1.jpg",
       },
-      {
+      { header: "Accessories",
         title: "Minimalist Chair",
         image:
           "https://lezada.jamstacktemplates.dev/assets/images/hero-slider/hero-slider-one/2.jpg",
       },
-      {
+      { header: "Handmade",
         title: "Modern Lamp Design",
         image:
           "https://lezada.jamstacktemplates.dev/assets/images/hero-slider/hero-slider-one/3.jpg",
