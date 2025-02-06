@@ -1,18 +1,22 @@
 <template>
     <div>
-      <div class="flex items-center justify-center">
+      <div class="">
         <HeroSection/>
+        <ProductsSection/>
+        <SaleSection/>
       </div>
     </div>
   </template>
   
   <script>
   import HeroSection from '@/components/Homepage/HeroSection.vue'
+import ProductsSection from '@/components/Homepage/ProductsSection.vue';
+import SaleSection from '@/components/Homepage/SaleSection.vue';
   
   export default {
     name: "Homepage",
     components: {
-      HeroSection  
+      HeroSection, ProductsSection , SaleSection  
     }
   }
   </script>
