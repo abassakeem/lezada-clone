@@ -1,5 +1,5 @@
 <template>
-  <div class="grid gap-6">
+  <div class="grid gap-6 px-3 lg:px-6">
     <div v-for="product in products" :key="product.id" class="space-y-4">
       <div class="relative group">
         <img :src="product.img" :alt="product.name" class="w-full h-auto" />

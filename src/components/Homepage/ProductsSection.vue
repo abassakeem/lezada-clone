@@ -7,7 +7,7 @@
         <h3>Sale</h3>
     </div>
 
-    <div class="grid grid-cols-1">
+    <div class="grid grid-cols-1 lg:grid-cols-3">
         <ProductCard/>
     </div>
 
