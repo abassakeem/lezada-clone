@@ -1,30 +1,37 @@
 <template>
-  <div class="px-3 lg:px-6">
+  <div class="flex items-center justify-center">
+    <div class="max-w-6xl w-full flex flex-col items-center justify-center">
+      <div class="tab-header text-5xl text-[#ccc] flex items-center justify-center space-x-10 my-16">
+        <h3 @click="setActiveTab('New')" class="hover:text-[#333] duration-300  cursor-pointer" :class="{ 'text-[#333]': activeTab === 'New' }">New</h3>
+        <h3 @click="setActiveTab('Popular')" class="hover:text-[#333] duration-300 cursor-pointer" :class="{ 'text-[#333]': activeTab === 'Popular' }">Popular</h3>
+        <h3 @click="setActiveTab('Sale')" class="hover:text-[#333] duration-300 cursor-pointer" :class="{ 'text-[#333]': activeTab === 'Sale' }">Sale</h3>
+      </div>
 
-    <div class="tab-header text-2xl flex items-center justify-center space-x-10 my-6">
-        <h3>New</h3>
-        <h3>Popular</h3>
-        <h3>Sale</h3>
+      <div>
+        <ProductCard />
+      </div> 
     </div>
-
-    <div class="grid grid-cols-1 lg:grid-cols-3">
-        <ProductCard/>
-    </div>
-
-
   </div>
 </template>
 
 <script>
-import ProductCard from './ProductCard.vue';
-
+import { ref } from "vue";
+import ProductCard from "./ProductCard.vue";
 
 export default {
-    components: { ProductCard },
+  components: { ProductCard },
 
-}
+  setup() {
+    const activeTab = ref("Popular");
+
+    const setActiveTab = (tab) => {
+      activeTab.value = tab;
+    };
+
+    return {
+      activeTab,
+      setActiveTab,
+    };
+  },
+};
 </script>
-
-<style>
-
-</style>

@@ -1,25 +1,27 @@
 <template>
-  <div class="grid gap-6 px-3 lg:px-6">
+  <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
     <div v-for="product in products" :key="product.id" class="space-y-4">
       <div class="relative group">
-        <img :src="product.img" :alt="product.name" class="w-full h-auto" />
+        <img :src="product.img" :alt="product.name" class="w-full h-auto hover:scale-110 cursor-pointer duration-300" />
 
-        
         <div class="absolute top-4 left-4 space-y-3">
-          <div class="bg-teal-400 px-4 py-2 rounded-full">
+          <div
+            class="bg-teal-400 w-10 h-10 flex items-center justify-center rounded-full"
+          >
             <span class="text-white text-sm">-{{ product.discount }}%</span>
           </div>
-          <div class="bg-red-600 px-4 py-2 rounded-full">
+          <div
+            class="bg-red-600 w-10 h-10 flex items-center justify-center rounded-full"
+          >
             <span class="text-white text-sm">{{ product.productType }}</span>
           </div>
         </div>
 
-      
         <div
-          class="absolute top-4 right-4 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300"
+          class="absolute top-4 right-4 opacity-0 invisible cursor-pointer group-hover:opacity-100 group-hover:visible transition-all duration-300"
         >
           <button
-            class="bg-white p-3 hover:bg-gray-100 transition-colors mb-3 block"
+            class="bg-white p-3 cursor-pointer hover:bg-gray-100 transition-colors mb-3 block"
           >
             <svg class="h-4 w-4" viewBox="0 0 512 512">
               <path
@@ -28,7 +30,7 @@
             </svg>
           </button>
           <button
-            class="bg-white p-3 hover:bg-gray-100 transition-colors block"
+            class="bg-white p-3 mb-3 cursor-pointer hover:bg-gray-100 transition-colors block"
           >
             <svg class="h-4 w-4" viewBox="0 0 512 512">
               <path
@@ -37,6 +39,23 @@
               <path
                 d="M279.4 235.4c1.1 1.4 2.8 2.1 4.6 2.1h.1c1.8 0 3.5-.8 4.6-2.2l37.9-47.3h75.8l-16.3 16.2c-2.7 2.6-4.1 6.1-4.1 9.9 0 3.7 1.5 7.2 4.1 9.9 2.6 2.6 6.2 4.1 9.9 4.1s7.2-1.4 9.9-4.1l35.6-35.4c4.2-4.1 6.5-9.7 6.5-15.5 0-5.9-2.3-11.4-6.5-15.5l-33.6-33.4c-2.6-2.6-6.2-4.1-9.9-4.1s-7.2 1.4-9.9 4.1c-2.7 2.6-4.1 6.2-4.1 9.9s1.5 7.2 4.1 9.9l16.3 16.2H320c-4.1 0-8 1.8-10.7 5l-.1.1-40.3 50.2c-1.8 2.2-1.8 5.4.1 7.6l10.4 12.3z"
               />
+            </svg>
+          </button>
+          <button
+            class="bg-white p-3 cursor-pointer hover:bg-gray-100 transition-colors block"
+          >
+            <svg
+              stroke="currentColor"
+              fill="currentColor"
+              stroke-width="0"
+              viewBox="0 0 512 512"
+              height="1em"
+              width="1em"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M443.5 420.2L336.7 312.4c20.9-26.2 33.5-59.4 33.5-95.5 0-84.5-68.5-153-153.1-153S64 132.5 64 217s68.5 153 153.1 153c36.6 0 70.1-12.8 96.5-34.2l106.1 107.1c3.2 3.4 7.6 5.1 11.9 5.1 4.1 0 8.2-1.5 11.3-4.5 6.6-6.3 6.8-16.7.6-23.3zm-226.4-83.1c-32.1 0-62.3-12.5-85-35.2-22.7-22.7-35.2-52.9-35.2-84.9 0-32.1 12.5-62.3 35.2-84.9 22.7-22.7 52.9-35.2 85-35.2s62.3 12.5 85 35.2c22.7 22.7 35.2 52.9 35.2 84.9 0 32.1-12.5 62.3-35.2 84.9-22.7 22.7-52.9 35.2-85 35.2z"
+              ></path>
             </svg>
           </button>
         </div>
@@ -68,6 +87,46 @@ export default {
           id: 1,
           name: "Lorem ipsum decor one",
           img: "https://lezada.jamstacktemplates.dev/assets/images/product/decor/1.jpg",
+          discount: 20,
+          productType: "new",
+          costPrice: 100,
+        },
+        {
+          id: 2,
+          name: "Lorem ipsum decor one",
+          img: "https://lezada.jamstacktemplates.dev/assets/images/product/decor/2.jpg",
+          discount: 20,
+          productType: "new",
+          costPrice: 100,
+        },
+        {
+          id: 3,
+          name: "Lorem ipsum decor one",
+          img: "https://lezada.jamstacktemplates.dev/assets/images/product/decor/3.jpg",
+          discount: 20,
+          productType: "new",
+          costPrice: 100,
+        },
+        {
+          id: 4,
+          name: "Lorem ipsum decor one",
+          img: "https://lezada.jamstacktemplates.dev/assets/images/product/decor/4.jpg",
+          discount: 20,
+          productType: "new",
+          costPrice: 100,
+        },
+        {
+          id: 5,
+          name: "Lorem ipsum decor one",
+          img: "https://lezada.jamstacktemplates.dev/assets/images/product/decor/5.jpg",
+          discount: 20,
+          productType: "new",
+          costPrice: 100,
+        },
+        {
+          id: 6,
+          name: "Lorem ipsum decor one",
+          img: "https://lezada.jamstacktemplates.dev/assets/images/product/decor/6.jpg",
           discount: 20,
           productType: "new",
           costPrice: 100,
