@@ -1,7 +1,7 @@
 <template>
   <header class="bg-white px-3 lg:px-6">
     <div
-      class="container mx-auto lg:px-6 py-7 flex justify-between items-center"
+      class="container mx-auto lg:px-6 py-4 flex justify-between items-center"
     >
       <a href="/" class="text-[#7e7e7e] font-bold">
         <img
@@ -9,7 +9,7 @@
         />
       </a>
 
-      <nav class="hidden md:flex space-x-14">
+      <nav class="hidden md:flex space-x-14 relative">
         <a
           v-for="link in navLinks"
           :key="link.label"
@@ -17,6 +17,15 @@
           class="flex items-center space-x-1 text-md font-semibold text-[#7e7e7e] hover:text-[#333] group relative duration-300"
         >
           <span>{{ link.label }}</span>
+
+          <!-- Dropdown Container -->
+          <div
+            class="fixed z-50 top-15 left-1/2 -translate-x-1/2 -translate-y-1/2 pt-5 opacity-0 scale-95 transition-all duration-500 ease-in-out group-hover:opacity-100 group-hover:scale-100"
+          >
+            <div class="whitespace-nowrap">
+              <Dropdown />
+            </div>
+          </div>
 
           <svg
             stroke="currentColor"
@@ -190,28 +199,22 @@
   </header>
 </template>
 
-<script>
+<script setup>
+import { ref } from "vue";
 import NavMenu from "@/components/Modals/NavMenu.vue";
+import Dropdown from "./Homepage/NavDropdown/dropdown.vue";
 
-export default {
-  components: { NavMenu },
-  name: "Nav",
-  data() {
-    return {
-      navLinks: [
-        { label: "Home", url: "#" },
-        { label: "Shop", url: "#" },
-        { label: "Elements", url: "#" },
-        { label: "Pages", url: "#" },
-        { label: "Blog", url: "#" },
-      ],
-      isNavOpen: false,
-    };
-  },
-  methods: {
-    toggleNav() {
-      this.isNavOpen = !this.isNavOpen;
-    },
-  },
+const isNavOpen = ref(false);
+
+const navLinks = [
+  { label: "Home", url: "#" },
+  { label: "Shop", url: "#" },
+  { label: "Elements", url: "#" },
+  { label: "Pages", url: "#" },
+  { label: "Blog", url: "#" },
+];
+
+const toggleNav = () => {
+  isNavOpen.value = !isNavOpen.value;
 };
 </script>
