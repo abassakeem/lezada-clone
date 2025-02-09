@@ -1,0 +1,37 @@
+<template>
+    <div class="w-full duration-500">
+      <div class="flex justify-between max-w-6xl mx-auto space-x-16 bg-white p-8 shadow-sm">
+        <template v-for="(group, key) in subGroups" :key="key">
+          
+          <div v-if="group.img" class="flex-1">
+            <div class="rounded-lg overflow-hidden">
+              <img 
+                :src="group.img" 
+                alt="Featured" 
+                class="w-full h-48 object-contain" 
+              />
+            </div>
+          </div>
+          
+         
+          <div v-else class="flex-1">
+            <h3 class="font-medium text-gray-800 mb-4">{{ group.header }}</h3>
+            <ul class="space-y-2">
+              <li v-for="(link, index) in group.links" :key="index">
+                <a href="#" class="text-gray-600 hover:text-blue-600">{{ link }}</a>
+              </li>
+            </ul>
+          </div>
+        </template>
+      </div>
+    </div>
+  </template>
+  
+  <script setup>
+  defineProps({
+    subGroups: {
+      type: Object,
+      required: true
+    }
+  });
+  </script>

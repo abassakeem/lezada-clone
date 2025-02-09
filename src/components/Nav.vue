@@ -1,7 +1,7 @@
 <template>
   <header class="bg-white px-3 lg:px-6">
     <div
-      class="container mx-auto lg:px-6 py-4 flex justify-between items-center"
+      class="container mx-auto lg:px-6  flex justify-between items-center"
     >
       <a href="/" class="text-[#7e7e7e] font-bold">
         <img
@@ -10,20 +10,19 @@
       </a>
 
       <nav class="hidden md:flex space-x-14 relative">
-        <a
+        <div
           v-for="link in navLinks"
           :key="link.label"
-          :href="link.url"
-          class="flex items-center space-x-1 text-md font-semibold text-[#7e7e7e] hover:text-[#333] group relative duration-300"
+          class="flex items-center my-8 cursor-pointer space-x-1 text-md font-semibold text-[#7e7e7e] hover:text-[#333] group relative duration-300"
         >
           <span>{{ link.label }}</span>
 
-          <!-- Dropdown Container -->
+         
           <div
-            class="fixed z-50 top-15 left-1/2 -translate-x-1/2 -translate-y-1/2 pt-5 opacity-0 scale-95 transition-all duration-500 ease-in-out group-hover:opacity-100 group-hover:scale-100"
+            class="fixed inset-x-0 top-[60px] pt-5 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300   z-50"
           >
-            <div class="whitespace-nowrap">
-              <Dropdown />
+            <div class="container mx-auto z-50">
+              <Dropdown :label="link.label" />
             </div>
           </div>
 
@@ -37,19 +36,15 @@
             xmlns="http://www.w3.org/2000/svg"
             class="group-hover:fill-[#333] mt-1 transition-colors duration-300"
           >
-            <path
-              d="M256 294.1L383 167c9.4-9.4 24.6-9.4 33.9 0s9.3 24.6 0 34L273 345c-9.1 9.1-23.7 9.3-33.1.7L95 201.1c-4.7-4.7-7-10.9-7-17s2.3-12.3 7-17c9.4-9.4 24.6-9.4 33.9 0l127.1 127z"
-            ></path>
+            <path d="M256 294.1L383 167c9.4-9.4 24.6-9.4 33.9 0s9.3 24.6 0 34L273 345c-9.1 9.1-23.7 9.3-33.1.7L95 201.1c-4.7-4.7-7-10.9-7-17s2.3-12.3 7-17c9.4-9.4 24.6-9.4 33.9 0l127.1 127z" />
           </svg>
 
-          <span
-            class="absolute bottom-0 left-0 w-full h-[1px] bg-[#333] transform scale-x-0 origin-right transition-transform duration-300 group-hover:scale-x-75 group-hover:origin-left"
-          ></span>
-        </a>
+          <span class="absolute bottom-0 left-0 w-full h-[1px] bg-[#333] transform scale-x-0 origin-right transition-transform duration-300 group-hover:scale-x-75 group-hover:origin-left" />
+        </div>
       </nav>
 
       <div class="lg:hidden flex items-center space-x-4">
-        <button class="text-[#333] hover:text-gray-800 cursor-pointer text-xl">
+        <button class="text-[#333] hover:text-gray-800 cursor-pointer text-xl ">
           <svg
             stroke="currentColor"
             fill="currentColor"
@@ -114,9 +109,9 @@
       </div>
 
       <div class="hidden lg:block">
-        <div class="flex items-center space-x-8 text-xl">
+        <div class="flex items-center space-x-8 text-xl ">
           <div class="relative">
-            <a class="text-[#333] hover:text-gray-800 cursor-pointer">
+            <button @click="toggleSearch" class="text-[#333] hover:text-gray-800 cursor-pointer">
               <svg
                 stroke="currentColor"
                 fill="currentColor"
@@ -130,7 +125,7 @@
                   d="M443.5 420.2L336.7 312.4c20.9-26.2 33.5-59.4 33.5-95.5 0-84.5-68.5-153-153.1-153S64 132.5 64 217s68.5 153 153.1 153c36.6 0 70.1-12.8 96.5-34.2l106.1 107.1c3.2 3.4 7.6 5.1 11.9 5.1 4.1 0 8.2-1.5 11.3-4.5 6.6-6.3 6.8-16.7.6-23.3zm-226.4-83.1c-32.1 0-62.3-12.5-85-35.2-22.7-22.7-35.2-52.9-35.2-84.9 0-32.1 12.5-62.3 35.2-84.9 22.7-22.7 52.9-35.2 85-35.2s62.3 12.5 85 35.2c22.7 22.7 35.2 52.9 35.2 84.9 0 32.1-12.5 62.3-35.2 84.9-22.7 22.7-52.9 35.2-85 35.2z"
                 ></path>
               </svg>
-            </a>
+            </button>
           </div>
           <a href="#" class="text-[#333] hover:text-gray-800 cursor-pointer">
             <svg
@@ -196,15 +191,19 @@
     </div>
 
     <NavMenu v-if="isNavOpen" @close="isNavOpen = false" />
+    <SearchModal v-show="isSearchOpen" @close="isSearchOpen = false" :toggleSearch="toggleSearch" :isSearchOpen="isSearchOpen" />
+
   </header>
 </template>
 
 <script setup>
 import { ref } from "vue";
 import NavMenu from "@/components/Modals/NavMenu.vue";
+import SearchModal from "./Homepage/SearchModal.vue";
 import Dropdown from "./Homepage/NavDropdown/dropdown.vue";
 
 const isNavOpen = ref(false);
+const isSearchOpen = ref(false);
 
 const navLinks = [
   { label: "Home", url: "#" },
@@ -216,5 +215,8 @@ const navLinks = [
 
 const toggleNav = () => {
   isNavOpen.value = !isNavOpen.value;
+};
+const toggleSearch = () => {
+  isSearchOpen.value = !isSearchOpen.value;
 };
 </script>
