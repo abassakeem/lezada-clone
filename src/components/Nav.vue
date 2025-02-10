@@ -127,7 +127,7 @@
               </svg>
             </button>
           </div>
-          <a href="#" class="text-[#333] hover:text-gray-800 cursor-pointer">
+          <button href="#" class="text-[#333] hover:text-gray-800 cursor-pointer">
             <svg
               stroke="currentColor"
               fill="currentColor"
@@ -141,8 +141,8 @@
                 d="M256 256c52.805 0 96-43.201 96-96s-43.195-96-96-96-96 43.201-96 96 43.195 96 96 96zm0 48c-63.598 0-192 32.402-192 96v48h384v-48c0-63.598-128.402-96-192-96z"
               ></path>
             </svg>
-          </a>
-          <a href="#" class="text-[#333] hover:text-gray-800 cursor-pointer">
+          </button>
+          <button @click="toggleWishlist" href="#" class="text-[#333] hover:text-gray-800 cursor-pointer">
             <svg
               stroke="currentColor"
               fill="currentColor"
@@ -156,8 +156,8 @@
                 d="M352 56h-1c-39.7 0-74.8 21-95 52-20.2-31-55.3-52-95-52h-1c-61.9.6-112 50.9-112 113 0 37 16.2 89.5 47.8 132.7C156 384 256 456 256 456s100-72 160.2-154.3C447.8 258.5 464 206 464 169c0-62.1-50.1-112.4-112-113zm41.6 229.2C351 343.5 286.1 397.3 256 420.8c-30.1-23.5-95-77.4-137.6-135.7C89.1 245.1 76 198 76 169c0-22.6 8.8-43.8 24.6-59.8 15.9-16 37-24.9 59.6-25.1H161.1c14.3 0 28.5 3.7 41.1 10.8 12.2 6.9 22.8 16.7 30.4 28.5 5.2 7.9 14 12.7 23.5 12.7s18.3-4.8 23.5-12.7c7.7-11.8 18.2-21.6 30.4-28.5 12.6-7.1 26.8-10.8 41.1-10.8h.9c22.5.2 43.7 9.1 59.6 25.1 15.9 16 24.6 37.3 24.6 59.8-.2 29-13.3 76.1-42.6 116.2z"
               ></path>
             </svg>
-          </a>
-          <a href="#" class="text-[#333] hover:text-gray-800 cursor-pointer">
+          </button>
+          <button @click="toggleCart" href="#" class="text-[#333] hover:text-gray-800 cursor-pointer">
             <svg
               stroke="currentColor"
               fill="currentColor"
@@ -185,13 +185,15 @@
                 d="M463.8 132.2c-.7-2.4-2.8-4-5.2-4.2L132.9 96.5c-2.8-.3-6.2-2.1-7.5-4.7-3.8-7.1-6.2-11.1-12.2-18.6-7.7-9.4-22.2-9.1-48.8-9.3-9-.1-16.3 5.2-16.3 14.1 0 8.7 6.9 14.1 15.6 14.1s21.3.5 26 1.9c4.7 1.4 8.5 9.1 9.9 15.8 0 .1 0 .2.1.3.2 1.2 2 10.2 2 10.3l40 211.6c2.4 14.5 7.3 26.5 14.5 35.7 8.4 10.8 19.5 16.2 32.9 16.2h236.6c7.6 0 14.1-5.8 14.4-13.4.4-8-6-14.6-14-14.6H188.9c-2 0-4.9 0-8.3-2.8-3.5-3-8.3-9.9-11.5-26l-4.3-23.7c0-.3.1-.5.4-.6l277.7-47c2.6-.4 4.6-2.5 4.9-5.2l16-115.8c.2-.8.2-1.7 0-2.6z"
               ></path>
             </svg>
-          </a>
+          </button>
         </div>
       </div>
     </div>
 
     <NavMenu v-if="isNavOpen" @close="isNavOpen = false" />
     <SearchModal v-show="isSearchOpen" @close="isSearchOpen = false" :toggleSearch="toggleSearch" :isSearchOpen="isSearchOpen" />
+    <CartModal v-show="isCartOpen" @close="isCartOpen = false" :toggleCart="toggleCart" :isCartOpen="isCartOpen" />
+    <WishListModal v-show="isWishlistOpen" @close="isWishlistOpen = false" :toggleWishlist="toggleWishlist" :isWishlistOpen="isWishlistOpen" />
 
   </header>
 </template>
@@ -201,9 +203,13 @@ import { ref } from "vue";
 import NavMenu from "@/components/Modals/NavMenu.vue";
 import SearchModal from "./Homepage/SearchModal.vue";
 import Dropdown from "./Homepage/NavDropdown/dropdown.vue";
+import CartModal from "./Homepage/CartModal.vue";
+import WishListModal from "./Homepage/WishListModal.vue";
 
 const isNavOpen = ref(false);
 const isSearchOpen = ref(false);
+const isCartOpen = ref(false);
+const isWishlistOpen = ref(false);
 
 const navLinks = [
   { label: "Home", url: "#" },
@@ -218,5 +224,11 @@ const toggleNav = () => {
 };
 const toggleSearch = () => {
   isSearchOpen.value = !isSearchOpen.value;
+};
+const toggleCart = () => {
+  isCartOpen.value = !isCartOpen.value;
+};
+const toggleWishlist = () => {
+  isWishlistOpen.value = !isWishlistOpen.value;
 };
 </script>
