@@ -127,7 +127,7 @@
               </svg>
             </button>
           </div>
-          <button href="#" class="text-[#333] hover:text-gray-800 cursor-pointer">
+          <router-link :to="{ name: 'login-register'}" class="text-[#333] hover:text-gray-800 cursor-pointer">
             <svg
               stroke="currentColor"
               fill="currentColor"
@@ -141,7 +141,7 @@
                 d="M256 256c52.805 0 96-43.201 96-96s-43.195-96-96-96-96 43.201-96 96 43.195 96 96 96zm0 48c-63.598 0-192 32.402-192 96v48h384v-48c0-63.598-128.402-96-192-96z"
               ></path>
             </svg>
-          </button>
+          </router-link>
           <button @click="toggleWishlist" href="#" class="text-[#333] hover:text-gray-800 cursor-pointer">
             <svg
               stroke="currentColor"
