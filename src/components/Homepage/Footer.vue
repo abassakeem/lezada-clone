@@ -2,6 +2,11 @@
     <div class="px-3 lg:px-6 bg-[#f8f8f8]">  
     <div class="mx-auto footer-links pr-6 max-w-6xl"> 
       <div class="py-24 flex flex-col justify-between lg:flex-row lg:px-0">
+        <a href="/" class="text-[#7e7e7e] font-bold">
+        <img
+          src="https://lezada.jamstacktemplates.dev/assets/images/logo.png"
+        />
+      </a>
         <div class="">
           <ul
             class="text-[#7e7e7e] text-sm flex leading-8 flex-wrap space-x-12"
