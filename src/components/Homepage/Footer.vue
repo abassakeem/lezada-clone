@@ -1,7 +1,7 @@
 <template>
-  <div class="px-3 lg:px-6 bg-[#f8f8f8]">
-    <div class="footer-links pr-6">
-      <div class="py-24 flex flex-col justify-between lg:flex-row lg:px-16">
+    <div class="px-3 lg:px-6 bg-[#f8f8f8]">  <!-- Removed flex properties from parent -->
+    <div class="mx-auto footer-links pr-6 max-w-6xl"> 
+      <div class="py-24 flex flex-col justify-between lg:flex-row lg:px-0">
         <div class="">
           <ul
             class="text-[#7e7e7e] text-sm flex leading-8 flex-wrap space-x-12"

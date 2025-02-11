@@ -43,7 +43,7 @@
         </div>
       </nav>
 
-      <div class="lg:hidden flex items-center space-x-4">
+      <div class="lg:hidden flex py-6 items-center space-x-4">
         <button class="text-[#333] hover:text-gray-800 cursor-pointer text-xl ">
           <svg
             stroke="currentColor"
