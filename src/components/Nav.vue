@@ -13,13 +13,13 @@
         <div
           v-for="link in navLinks"
           :key="link.label"
-          class="flex items-center my-8 cursor-pointer space-x-1 text-md font-semibold text-[#7e7e7e] hover:text-[#333] group relative duration-300"
+          class="flex items-center my-8 cursor-pointer space-x-1 text-md font-medium text-[15px] text-[#7e7e7e] hover:text-[#333] group relative duration-500"
         >
           <span>{{ link.label }}</span>
 
          
           <div
-            class="fixed inset-x-0 top-[60px] pt-5 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300   z-50"
+            class="fixed inset-x-0 top-[60px] pt-4 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-500   z-50" 
           >
             <div class="container mx-auto z-50">
               <Dropdown :label="link.label" />
@@ -34,12 +34,12 @@
             height="1em"
             width="1em"
             xmlns="http://www.w3.org/2000/svg"
-            class="group-hover:fill-[#333] mt-1 transition-colors duration-300"
+            class="group-hover:fill-[#333] mt-1 transition-colors duration-500"
           >
             <path d="M256 294.1L383 167c9.4-9.4 24.6-9.4 33.9 0s9.3 24.6 0 34L273 345c-9.1 9.1-23.7 9.3-33.1.7L95 201.1c-4.7-4.7-7-10.9-7-17s2.3-12.3 7-17c9.4-9.4 24.6-9.4 33.9 0l127.1 127z" />
           </svg>
 
-          <span class="absolute bottom-0 left-0 w-full h-[1px] bg-[#333] transform scale-x-0 origin-right transition-transform duration-300 group-hover:scale-x-75 group-hover:origin-left" />
+          <span class="absolute bottom-0 left-0 w-full h-[1px] bg-[#333] transform scale-x-0 origin-right transition-transform duration-500 group-hover:scale-x-75 group-hover:origin-left" />
         </div>
       </nav>
 

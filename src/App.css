@@ -1,1 +1,8 @@
 @import "tailwindcss";
+
+
+@import url('https://fonts.cdnfonts.com/css/work-sans');
+
+*, body, div, h1, h2, h3, h4, h5, h6, p, span, a {
+  font-family: 'Work Sans', sans-serif !important;
+}

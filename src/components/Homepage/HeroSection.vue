@@ -28,7 +28,7 @@
             :alt="slide.title"
             class="w-full h-full object-cover"
           />
-          <div class="absolute left-4 md:left-8 p-4 md:p-8  bg-opacity-75 rounded-lg max-w-[80%] md:max-w-[60%]">
+          <div class="absolute left-4 md:left-8 p-4 md:p-8  bg-opacity-75 rounded-lg lg:w-[40%] max-w-[80%] md:max-w-[60%]">
             <h2 class="text-[#68aaeb] font-bold mb-2 md:mb-4 text-sm md:text-lg uppercase">
               {{ slide.header }}
             </h2>

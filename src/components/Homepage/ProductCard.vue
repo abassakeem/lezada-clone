@@ -1,8 +1,12 @@
 <template>
-  <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+  
     <div v-for="product in products" :key="product.id" class="space-y-4">
       <div class="relative group">
-        <img :src="product.img" :alt="product.name" class="w-full h-auto hover:scale-110 cursor-pointer duration-300" />
+        <img
+          :src="product.img"
+          :alt="product.name"
+          class="w-full h-auto hover:scale-110 cursor-pointer duration-300"
+        />
 
         <div class="absolute top-4 left-4 space-y-3">
           <div
@@ -75,70 +79,23 @@
         </div>
       </div>
     </div>
-  </div>
+  
 </template>
-<script>
-export default {
-  name: "ProductCard",
-  data() {
-    return {
-      products: [
-        {
-          id: 1,
-          name: "Lorem ipsum decor one",
-          img: "https://lezada.jamstacktemplates.dev/assets/images/product/decor/1.jpg",
-          discount: 20,
-          productType: "new",
-          costPrice: 100,
-        },
-        {
-          id: 2,
-          name: "Lorem ipsum decor one",
-          img: "https://lezada.jamstacktemplates.dev/assets/images/product/decor/2.jpg",
-          discount: 20,
-          productType: "new",
-          costPrice: 100,
-        },
-        {
-          id: 3,
-          name: "Lorem ipsum decor one",
-          img: "https://lezada.jamstacktemplates.dev/assets/images/product/decor/3.jpg",
-          discount: 20,
-          productType: "new",
-          costPrice: 100,
-        },
-        {
-          id: 4,
-          name: "Lorem ipsum decor one",
-          img: "https://lezada.jamstacktemplates.dev/assets/images/product/decor/4.jpg",
-          discount: 20,
-          productType: "new",
-          costPrice: 100,
-        },
-        {
-          id: 5,
-          name: "Lorem ipsum decor one",
-          img: "https://lezada.jamstacktemplates.dev/assets/images/product/decor/5.jpg",
-          discount: 20,
-          productType: "new",
-          costPrice: 100,
-        },
-        {
-          id: 6,
-          name: "Lorem ipsum decor one",
-          img: "https://lezada.jamstacktemplates.dev/assets/images/product/decor/6.jpg",
-          discount: 20,
-          productType: "new",
-          costPrice: 100,
-        },
-      ],
-    };
+
+<script setup>
+defineProps({
+  products: {
+    type: Array,
+    required: true,
   },
-  methods: {
-    calculateDiscountedPrice(costPrice, discount) {
-      const discountAmount = (costPrice * discount) / 100;
-      return costPrice - discountAmount;
-    },
-  },
+  isSinglePage:{
+    type: Boolean,
+    required:true
+  }
+});
+
+const calculateDiscountedPrice = (costPrice, discount) => {
+  const discountAmount = (costPrice * discount) / 100;
+  return costPrice - discountAmount;
 };
 </script>

@@ -5,7 +5,7 @@
     :subGroups="navLinks.find(link => link.label === label)?.subGroups"
   />
   <div v-else class="w-full duration-500">
-    <div class="bg-blue-600 w-5xl h-1/4">{{ label.toLowerCase() }}</div>
+    <div class=" w-5xl h-1/4">{{ label.toLowerCase() }}</div>
   </div>
 </template>
 
@@ -134,5 +134,5 @@
   </script>
   
   <style scoped>
-  /* Add any additional styles here */
+
   </style>
