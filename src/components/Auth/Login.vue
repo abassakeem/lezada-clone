@@ -2,7 +2,7 @@
   Login
 </template>
 
-<script>
+<script setup>
 
 </script>
 

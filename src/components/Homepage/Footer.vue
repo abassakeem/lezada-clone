@@ -1,5 +1,5 @@
 <template>
-    <div class="px-3 lg:px-6 bg-[#f8f8f8]">  <!-- Removed flex properties from parent -->
+    <div class="px-3 lg:px-6 bg-[#f8f8f8]">  
     <div class="mx-auto footer-links pr-6 max-w-6xl"> 
       <div class="py-24 flex flex-col justify-between lg:flex-row lg:px-0">
         <div class="">
