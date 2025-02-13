@@ -37,7 +37,7 @@
           </div>
 
           <button
-            class="bg-[#333] border border-[#333] cursor-pointer text-sm hover:bg-transparent duration-300 hover:text-[#333] text-white px-[40px] py-[12px] self-center"
+            class="bg-[#333] border border-[#333] cursor-pointer text-sm hover:bg-transparent duration-500 hover:text-[#333] text-white px-[40px] py-[12px] self-center"
           >
             Register
           </button>

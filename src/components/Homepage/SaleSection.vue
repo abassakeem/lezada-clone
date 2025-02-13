@@ -11,7 +11,7 @@
       </div>
       <h6 class="text-center my-4 mb-8 text-xl lg:text-[40px] "> Up to  40% Off Final Sale Items<br/> Caught in the moment!</h6>
       <div class="flex self-center justify-center">
-        <button class="bg-[#333] border border-[#333] cursor-pointer text-sm hover:bg-transparent duration-300 hover:text-[#333]  text-white px-[40px] py-[12px]">SHOP NOW</button>
+        <button class="bg-[#333] border border-[#333] cursor-pointer text-sm hover:bg-transparent duration-500 hover:text-[#333]  text-white px-[40px] py-[12px]">SHOP NOW</button>
       </div>
       
     </div>

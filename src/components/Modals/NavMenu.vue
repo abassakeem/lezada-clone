@@ -1,10 +1,10 @@
 <template>
   <div class="fixed inset-0 z-50">
     <!-- Background Overlay -->
-    <div class="fixed inset-0 bg-black/30 transition-opacity transform ease duration-300" @click="$emit('close')"></div>
+    <div class="fixed inset-0 bg-black/30 transition-opacity transform ease duration-500" @click="$emit('close')"></div>
 
     <!-- Main Menu -->
-    <div class="fixed transform transition-transform duration-300 inset-0 text-white w-screen h-screen flex">
+    <div class="fixed transform transition-transform duration-500 inset-0 text-white w-screen h-screen flex">
       <!-- Sidebar -->
       <div class="w-[20%] h-full bg-black/20 flex items-start justify-start">
         <button class="bg-[#333] w-full left-4 z-10 p-4" @click="$emit('close')">

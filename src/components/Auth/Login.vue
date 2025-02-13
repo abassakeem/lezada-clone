@@ -18,7 +18,7 @@
             class="border-b-2 border-[#ccc] bg-transparent outline-none p-1"
           />
           <button
-            class="bg-[#333] border border-[#333] cursor-pointer text-sm hover:bg-transparent duration-300 hover:text-[#333] text-white px-[40px] py-[12px] self-start"
+            class="bg-[#333] border border-[#333] cursor-pointer text-sm hover:bg-transparent duration-500 hover:text-[#333] text-white px-[40px] py-[12px] self-start"
           >
             Login
           </button>

@@ -5,7 +5,7 @@
         <img
           :src="product.img"
           :alt="product.name"
-          class="w-full h-auto hover:scale-110 cursor-pointer duration-300"
+          class="w-full h-auto hover:scale-110 cursor-pointer duration-500"
         />
 
         <div class="absolute top-4 left-4 space-y-3">
@@ -22,7 +22,7 @@
         </div>
 
         <div
-          class="absolute top-4 right-4 opacity-0 invisible cursor-pointer group-hover:opacity-100 group-hover:visible transition-all duration-300"
+          class="absolute top-4 right-4 opacity-0 invisible cursor-pointer group-hover:opacity-100 group-hover:visible transition-all duration-500"
         >
           <button
             class="bg-white p-3 cursor-pointer hover:bg-gray-100 transition-colors mb-3 block"

@@ -2,14 +2,14 @@
   <div class="flex items-center justify-center">
     <div class="max-w-6xl w-full flex flex-col items-center justify-center">
       <div class="tab-header text-5xl text-[#ccc] flex items-center justify-center space-x-10 my-16">
-        <h3 @click="setActiveTab('New')" class="hover:text-[#333] duration-300  cursor-pointer" :class="{ 'text-[#333]': activeTab === 'New' }">New</h3>
-        <h3 @click="setActiveTab('Popular')" class="hover:text-[#333] duration-300 cursor-pointer" :class="{ 'text-[#333]': activeTab === 'Popular' }">Popular</h3>
-        <h3 @click="setActiveTab('Sale')" class="hover:text-[#333] duration-300 cursor-pointer" :class="{ 'text-[#333]': activeTab === 'Sale' }">Sale</h3>
+        <h3 @click="setActiveTab('New')" class="hover:text-[#333] duration-500  cursor-pointer" :class="{ 'text-[#333]': activeTab === 'New' }">New</h3>
+        <h3 @click="setActiveTab('Popular')" class="hover:text-[#333] duration-500 cursor-pointer" :class="{ 'text-[#333]': activeTab === 'Popular' }">Popular</h3>
+        <h3 @click="setActiveTab('Sale')" class="hover:text-[#333] duration-500 cursor-pointer" :class="{ 'text-[#333]': activeTab === 'Sale' }">Sale</h3>
       </div>
 
       <div>
         <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">  <ProductCard :products="products" :isSinglePage="false"/></div>
-      
+    
       </div> 
     </div>
   </div>

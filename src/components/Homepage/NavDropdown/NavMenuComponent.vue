@@ -19,8 +19,9 @@
             <h3 class="font-medium text-[#333] mb-4">{{ group.header }}</h3>
             <ul class="space-y-2 pb-1">
               <li v-for="(link, index) in group.links" :key="index">
-                <a href="#" class="text-[#7e7e7e] font-normal duration-500 hover:text-[#333] border-b border-transparent hover:border-b-[#333]">{{ link }}</a>
+                <a href="#" class="text-[#7e7e7e] font-normal duration-500 hover:text-[#7e7e7e] border-b border-transparent hover:border-b-[#333]">{{ link }}</a>
               </li>
+
             </ul>
           </div>
         </template>

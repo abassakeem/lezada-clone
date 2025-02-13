@@ -1,6 +1,6 @@
 <template>
   <div
-    :class="`fixed inset-0 w-full h-full z-50 bg-white flex items-center justify-center duration-300 transform transition-transform 
+    :class="`fixed inset-0 w-full h-full z-50 bg-white flex items-center justify-center duration-500 transform transition-transform 
       ${
         isSearchOpen
           ? 'translate-x-0 opacity-100'
