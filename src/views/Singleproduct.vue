@@ -31,7 +31,7 @@
                 <img
                   :src="product.img"
                   :alt="product.name"
-                  class="w-full h-auto transition-transform duration-500 hover:scale-110 cursor-pointer"
+                  class="w-full h-auto transition-transform duration-500 cursor-pointer"
                 />
 
                 <!-- Product Badges -->
@@ -58,7 +58,7 @@
                 <div class="absolute top-4 right-4 space-y-3">
                   <button
                     @click="toggleWishlist(product)"
-                    class="block w-8 h-8 transition-colors hover:text-red-500"
+                    class="block w-8 h-8 transition-colors hover:text-red-500 cursor-pointer"
                     aria-label="Add to wishlist"
                   >
                     <svg
@@ -73,7 +73,7 @@
                   </button>
                   <button
                     @click="toggleCompare(product)"
-                    class="block w-8 h-8 transition-colors hover:text-blue-500"
+                    class="block w-8 h-8 transition-colors hover:text-blue-500 cursor-pointer"
                     aria-label="Compare product"
                   >
                     <svg
@@ -86,6 +86,54 @@
                       />
                     </svg>
                   </button>
+                </div>
+              </div>
+
+             
+              <div class="overflow-x-auto pb-4 scrollbar-none">
+                <div class="flex space-x-2 min-w-max">
+                  <div class="w-32 flex-shrink-0">
+                    <img
+                      :src="product.img"
+                      :alt="product.name"
+                      class="w-full h-auto transition-transform duration-500 cursor-pointer"
+                    />
+                  </div>
+                  <div class="w-32 flex-shrink-0">
+                    <img
+                      :src="product.img"
+                      :alt="product.name"
+                      class="w-full h-auto transition-transform duration-500 cursor-pointer"
+                    />
+                  </div>
+                  <div class="w-32 flex-shrink-0">
+                    <img
+                      :src="product.img"
+                      :alt="product.name"
+                      class="w-full h-auto transition-transform duration-500 cursor-pointer"
+                    />
+                  </div>
+                  <div class="w-32 flex-shrink-0">
+                    <img
+                      :src="product.img"
+                      :alt="product.name"
+                      class="w-full h-auto transition-transform duration-500 cursor-pointer"
+                    />
+                  </div>
+                  <div class="w-32 flex-shrink-0">
+                    <img
+                      :src="product.img"
+                      :alt="product.name"
+                      class="w-full h-auto transition-transform duration-500 cursor-pointer"
+                    />
+                  </div>
+                  <div class="w-32 flex-shrink-0">
+                    <img
+                      :src="product.img"
+                      :alt="product.name"
+                      class="w-full h-auto transition-transform duration-500 cursor-pointer"
+                    />
+                  </div>
                 </div>
               </div>
             </div>
@@ -127,7 +175,7 @@
             <p class="text-gray-700 leading-relaxed">
               {{ product.description }}
             </p>
-            <div class="grid gap-8">
+            <div class="grid gap-3">
               <div class="flex items-center">
                 <h3 class="w-24 font-medium">Size:</h3>
                 <div class="flex gap-4">
@@ -135,7 +183,7 @@
                     v-for="size in product.sizes"
                     :key="size"
                     @click="selectedSize = size"
-                    class="px-4 py-2 hover:bg-gray-100 transition-colors"
+                    class="hover:text-[#333] mx-1 text-lg transition-colors cursor-pointer"
                     :class="{
                       'text-[#333] border-[#333]': selectedSize === size,
                       'text-[#ababab]': selectedSize !== size,
@@ -153,7 +201,7 @@
                     v-for="color in product.colors"
                     :key="color"
                     @click="selectedColor = color"
-                    class="w-6 h-6 rounded-full transition-transform hover:scale-110"
+                    class="w-6 h-6 rounded-full transition-transform hover:scale-110 cursor-pointer"
                     :class="{
                       'ring-2 ring-[#333] ring-offset-2':
                         selectedColor === color,
@@ -168,7 +216,7 @@
                 <div class="flex items-center border-b-2 border-[#ccc]">
                   <button
                     @click="decreaseQuantity"
-                    class="px-4 py-2 hover:bg-gray-100 transition-colors"
+                    class="px-4 py-2 hover:bg-gray-100 transition-colors cursor-pointer"
                     :disabled="quantity <= 0"
                   >
                     -
@@ -178,15 +226,17 @@
                   }}</span>
                   <button
                     @click="increaseQuantity"
-                    class="px-4 py-2 hover:bg-gray-100 transition-colors"
+                    class="px-4 py-2 hover:bg-gray-100 transition-colors cursor-pointer"
                   >
                     +
                   </button>
                 </div>
               </div>
 
-              <div class="flex items-center gap-2">
-                <button class="bg-[#333] text-white px-10 py-3 h-12">
+              <div class="mt-4 flex items-center gap-2">
+                <button
+                  class="bg-[#333] text-white px-10 py-3 h-12 cursor-pointer"
+                >
                   ADD TO CART
                 </button>
                 <button
@@ -215,17 +265,14 @@
             <div class="grid gap-2">
               <div class="flex items-center">
                 <h3 class="w-24 font-medium">SKU:</h3>
-                <div class="flex gap-4 text-[#777777]">   {{ product.sku }}
-                  
-                </div>
+                <div class="flex gap-4 text-[#777777]">{{ product.sku }}</div>
               </div>
 
               <div class="flex items-center">
-                <h3 class="w-24 font-medium">categories:</h3>
+                <h3 class="w-24 font-medium">Categories:</h3>
                 <div class="flex gap-4">
                   <button
-                    
-                    class="w-6 h-6 rounded-full transition-transform  text-[#777777]"
+                    class="w-6 h-6 rounded-full transition-transform cursor-pointer text-[#777777]"
                   >
                     {{ product.categories }}
                   </button>
@@ -233,14 +280,16 @@
               </div>
               <div class="flex items-center">
                 <h3 class="w-24 font-medium">Tags:</h3>
-                <div class="flex items-center  text-[#777777]">
+                <div class="flex items-center text-[#777777]">
                   {{ product.tags }}
                 </div>
               </div>
               <div class="flex items-center">
                 <h3 class="w-24 font-medium">Share on:</h3>
                 <div class="flex items-center">
-                  <ul class="social-icons text-[#777777] flex justify-center items-center gap-2 text-md">
+                  <ul
+                    class="social-icons text-[#777777] flex justify-center items-center gap-2 text-md"
+                  >
                     <li>
                       <a href="https://www.twitter.com"
                         ><svg
@@ -337,7 +386,7 @@ const oneproduct = ref([
     tags: "decor",
 
     description:
-      "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Veritatis beatae nam cum eligendi similique rerum repellendus tempora dolores sapiente debitis quia ut exercitationem, ipsum nemo magni aliquid illo aspernatur omnis?Lorem ipsum, dolor sit amet consectetur adipisicing elit. Veritatis beatae nam cum eligendi similique rerum repellendus tempora dolores sapiente debitis quia ut exercitationem, ipsum nemo magni aliquid illo aspernatur omnis?",
+      "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Veritatis beatae nam cum eligendi similique rerum repellendus tempora dolores sapiente debitis quia ut exercitationem, ipsum nemo magni aliquid illo aspernatur omnis?Lorem ipsum, dolor sit amet consectetur adipisicing elit.",
   },
 ]);
 
