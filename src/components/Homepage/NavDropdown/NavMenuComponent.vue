@@ -1,6 +1,6 @@
 <template>
     <div class="w-full duration-500">
-      <div class="flex justify-between max-w-6xl mx-auto space-x-16 bg-white p-8 pb-0 shadow-sm">
+      <div class="flex justify-between max-w-6xl mx-auto space-x-16 bg-white p-8 pb-2 shadow-sm">
         <template v-for="(group, key) in subGroups" :key="key">
           
           <div v-if="group.img" class="flex-1">
@@ -13,12 +13,13 @@
             </div>
           </div>
           
+          
          
-          <div v-else class="flex-1">
+          <div v-else class="flex-1 ">
             <h3 class="font-medium text-[#333] mb-4">{{ group.header }}</h3>
-            <ul class="space-y-2">
+            <ul class="space-y-2 pb-1">
               <li v-for="(link, index) in group.links" :key="index">
-                <a href="#" class="text-[#7e7e7e] font-normal hover:text-[#333] ">{{ link }}</a>
+                <a href="#" class="text-[#7e7e7e] font-normal duration-500 hover:text-[#333] border-b border-transparent hover:border-b-[#333]">{{ link }}</a>
               </li>
             </ul>
           </div>

@@ -111,22 +111,6 @@
         groupOne: {
           header: "Blog Group",
           links: ["Latest Posts", "Featured", "News", "Trends"]
-        },
-        groupTwo: {
-          header: "Blog Group",
-          links: ["Fashion", "Lifestyle", "Beauty", "Travel"]
-        },
-        groupThree: {
-          header: "Blog Group",
-          links: ["Reviews", "Guides", "Tips", "Stories"]
-        },
-        groupFour: {
-          header: "Blog Group",
-          links: ["Archives", "Categories", "Authors"]
-        },
-        groupFive: {
-          header: "Featured",
-          img: "https://lezada.jamstacktemplates.dev/assets/images/menu-image/menu-element.png"
         }
       }
     }

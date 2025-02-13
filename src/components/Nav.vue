@@ -201,10 +201,10 @@
 <script setup>
 import { ref } from "vue";
 import NavMenu from "@/components/Modals/NavMenu.vue";
-import SearchModal from "./Homepage/SearchModal.vue";
+import SearchModal from "./Modals/SearchModal.vue";
 import Dropdown from "./Homepage/NavDropdown/dropdown.vue";
-import CartModal from "./Homepage/CartModal.vue";
-import WishListModal from "./Homepage/WishListModal.vue";
+import CartModal from "./Modals/CartModal.vue";
+import WishListModal from "./Modals/WishListModal.vue";
 
 const isNavOpen = ref(false);
 const isSearchOpen = ref(false);
