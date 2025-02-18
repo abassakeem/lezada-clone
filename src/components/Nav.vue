@@ -1,8 +1,6 @@
 <template>
-  <header class="bg-white px-3 lg:px-6">
-    <div
-      class="container mx-auto lg:px-6  flex justify-between items-center"
-    >
+  <header class="bg-white px-3 lg:px-6 w-full " :class="['fixed top-0 left-0 transition-shadow  duration-500 z-50', isScrolled ? 'shadow-xl' : 'shadow-none  ']">
+    <div class="container mx-auto lg:px-6 flex justify-between items-center">
       <a href="/" class="text-[#7e7e7e] font-bold">
         <img
           src="https://lezada.jamstacktemplates.dev/assets/images/logo.png"
@@ -15,11 +13,10 @@
           :key="link.label"
           class="flex items-center my-8 cursor-pointer space-x-1 text-md font-medium text-[15px] text-[#7e7e7e] hover:text-[#333] group relative duration-500"
         >
-          <span>{{ link.label }}</span>
+          <router-link :to="link.url">{{ link.label }}</router-link>
 
-         
           <div
-            class="fixed inset-x-0 top-[60px] pt-4 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-500   z-50" 
+            class="fixed inset-x-0 top-[60px] pt-4 opacity-0 invisible group-hover:opacity-100 group-hover:visible duration-500  z-50"
           >
             <div class="container mx-auto z-50">
               <Dropdown :label="link.label" />
@@ -36,15 +33,19 @@
             xmlns="http://www.w3.org/2000/svg"
             class="group-hover:fill-[#333] mt-1 transition-colors duration-500"
           >
-            <path d="M256 294.1L383 167c9.4-9.4 24.6-9.4 33.9 0s9.3 24.6 0 34L273 345c-9.1 9.1-23.7 9.3-33.1.7L95 201.1c-4.7-4.7-7-10.9-7-17s2.3-12.3 7-17c9.4-9.4 24.6-9.4 33.9 0l127.1 127z" />
+            <path
+              d="M256 294.1L383 167c9.4-9.4 24.6-9.4 33.9 0s9.3 24.6 0 34L273 345c-9.1 9.1-23.7 9.3-33.1.7L95 201.1c-4.7-4.7-7-10.9-7-17s2.3-12.3 7-17c9.4-9.4 24.6-9.4 33.9 0l127.1 127z"
+            />
           </svg>
 
-          <span class="absolute bottom-0 left-0 w-full h-[1px] bg-[#333] transform scale-x-0 origin-right transition-transform duration-500 group-hover:scale-x-75 group-hover:origin-left" />
+          <span
+            class="absolute bottom-0 left-0 w-full h-[1px] bg-[#333] transform scale-x-0 origin-right transition-transform duration-500 group-hover:scale-x-75 group-hover:origin-left"
+          />
         </div>
       </nav>
 
       <div class="lg:hidden flex py-6 items-center space-x-4">
-        <button class="text-[#333] hover:text-gray-800 cursor-pointer text-xl ">
+        <button class="text-[#333] hover:text-gray-800 cursor-pointer text-xl">
           <svg
             stroke="currentColor"
             fill="currentColor"
@@ -109,9 +110,12 @@
       </div>
 
       <div class="hidden lg:block">
-        <div class="flex items-center space-x-8 text-xl ">
+        <div class="flex items-center space-x-8 text-xl">
           <div class="relative">
-            <button @click="toggleSearch" class="text-[#333] hover:text-gray-800 cursor-pointer">
+            <button
+              @click="toggleSearch"
+              class="text-[#333] hover:text-gray-800 cursor-pointer"
+            >
               <svg
                 stroke="currentColor"
                 fill="currentColor"
@@ -127,7 +131,10 @@
               </svg>
             </button>
           </div>
-          <router-link :to="{ name: 'login-register'}" class="text-[#333] hover:text-gray-800 cursor-pointer">
+          <router-link
+            :to="{ name: 'login-register' }"
+            class="text-[#333] hover:text-gray-800 cursor-pointer"
+          >
             <svg
               stroke="currentColor"
               fill="currentColor"
@@ -142,7 +149,11 @@
               ></path>
             </svg>
           </router-link>
-          <button @click="toggleWishlist" href="#" class="text-[#333] hover:text-gray-800 cursor-pointer">
+          <button
+            @click="toggleWishlist"
+            href="#"
+            class="text-[#333] hover:text-gray-800 cursor-pointer"
+          >
             <svg
               stroke="currentColor"
               fill="currentColor"
@@ -157,7 +168,11 @@
               ></path>
             </svg>
           </button>
-          <button @click="toggleCart" href="#" class="text-[#333] hover:text-gray-800 cursor-pointer">
+          <button
+            @click="toggleCart"
+            href="#"
+            class="text-[#333] hover:text-gray-800 cursor-pointer"
+          >
             <svg
               stroke="currentColor"
               fill="currentColor"
@@ -191,15 +206,29 @@
     </div>
 
     <NavMenu v-if="isNavOpen" @close="isNavOpen = false" />
-    <SearchModal v-show="isSearchOpen" @close="isSearchOpen = false" :toggleSearch="toggleSearch" :isSearchOpen="isSearchOpen" />
-    <CartModal v-show="isCartOpen" @close="isCartOpen = false" :toggleCart="toggleCart" :isCartOpen="isCartOpen" />
-    <WishListModal v-show="isWishlistOpen" @close="isWishlistOpen = false" :toggleWishlist="toggleWishlist" :isWishlistOpen="isWishlistOpen" />
-
+    <SearchModal
+      v-show="isSearchOpen"
+      @close="isSearchOpen = false"
+      :toggleSearch="toggleSearch"
+      :isSearchOpen="isSearchOpen"
+    />
+    <CartModal
+      v-show="isCartOpen"
+      @close="isCartOpen = false"
+      :toggleCart="toggleCart"
+      :isCartOpen="isCartOpen"
+    />
+    <WishListModal
+      v-show="isWishlistOpen"
+      @close="isWishlistOpen = false"
+      :toggleWishlist="toggleWishlist"
+      :isWishlistOpen="isWishlistOpen"
+    />
   </header>
 </template>
 
 <script setup>
-import { ref } from "vue";
+import { onMounted, onUnmounted, ref } from "vue";
 import NavMenu from "@/components/Modals/NavMenu.vue";
 import SearchModal from "./Modals/SearchModal.vue";
 import Dropdown from "./Homepage/NavDropdown/dropdown.vue";
@@ -210,10 +239,11 @@ const isNavOpen = ref(false);
 const isSearchOpen = ref(false);
 const isCartOpen = ref(false);
 const isWishlistOpen = ref(false);
+const isScrolled = ref(false);
 
 const navLinks = [
-  { label: "Home", url: "#" },
-  { label: "Shop", url: "#" },
+  { label: "Home", url: "/" },
+  { label: "Shop", url: "/shop" },
   { label: "Elements", url: "#" },
   { label: "Pages", url: "#" },
   { label: "Blog", url: "#" },
@@ -231,4 +261,15 @@ const toggleCart = () => {
 const toggleWishlist = () => {
   isWishlistOpen.value = !isWishlistOpen.value;
 };
+
+const handleScroll = () =>{
+  isScrolled.vaule = window.scrollY > 10
+}
+onMounted(()=>{
+  window.addEventListener("scroll". handleScroll)
+})
+onUnmounted(()=>{
+  window.removeEventListener("scroll". handleScroll)
+})
+
 </script>

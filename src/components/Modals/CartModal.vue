@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="">
     <div
       v-if="isCartOpen"
       class="fixed inset-0 bg-black/10 z-40"
