@@ -1,21 +1,23 @@
 <template>
   <div class="w-full">
     <!-- Hero Section -->
-    <div
-      v-if="product"
-      class="relative h-64 w-full bg-cover bg-center bg-no-repeat flex justify-center items-center"
-      :style="{
-        backgroundImage: `url('https://lezada.jamstacktemplates.dev/assets/images/backgrounds/breadcrumb-bg-1.png')`,
-      }"
-    >
-      <div class="w-full max-w-6xl flex flex-col px-3 lg:px-6">
-        <h1 class="text-4xl text-[#333] font-light">{{ product.name }}</h1>
-        <div class="flex items-center gap-2">
-          <router-link to="/" class="text-[#777777]">Home</router-link>
-          <span>/</span>
-          <router-link to="/" class="text-[#777777]">Shop</router-link>
-          <span>/</span>
-          <span class="text-[#333]">{{ product.name }}</span>
+    <div class="flex justify-center items-center">
+      <div
+        v-if="product"
+        class="relative h-64 w-full bg-cover bg-center bg-no-repeat flex justify-center items-center"
+        :style="{
+          backgroundImage: `url('https://lezada.jamstacktemplates.dev/assets/images/backgrounds/breadcrumb-bg-1.png')`,
+        }"
+      >
+        <div class="w-full max-w-6xl flex flex-col justify-center px-3 lg:px-6 mt-16">
+          <h1 class="text-4xl text-[#333] font-light">{{ product.name }}</h1>
+          <div class="flex items-center just gap-2">
+            <router-link to="/" class="text-[#777777]">Home</router-link>
+            <span>/</span>
+            <router-link to="/" class="text-[#777777]">Shop</router-link>
+            <span>/</span>
+            <span class="text-[#333]">{{ product.name }}</span>
+          </div>
         </div>
       </div>
     </div>
@@ -89,7 +91,6 @@
                 </div>
               </div>
 
-             
               <div class="overflow-x-auto pb-4 scrollbar-none">
                 <div class="flex space-x-2 min-w-max">
                   <div class="w-32 flex-shrink-0">

@@ -1,12 +1,15 @@
 <template>
   <div v-for="product in products" :key="product.id" class="space-y-4">
     <div class="relative group">
+       <router-link :to="{ name: 'product', params: {id: product.id}}">
+        
+
       <img
         :src="product.img"
         :alt="product.name"
         class="w-full h-auto hover:scale-101 cursor-pointer duration-500"
       />
-
+</router-link>
       <div class="absolute top-4 left-4 space-y-3">
         <div
           class="bg-teal-400 w-10 h-10 flex items-center justify-center rounded-full"
