@@ -1,6 +1,6 @@
 <template>
   <div class="w-full">
-    <!-- Hero Section -->
+    
     <div class="flex justify-center items-center">
       <div
         v-if="product"

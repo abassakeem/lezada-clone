@@ -1,5 +1,5 @@
 <template>
-  <header class="bg-white px-3 lg:px-6 w-full " :class="['fixed top-0 left-0 transition-shadow  duration-500 z-50', isScrolled ? 'shadow-xl' : 'shadow-none  ']">
+  <header class="bg-white px-3 lg:px-6 w-full" :class="['fixed top-0 left-0 transition-shadow duration-500 z-50', isScrolled ? 'shadow-xl' : 'shadow-none']">
     <div class="container mx-auto lg:px-6 flex justify-between items-center">
       <a href="/" class="text-[#7e7e7e] font-bold">
         <img
@@ -252,24 +252,28 @@ const navLinks = [
 const toggleNav = () => {
   isNavOpen.value = !isNavOpen.value;
 };
+
 const toggleSearch = () => {
   isSearchOpen.value = !isSearchOpen.value;
 };
+
 const toggleCart = () => {
   isCartOpen.value = !isCartOpen.value;
 };
+
 const toggleWishlist = () => {
   isWishlistOpen.value = !isWishlistOpen.value;
 };
 
-const handleScroll = () =>{
-  isScrolled.vaule = window.scrollY > 10
-}
-onMounted(()=>{
-  window.addEventListener("scroll". handleScroll)
-})
-onUnmounted(()=>{
-  window.removeEventListener("scroll". handleScroll)
-})
+const handleScroll = () => {
+  isScrolled.value = window.scrollY > 10;
+};
 
+onMounted(() => {
+  window.addEventListener("scroll", handleScroll);
+});
+
+onUnmounted(() => {
+  window.removeEventListener("scroll", handleScroll);
+});
 </script>
