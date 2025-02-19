@@ -43,51 +43,56 @@
         </div>
         <div class="flex flex-col gap-2">
           <div
-            class="flex justify-between gap-4 py-4 border-b border-[#eee]"
+            class=" py-4 border-b border-[#eee]"
             v-for="product in products"
             :key="product.id"
           >
-            <div class="flex-shrink-0">
-              <img
-                :src="product.img"
-                class="h-[100px] w-[100px] object-cover"
-              />
-            </div>
+            <router-link :to="{ name: 'product', params: {id: product.id}}">
+              <div class="flex justify-between gap-4">
+                <div class="flex-shrink-0">
+                  <img
+                    :src="product.img"
+                    class="h-[100px] w-[100px] object-cover"
+                  />
+                </div>
 
-            <div class="flex-1 truncate">
-              <div class="flex-1 truncate">
-                {{ product.title }}
-              </div>
-              <div class="flex-1 font-bold truncate">${{ product.price }}</div>
-            </div>
+                <div class="flex-1 truncate">
+                  <div class="flex-1 truncate">
+                    {{ product.title }}
+                  </div>
+                  <div class="flex-1 font-bold truncate">
+                    ${{ product.price }}
+                  </div>
+                </div>
 
-            <div class="flex-shrink-0">
-              <svg
-                stroke="currentColor"
-                class="hover:text-[#d3122a] duration-500 p-1 rounded cursor-pointer"
-                fill="currentColor"
-                stroke-width="0"
-                viewBox="0 0 512 512"
-                height="1.5em"
-                width="1.5em"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path
-                  d="M278.6 256l68.2-68.2c6.2-6.2 6.2-16.4 0-22.6-6.2-6.2-16.4-6.2-22.6 0L256 233.4l-68.2-68.2c-6.2-6.2-16.4-6.2-22.6 0-3.1 3.1-4.7 7.2-4.7 11.3 0 4.1 1.6 8.2 4.7 11.3l68.2 68.2-68.2 68.2c-3.1 3.1-4.7 7.2-4.7 11.3 0 4.1 1.6 8.2 4.7 11.3 6.2 6.2 16.4 6.2 22.6 0l68.2-68.2 68.2 68.2c6.2 6.2 16.4 6.2 22.6 0 6.2-6.2 6.2-16.4 0-22.6L278.6 256z"
-                ></path>
-              </svg>
-            </div>
+                <div class="flex-shrink-0">
+                  <svg
+                    stroke="currentColor"
+                    class="hover:text-[#d3122a] duration-500 p-1 rounded cursor-pointer"
+                    fill="currentColor"
+                    stroke-width="0"
+                    viewBox="0 0 512 512"
+                    height="1.5em"
+                    width="1.5em"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M278.6 256l68.2-68.2c6.2-6.2 6.2-16.4 0-22.6-6.2-6.2-16.4-6.2-22.6 0L256 233.4l-68.2-68.2c-6.2-6.2-16.4-6.2-22.6 0-3.1 3.1-4.7 7.2-4.7 11.3 0 4.1 1.6 8.2 4.7 11.3l68.2 68.2-68.2 68.2c-3.1 3.1-4.7 7.2-4.7 11.3 0 4.1 1.6 8.2 4.7 11.3 6.2 6.2 16.4 6.2 22.6 0l68.2-68.2 68.2 68.2c6.2 6.2 16.4 6.2 22.6 0 6.2-6.2 6.2-16.4 0-22.6L278.6 256z"
+                    ></path>
+                  </svg>
+                </div></div
+            ></router-link>
           </div>
         </div>
 
         <div class="mt-4">
-          <button
-            class="text-white bg-[#333] p-[10px] w-full hover:bg-[#d3122a] duration-500 cursor-pointer"
+          <router-link
+            to="/wishlist"
+            class="block text-center text-white bg-[#333] p-[10px] w-full hover:bg-[#d3122a] duration-500"
           >
             VIEW WISHLIST
-          </button>
+          </router-link>
         </div>
-        
       </div>
     </div>
   </div>

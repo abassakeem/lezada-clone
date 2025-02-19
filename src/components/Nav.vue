@@ -1,9 +1,13 @@
 <template>
+  <div class="mb-6">
+
+ 
   <header class="bg-white px-3 lg:px-6 w-full" :class="['fixed top-0 left-0 transition-shadow duration-500 z-50', isScrolled ? 'shadow-xl' : 'shadow-none']">
     <div class="container mx-auto lg:px-6 flex justify-between items-center">
       <a href="/" class="text-[#7e7e7e] font-bold">
         <img
           src="https://lezada.jamstacktemplates.dev/assets/images/logo.png"
+          class=""
         />
       </a>
 
@@ -110,8 +114,8 @@
       </div>
 
       <div class="hidden lg:block">
-        <div class="flex items-center space-x-8 text-xl">
-          <div class="relative">
+        <div class="flex items-center justify-center space-x-8 text-xl">
+          <div class="relative flex items-center">
             <button
               @click="toggleSearch"
               class="text-[#333] hover:text-gray-800 cursor-pointer"
@@ -224,7 +228,7 @@
       :toggleWishlist="toggleWishlist"
       :isWishlistOpen="isWishlistOpen"
     />
-  </header>
+  </header> </div>
 </template>
 
 <script setup>
@@ -244,9 +248,9 @@ const isScrolled = ref(false);
 const navLinks = [
   { label: "Home", url: "/" },
   { label: "Shop", url: "/shop" },
-  { label: "Elements", url: "#" },
-  { label: "Pages", url: "#" },
-  { label: "Blog", url: "#" },
+  { label: "Elements", url: "/" },
+  { label: "Pages", url: "" },
+  { label: "Blog", url: "/blog" },
 ];
 
 const toggleNav = () => {
