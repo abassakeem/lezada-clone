@@ -55,7 +55,7 @@
                           >${{ item.price.toFixed(2) }}</span
                         >
                       </td>
-                      <td class="p-4 px-8">
+                      <td class="p-4 px-8 ">
                         <div class="flex items-center justify-center space-x-4">
                           <button
                             @click="decrementQuantity(item)"
