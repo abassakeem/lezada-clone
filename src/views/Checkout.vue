@@ -1,25 +1,16 @@
 <template>
     <div class="w-full">
       
-      <div class="flex justify-center items-center">
-        <div
-          v-if="product"
-          class="relative h-64 w-full bg-cover bg-center bg-no-repeat flex justify-center items-center"
-          :style="{
-            backgroundImage: `url('https://lezada.jamstacktemplates.dev/assets/images/backgrounds/breadcrumb-bg-1.png')`,
-          }"
-        >
-          <div class="w-full max-w-6xl flex flex-col justify-center px-3 lg:px-6 mt-16">
-            <h1 class="text-4xl text-[#333] font-light">Checkout</h1>
-            <div class="flex items-center just gap-2">
-              <router-link to="/" class="text-[#777777]">Home</router-link>
-              <span>/</span>
-             
-              <span class="text-[#333]">Checkout</span>
-            </div>
-          </div>
-        </div>
-      </div>
+      <TopSection
+      :breadcrumb="{
+        header: 'Checkout',
+        parentLink: '',
+        parentPath: '/shop',
+        link: 'Checkout'
+      }"
+      backgroundImage="https://lezada.jamstacktemplates.dev/assets/images/backgrounds/breadcrumb-bg-1.png"
+      :showBreadcrumb="true"
+    >
   
       <!-- Main Content -->
       <main class="py-16">
@@ -29,14 +20,15 @@
           </div>
         </div>
       </main>
-  
-      <Footer />
+  </TopSection>
+      
     </div>
   </template>
   
   <script setup>
   import { ref, computed } from "vue";
   import Footer from "@/components/Homepage/Footer.vue";
+import TopSection from "@/components/TopSection/TopSection.vue";
   
   const oneproduct = ref([
     {
