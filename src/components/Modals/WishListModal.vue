@@ -3,12 +3,12 @@
     <div
       v-if="isWishlistOpen"
       class="fixed inset-0 bg-black/10 z-40"
-      @click="toggleWishlist"
+      @click="modalsStore.toggleWishlist"
     ></div>
 
     <div
       :class="`fixed right-0 top-0 w-1/4 h-full z-50 bg-white flex duration-500 transform transition-transform ${
-        isWishlistOpen ? 'translate-x-0' : 'translate-x-full'
+        modalsStore.isWishlistOpen ? 'translate-x-0' : 'translate-x-full'
       }`"
     >
       <div class="text-black w-full flex p-5 pb-0 flex-col">
@@ -18,7 +18,7 @@
           <div class="">Wishlist</div>
           <div class="flex justify-between items-center text-xl">
             <button
-              @click="toggleWishlist"
+              @click="modalsStore.toggleWishlist"
               class="cursor-pointer hover:rotate-90 duration-600"
             >
               <svg
@@ -47,7 +47,7 @@
             v-for="product in products"
             :key="product.id"
           >
-            <router-link :to="{ name: 'product', params: {id: product.id}}">
+            <router-link  @click="modalsStore.toggleWishlist" :to="{ name: 'product', params: {id: product.id}}">
               <div class="flex justify-between gap-4">
                 <div class="flex-shrink-0">
                   <img
@@ -87,7 +87,9 @@
 
         <div class="mt-4">
           <router-link
+          
             to="/wishlist"
+            @click="modalsStore.toggleWishlist"
             class="block text-center text-white bg-[#333] p-[10px] w-full hover:bg-[#d3122a] duration-500"
           >
             VIEW WISHLIST
@@ -100,8 +102,9 @@
 
 <script setup>
 import { ref } from "vue";
+import { useModalsStore } from '@/stores/modalsStore';
 
-defineProps(["toggleWishlist", "isWishlistOpen"]);
+const modalsStore = useModalsStore();
 
 const products = ref([
   {

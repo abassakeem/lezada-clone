@@ -2,7 +2,7 @@
   <div
     :class="`fixed inset-0 w-full h-full z-50 bg-white flex items-center justify-center duration-500 transform transition-transform 
       ${
-        isSearchOpen
+        modalsStore.isSearchOpen
           ? 'translate-x-0 opacity-100'
           : 'translate-x-full opacity-0'
       }`"
@@ -10,7 +10,7 @@
     <div
       class="cancel-btn absolute right-10 top-10 text-5xl cursor-pointer hover:rotate-90 duration-600"
     >
-      <button @click="toggleSearch" class="cursor-pointer">
+      <button @click="modalsStore.closeSearch" class="cursor-pointer">
         <svg
           stroke="currentColor"
           fill="currentColor"
@@ -45,5 +45,7 @@
 </template>
 
 <script setup>
-defineProps(["toggleSearch", "isSearchOpen"]);
+import { useModalsStore } from '@/stores/modalsStore';
+
+const modalsStore = useModalsStore();
 </script>

@@ -1,14 +1,14 @@
 <template>
   <div class="">
     <div
-      v-if="isCartOpen"
+      v-if="modalsStore.isCartOpen"
       class="fixed inset-0 bg-black/10 z-40"
-      @click="toggleCart"
+      @click="modalsStore.closeCart" 
     ></div>
 
     <div
       :class="`fixed right-0 top-0 w-1/4 h-full z-50 bg-white flex duration-500 transform transition-transform ${
-        isCartOpen ? 'translate-x-0' : 'translate-x-full'
+        modalsStore.isCartOpen ? 'translate-x-0' : 'translate-x-full'
       }`"
     >
       <div class="text-black w-full flex p-5 pb-0 flex-col">
@@ -18,7 +18,7 @@
           <div class="">Cart</div>
           <div class="flex justify-between items-center text-xl">
             <button
-              @click="toggleCart"
+              @click="modalsStore.toggleCart"
               class="cursor-pointer hover:rotate-90 duration-600"
             >
               <svg
@@ -47,7 +47,7 @@
             v-for="product in products"
             :key="product.id"
           >
-            <router-link :to="{ name: 'product', params: {id: product.id}}">
+            <router-link  @click="modalsStore.toggleCart" :to="{ name: 'product', params: {id: product.id}}">
               <div class="flex justify-between gap-4">
                 <div class="flex-shrink-0">
                   <img
@@ -93,6 +93,7 @@
         <div class="mt-4">
           <router-link
             to="/cart"
+             @click="modalsStore.toggleCart"
             class="block text-center text-white bg-[#333] p-[10px] w-full hover:bg-[#d3122a] duration-500"
           >
             VIEW CART
@@ -101,6 +102,7 @@
         <div class="mt-4">
           <router-link
             to="/checkout"
+             @click="modalsStore.toggleCart"
             class="block text-center text-white bg-[#333] p-[10px] w-full hover:bg-[#d3122a] duration-500"
           >
             CHECKOUT
@@ -114,8 +116,10 @@
 
 <script setup>
 import { computed, ref } from "vue";
+import { useModalsStore } from '@/stores/modalsStore';
 
-defineProps(["toggleCart", "isCartOpen"]);
+const modalsStore = useModalsStore();
+
 
 const products = ref([
   {

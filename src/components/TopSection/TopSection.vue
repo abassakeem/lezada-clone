@@ -16,12 +16,12 @@
             </router-link>
             <span class="text-[#777777]">/</span>
             <router-link 
-              :to="breadcrumb.parentPath || '/'" 
+              :to="breadcrumb.parentPath" 
               class="text-[#777777] hover:text-[#333] transition-colors"
             >
               {{ breadcrumb.parentLink }}
             </router-link>
-            <span class="text-[#777777]">/</span>
+            <!-- <span class="text-[#777777]">/</span> -->
             <span class="text-[#333]">{{ breadcrumb.link }}</span>
           </div>
         </div>

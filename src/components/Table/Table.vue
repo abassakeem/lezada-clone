@@ -1,16 +1,20 @@
 <template>
-  <div>
+  <div class="w-full">
     <div class="w-full">
       <div class="mb-8 border border-[#e6e6e6]">
         <table class="w-full">
           <thead>
             <tr class="border-b border-[#e6e6e6]">
-              <th class="text-left p-4 px-8 text-lg font-semibold">PRODUCT</th>
-              <th class="text-left p-4 px-8 text-lg font-semibold">PRICE</th>
-              <th class="text-center p-4 px-8 text-lg font-semibold">
+              <th class="text-left p-4 px-8 text-[15px] font-semibold">
+                PRODUCT
+              </th>
+              <th class="text-left p-4 px-8 text-[15px] font-semibold">
+                PRICE
+              </th>
+              <th  class="text-center p-4 px-8 text-[15px] font-semibold">
                 QUANTITY
               </th>
-              <th class="text-right p-4 px-8 text-lg font-semibold">TOTAL</th>
+              <th class="text-right p-4 px-8 font-semibold">TOTAL</th>
               <th class="w-20"></th>
             </tr>
           </thead>
@@ -27,30 +31,24 @@
                     :alt="item.name"
                     class="w-24 h-24 object-cover"
                   />
-                  <span class="text-[#333]">{{ item.name }}</span>
+                  <span class="hover:text-[#333] cursor-pointer text-[#777]">{{
+                    item.name
+                  }}</span>
                 </div>
               </td>
               <td class="p-4 px-8">
-                <span class="text-lg">${{ item.price.toFixed(2) }}</span>
+                <span class="text-sm font-bold"
+                  >${{ item.price.toFixed(2) }}</span
+                >
               </td>
 
-
-
-
-
-
-
-
-
-
-
-<!-- make the table data in wishlist invisible -->
-
-              <td class="p-4 px-8 ">
-                <div class="flex items-center justify-center space-x-4">
+              <td class="p-4 px-1">
+                <div
+                  class="flex items-center justify-center space-x-4 border-b-2 pb-1 rounded-[2px] border-[#ccc]"
+                >
                   <button
                     @click="decrementQuantity(item)"
-                    class="px-3 py-1 border border-[#e6e6e6] hover:border-[#333] transition-all duration-300"
+                    class="px-3 py-1 text-[#333] transition-all duration-300"
                   >
                     −
                   </button>
@@ -58,19 +56,21 @@
                     type="number"
                     v-model="item.quantity"
                     @input="updateQuantity(item, $event)"
-                    class="w-12 text-center border border-[#e6e6e6] p-1"
+                    class="w-12 text-center text-bold p-1 outline-none"
                     min="1"
                   />
                   <button
                     @click="incrementQuantity(item)"
-                    class="px-3 py-1 border border-[#e6e6e6] hover:border-[#333] transition-all duration-300"
+                    class="px-3 py-1 text-[#333] transition-all duration-300"
                   >
                     +
                   </button>
                 </div>
               </td>
               <td class="p-4 px-8 text-right">
-                <span class="text-lg">${{ calculateItemTotal(item) }}</span>
+                <span class="text-sm font-bold"
+                  >${{ calculateItemTotal(item) }}</span
+                >
               </td>
               <td class="p-4 px-8 text-center">
                 <button
@@ -85,22 +85,22 @@
         </table>
       </div>
 
-      <div class="flex justify-between items-center">
+      <div v-if="cartItems.length > 0" class="flex justify-between items-center">
         <div class="flex items-center space-x-4">
           <input
             type="text"
             placeholder="Enter your coupon code"
-            class="p-3 border border-[#e6e6e6] min-w-[250px]"
+            class="p-3 border-b border-[#e6e6e6] min-w-[250px] outline-none active:border-[#333] focus:border-[#333]"
           />
           <button
-            class="px-6 py-3 text-sm font-medium text-white bg-gray-800 hover:bg-gray-700 transition-all duration-300"
+            class="px-6 py-3 text-sm font-medium text-white bg-gray-800 hover:bg-gray-700 transition-all duration-300 cursor-pointer"
           >
             APPLY COUPON
           </button>
         </div>
         <button
           @click="clearCart"
-          class="px-6 py-3 text-sm font-medium text-white bg-gray-800 hover:bg-gray-700 transition-all duration-300"
+          class="px-6 py-3 text-sm font-medium text-white bg-gray-800 hover:bg-gray-700 transition-all duration-300 cursor-pointer"
         >
           CLEAR CART
         </button>
@@ -131,7 +131,7 @@ const cartItems = ref([
     id: 1,
     name: "Lorem ipsum fashion ten",
     price: 40.5,
-    quantity: 1, // Added quantity initialization
+    quantity: 1, 
     image:
       "https://lezada.jamstacktemplates.dev/assets/images/product/decor/1.jpg",
   },
@@ -139,7 +139,7 @@ const cartItems = ref([
     id: 2,
     name: "Lorem ipsum decor eight",
     price: 15.0,
-    quantity: 1, // Added quantity initialization
+    quantity: 1, 
     image:
       "https://lezada.jamstacktemplates.dev/assets/images/product/decor/1.jpg",
   },
