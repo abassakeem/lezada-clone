@@ -1,6 +1,6 @@
 <template>
   <div
-    class="screen h-full w-full group flex justify-center items-center relative"
+    class="h-screen h-full w-full group flex justify-center items-center relative"
   >
     <div
       class="absolute inset-0 flex justify-between items-center opacity-0 group-hover:opacity-100 transition-opacity duration-500"
@@ -43,7 +43,7 @@
       :modules="[Navigation, Pagination, Autoplay]"
       :navigation="{ prevEl: prevEl, nextEl: nextEl }"
       :autoplay="{ delay: 3000, disableOnInteraction: false }"
-      class="w-full flex items-center justify-center"
+      class="w-full h-3/4 flex items-center justify-center"
     >
       <swiper-slide
         v-for="(slide, index) in slides"
