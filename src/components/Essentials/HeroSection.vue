@@ -50,11 +50,11 @@
         :key="index"
         class="relative flex justify-center items-center"
       >
-        <div class="relative w-full flex items-center justify-start">
+        <div class="relative aspect-[16/9] lg:aspect-auto w-full flex items-center justify-start">
           <img
             :src="slide.image"
             :alt="slide.title"
-            class="w-full h-3/4 object-cover"
+            class="w-full h-full lg:h-3/4 object-cover"
           />
           <div
             class="absolute left-4 md:left-30 p-4 md:p-8 bg-opacity-75 rounded-lg lg:w-[40%] max-w-[80%] md:max-w-[60%]"

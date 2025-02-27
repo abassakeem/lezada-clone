@@ -1,5 +1,5 @@
 <template>
-  <div class="flex justify-center items-center my-16">
+  <div class="flex justify-center items-center my-16 px-3 lg:px-6">
     <div class="w-full max-w-6xl font-medium ">
       <div class="flex justify-between items-center text-sm">
         <div class="uppercase">ss-2025 84</div>
