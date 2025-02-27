@@ -35,7 +35,7 @@
             <p class="text-[#333] text-xl md:text-5xl font-bold mb-2 md:mb-4">
               {{ slide.title }}
             </p>
-            <button class="py-2 md:py-[15px] px-4 md:px-[40px] text-xs md:text-md text-white bg-[#333] font-bold hover:bg-[#555] transition-colors">
+            <button class="py-2 cursor-pointer md:py-[15px] px-4 md:px-[40px] text-xs md:text-md text-white bg-[#333] font-bold hover:bg-[#555] transition-colors">
               Shop Now
             </button>
           </div>
