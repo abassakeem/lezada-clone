@@ -1,6 +1,6 @@
 <template>
   <div
-    class="h-screen h-full w-full group flex justify-center items-center relative"
+    class=" h-full w-full group flex justify-center items-center relative"
   >
     <div
       class="absolute inset-0 flex justify-between items-center opacity-0 group-hover:opacity-100 transition-opacity duration-500"
