@@ -12,6 +12,7 @@ import OrderTracking from '@/views/OrderTracking.vue'
 import Essentials from '@/views/Essentials.vue'
 import SingleBlog from '@/views/SingleBlog.vue'
 import MyAccount from '@/views/MyAccount.vue'
+import ContactUs from '@/views/ContactUs.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -75,6 +76,11 @@ const router = createRouter({
       path: '/myaccount',
       name: 'myaccount',
       component: MyAccount,
+    },
+    {
+      path: '/contactus',
+      name: 'contactus',
+      component: ContactUs,
     },
    
   ],

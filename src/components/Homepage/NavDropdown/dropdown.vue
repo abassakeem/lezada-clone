@@ -57,7 +57,7 @@ const navLinks = [
       },
       groupFour: {
         header: "Shop Group",
-        links: ["Brands", "Deals","Ordertracking", "Clearance"],
+        links: ["Checkout","Ordertracking", "myaccount","login-register"],
       },
       groupFive: {
         header: "Featured",
