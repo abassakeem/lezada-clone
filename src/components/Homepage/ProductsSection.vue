@@ -3,7 +3,7 @@
     <div class="max-w-6xl w-full flex flex-col items-center justify-center">
       <div
   :class="{
-    'tab-header text-5xl text-[#ccc] flex items-center justify-center space-x-10 my-16': true,
+    'tab-header text-2xl lg:text-5xl text-[#ccc] flex items-center justify-center space-x-10 my-10 lg:my-16': true,
     'hidden': isShop,
     'block': !isShop
   }"
@@ -33,7 +33,7 @@
       </div>
 
       <div>
-        <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 mx-3">
           <ProductCard :products="products" :isSinglePage="false" />
         </div>
       </div>

@@ -41,11 +41,13 @@
                   <div
                     class="capitalize text-[#999999] duration-500 cursor-pointer hover:underline hover:text-[#333]"
                   >
-                    {{ category.title }}
+                    {{ category.title }} 
+                    
                   </div>
                 </div>
               </div>
             </div>
+            <PreviewBlogSection :blogs="blog" class="" />
           </div>
           <div class="w-full lg:w-4/5">
             <BlogContent :products="blog"  />
@@ -54,7 +56,7 @@
       </div>
     </main>
 
-    <Footer />
+   
   </div>
 </template>
 
@@ -63,6 +65,7 @@ import { ref, computed } from "vue";
 import Footer from "@/components/Homepage/Footer.vue";
 import ProductSection from "@/components/Homepage/ProductsSection.vue";
 import BlogContent from "@/components/BlogContent.vue";
+import PreviewBlogSection from "@/components/PreviewBlogSection.vue";
 
 
 
@@ -91,32 +94,32 @@ const blog = ref([
     id: 1,
     img: "https://lezada.jamstacktemplates.dev/assets/images/blog/post-thumbnail.png",
     date: "feb 19 2025",
-    header: "Lorem 49594",
-    summary: "kprdmfmdfmsovmldvjosjvovdv",
+    header: "Chic Fashion Phenomenal",
+    summary: "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Molestias aliquam obcaecati tempora voluptatum a cum praesentium neque corporis accusamus non repudiandae fuga optio at voluptas impedit, aut amet officia omnis!",
     description: "",
   },
   {
     id: 2,
     img: "https://lezada.jamstacktemplates.dev/assets/images/blog/post-thumbnail-6.png",
     date: "feb 19 2025",
-    header: "",
-    Summary: "",
+    header: "Chic Fashion Phenomenal",
+    summary: "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Molestias aliquam obcaecati tempora voluptatum a cum praesentium neque corporis accusamus non repudiandae fuga optio at voluptas impedit, aut amet officia omnis!",
     description: "",
   },
   {
     id: 3,
     img: "https://lezada.jamstacktemplates.dev/assets/images/blog/post-thumbnail-2-1.png",
     date: "feb 19 2025",
-    header: "",
-    Summary: "",
+    header: "Chic Fashion Phenomenal",
+    summary: "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Molestias aliquam obcaecati tempora voluptatum a cum praesentium neque corporis accusamus non repudiandae fuga optio at voluptas impedit, aut amet officia omnis!",
     description: "",
   },
   {
     id: 4,
     img: "https://lezada.jamstacktemplates.dev/assets/images/blog/post-thumbnail-2-1.png",
     date: "feb 19 2025",
-    header: "",
-    Summary: "lorem 30",
+    header: "Chic Fashion Phenomenal",
+    summary: "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Molestias aliquam obcaecati tempora voluptatum a cum praesentium neque corporis accusamus non repudiandae fuga optio at voluptas impedit, aut amet officia omnis!",
     description: "",
   },
  

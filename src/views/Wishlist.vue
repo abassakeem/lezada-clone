@@ -11,7 +11,7 @@
       :showBreadcrumb="true"
     >
       <!-- Main Content -->
-      <Table/>
+      <Table :isCart="isCart" />
     </TopSection>
   </div>
 </template>
@@ -20,6 +20,16 @@
 import TopSection from "@/components/TopSection/TopSection.vue";
 import { ref } from "vue";
 import Table from "@/components/Table/Table.vue";
+
+const props = defineProps({
+  Items: {
+    type: Array,
+    required: true,
+  },
+ 
+
+  
+});
 const cartItems = ref([
   {
     id: 1,

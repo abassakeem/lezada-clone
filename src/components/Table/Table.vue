@@ -11,8 +11,8 @@
               <th class="text-left p-4 px-8 text-[15px] font-semibold">
                 PRICE
               </th>
-              <th  class="text-center p-4 px-8 text-[15px] font-semibold">
-                QUANTITY
+              <th class="text-center p-4 px-8 text-[15px] font-semibold">
+                {{ isCart ? "QUANTITY" : "" }}
               </th>
               <th class="text-right p-4 px-8 font-semibold">TOTAL</th>
               <th class="w-20"></th>
@@ -85,7 +85,10 @@
         </table>
       </div>
 
-      <div v-if="cartItems.length > 0" class="flex justify-between items-center">
+      <div
+        v-if="cartItems.length > 0"
+        class="flex justify-between items-center"
+      >
         <div class="flex items-center space-x-4">
           <input
             type="text"
@@ -112,18 +115,6 @@
 <script setup>
 import { defineProps } from "vue";
 
-const props = defineProps({
-  Items: {
-    type: Array,
-    required: true,
-  },
-
-  isWishlist: {
-    type: Boolean,
-    default: true,
-  },
-});
-
 import { ref } from "vue";
 
 const cartItems = ref([
@@ -131,7 +122,7 @@ const cartItems = ref([
     id: 1,
     name: "Lorem ipsum fashion ten",
     price: 40.5,
-    quantity: 1, 
+    quantity: 1,
     image:
       "https://lezada.jamstacktemplates.dev/assets/images/product/decor/1.jpg",
   },
@@ -139,7 +130,7 @@ const cartItems = ref([
     id: 2,
     name: "Lorem ipsum decor eight",
     price: 15.0,
-    quantity: 1, 
+    quantity: 1,
     image:
       "https://lezada.jamstacktemplates.dev/assets/images/product/decor/1.jpg",
   },

@@ -3,20 +3,20 @@
       
       <TopSection
       :breadcrumb="{
-        header: 'Cart',
+        header: 'My Account',
         parentLink: '',
         parentPath: '/cart',
-        link: 'Cart'
+        link: 'My Account'
       }"
       backgroundImage="https://lezada.jamstacktemplates.dev/assets/images/backgrounds/breadcrumb-bg-2.jpg"
       :showBreadcrumb="true"
     >
   
-      <!-- Main Content -->
+       <Profile/>
      
-           <Table  />
+           </TopSection>
          
-  </TopSection>
+ 
      
     </div>
   </template>
@@ -26,6 +26,7 @@
   import Footer from "@/components/Homepage/Footer.vue";
 import TopSection from "@/components/TopSection/TopSection.vue";
 import Table from "@/components/Table/Table.vue";
+import Profile from "@/components/Profile.vue";
   
   const oneproduct = ref([
     {
