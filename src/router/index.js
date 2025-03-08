@@ -13,6 +13,7 @@ import Essentials from '@/views/Essentials.vue'
 import SingleBlog from '@/views/SingleBlog.vue'
 import MyAccount from '@/views/MyAccount.vue'
 import ContactUs from '@/views/ContactUs.vue'
+import About from '@/views/About.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -81,6 +82,11 @@ const router = createRouter({
       path: '/contactus',
       name: 'contactus',
       component: ContactUs,
+    },
+    {
+      path: '/aboutus',
+      name: 'aboutus',
+      component: About,
     },
    
   ],
