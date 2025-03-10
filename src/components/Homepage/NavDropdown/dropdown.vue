@@ -19,7 +19,7 @@ const navLinks = [
     subGroups: {
       groupOne: {
         header: "Home Group",
-        links: ["Decor", "Creative", "Perfumes", "Trending"],
+        links: [{title:"Decor", img:"	https://lezada.jamstacktemplates.dev/assets/images/home-preview/decor.jpg"},"Decor", "Creative", "Perfumes", "Trending"],
       },
       groupTwo: {
         header: "Home Group",
