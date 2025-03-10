@@ -1,4 +1,12 @@
 <template>
+   <Transition
+    enter-active-class="duration-500 ease-out"
+    enter-from-class="translate-x-full opacity-0"
+    enter-to-class="translate-x-0 opacity-100"
+    leave-active-class="duration-500 ease-in"
+    leave-from-class="translate-x-0 opacity-100"
+    leave-to-class="translate-x-full opacity-0"
+  >
   <div class="">
     <div
       v-if="isWishlistOpen"
@@ -97,7 +105,7 @@
         </div>
       </div>
     </div>
-  </div>
+  </div></Transition>
 </template>
 
 <script setup>
