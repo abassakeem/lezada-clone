@@ -2,16 +2,28 @@
   <div class="w-full">
     <TopSection
       :breadcrumb="{
-        header: 'Cart',
+        header: 'Wishlist',
         parentLink: '',
-        parentPath: '/cart',
-        link: 'Cart',
+        parentPath: '/wishlist',
+        link: 'Wishlist',
       }"
       backgroundImage="https://lezada.jamstacktemplates.dev/assets/images/backgrounds/breadcrumb-bg-2.jpg"
       :showBreadcrumb="true"
     >
       <!-- Main Content -->
-      <Table :isCart="isCart" />
+      <Table
+        :items="wishlistItems"
+        :showQuantity="false"
+        :showTotal="false"
+        :showCouponInput="false"
+        clearButtonText="CLEAR WISHLIST"
+        emptyMessage="No items found in wishlist"
+        showEmptyActionButton
+        emptyActionButtonText="EXPLORE PRODUCTS"
+        removeButtonTitle="Remove from wishlist"
+        @remove="removeFromWishlist"
+        @clear="clearWishlist"
+      />
     </TopSection>
   </div>
 </template>
@@ -26,27 +38,9 @@ const props = defineProps({
     type: Array,
     required: true,
   },
- 
-
-  
 });
-const cartItems = ref([
-  {
-    id: 1,
-    name: "Lorem ipsum fashion ten",
-    price: 40.5,
-    quantity: 1, // Added quantity initialization
-    image:
-      "https://lezada.jamstacktemplates.dev/assets/images/product/decor/1.jpg",
-  },
-  {
-    id: 2,
-    name: "Lorem ipsum decor eight",
-    price: 15.0,
-    quantity: 1, // Added quantity initialization
-    image:
-      "https://lezada.jamstacktemplates.dev/assets/images/product/decor/1.jpg",
-  },
+const wishlistItems = ref([
+ 
 ]);
 
 const incrementQuantity = (item) => {
