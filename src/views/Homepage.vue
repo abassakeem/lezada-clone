@@ -4,7 +4,7 @@
       <HeroSection />
       <ProductsSection />
       <SaleSection />
-      <Footer/>
+    
     </div>
   </div>
 </template>

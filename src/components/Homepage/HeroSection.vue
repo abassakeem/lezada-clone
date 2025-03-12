@@ -1,5 +1,5 @@
 <template>
-  <div class="screen h-full px-3 lg:px-6 w-full group flex justify-center items-center relative">
+  <div class="screen h-full px-3 lg:px-6 w-full group flex justify-center items-center relative mt-16 lg:mt-0">
    
     <div class="absolute inset-0 flex justify-between items-center opacity-0 group-hover:opacity-100 transition-opacity duration-500">
       <button ref="prevEl" class="absolute left-4 z-10">

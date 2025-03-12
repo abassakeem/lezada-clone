@@ -1,15 +1,15 @@
 <template>
   <div class="w-full">
  
-    <div v-if="showBreadcrumb" class="flex justify-center items-center">
+    <div v-if="showBreadcrumb" class="flex justify-center items-center ">
       <div
-        class="relative h-64 w-full bg-cover bg-center bg-no-repeat flex justify-center items-center"
+        class="relative h-64 w-full bg-cover bg-center bg-no-repeat flex justify-center items-center "
         :style="{
           backgroundImage: `url('${backgroundImage}')`
         }"
       >
-        <div class="w-full max-w-6xl flex flex-col justify-center px-3 lg:px-6 mt-16">
-          <h1 class="text-4xl text-[#333] font-light">{{ breadcrumb.header }}</h1>
+        <div class="w-full max-w-6xl flex flex-col justify-center px-3 lg:px-6 mt-16 mx-3 lg:mx-0">
+          <h1 class="text-2xl lg:text-4xl text-[#333] font-light">{{ breadcrumb.header }}</h1>
           <div class="flex items-center gap-2">
             <router-link to="/" class="text-[#777777] hover:text-[#333] transition-colors">
               Home
