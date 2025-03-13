@@ -46,9 +46,15 @@
               </button>
             </div>
           </div>
-          <div class="p-2 text-[#777]">
+
+         
+          <div v-if="products.length== 0" class="p-2 text-[#777]">
             <p>No item found in Cart</p>
           </div>
+
+          <div v-if="products.length> 0" class="">
+
+          
           <div class="flex flex-col gap-2">
             <div
               class="py-4 border-b border-[#eee]"
@@ -121,7 +127,7 @@
           </div>
           <p class="mt-2 text-[#777]">Free Shipping on All Orders Over $100!</p>
         </div>
-      </div>
+      </div></div>
     </div></Transition
   >
 </template>

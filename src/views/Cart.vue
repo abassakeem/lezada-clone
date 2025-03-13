@@ -94,11 +94,19 @@ const calculateDiscountedPrice = (price, discount) => {
   return (price - discountedAmount).toFixed(2);
 };
 
-const toggleWishlist = (product) => {
-  console.log("Toggle wishlist for product:", product.id);
+const toggleCart = (product) => {
+  console.log("Toggle Cart for product:", product.id);
 };
 
 const toggleCompare = (product) => {
   console.log("Toggle compare for product:", product.id);
+};
+
+const removeFromCart = (itemId) => {
+  cartItems.value = cartItems.value.filter((item) => item.id !== itemId);
+};
+
+const clearCart = () => {
+  cartItems.value = [];
 };
 </script>
