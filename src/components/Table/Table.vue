@@ -6,11 +6,12 @@
         v-if="items.length === 0"
         class="py-12 text-center border border-[#e6e6e6]"
       >
+        <div class=" flex items-center justify-center" v-html="emptyLogo"></div>
         <p class="text-lg text-gray-500">{{ emptyMessage }}</p>
         <button
           v-if="showEmptyActionButton"
           @click="emptyActionCallback"
-          class="mt-4 px-6 py-3 text-sm font-medium text-white bg-gray-800 hover:bg-gray-700 transition-all duration-300 cursor-pointer"
+          class="mt-4 px-6 py-3 text-sm font-medium text-white bg-[#333] hover:bg-white hover:border-[#333] hover:text-[#333] border transition-all duration-300 cursor-pointer"
         >
           {{ emptyActionButtonText }}
         </button>
@@ -29,6 +30,9 @@
                 </th>
                 <th class="text-center p-4 px-8 text-[15px] font-semibold">
                   {{ showQuantity ? "QUANTITY" : "" }}
+                </th>
+                <th class="text-center p-4 px-8 text-[15px] font-semibold">
+                  {{ !showQuantity ? "" : "" }}
                 </th>
                 <th class="text-right p-4 px-8 font-semibold">
                   {{ showTotal ? "TOTAL" : "" }}
@@ -85,7 +89,27 @@
                     </button>
                   </div>
                 </td>
-                
+                <td v-if="!showQuantity" class="p-4 px-1">
+                  <div
+                    class="flex items-center justify-center space-x-4 rounded-[2px]"
+                  >
+                    <button
+                      @click="addToCart(item)"
+                      v-if="!item.showSelect"
+                      class="px-6 py-3 text-sm font-medium text-white bg-[#333] hover:bg-white hover:border-[#333] hover:text-[#333] border transition-all duration-300 cursor-pointer w-full"
+                    >
+                      ADD TO CART
+                    </button>
+                    <button
+                      @click="addToCart"
+                      v-if="item.showSelect"
+                      class="px-6 py-3 text-sm font-medium text-white bg-[#333] hover:bg-white hover:border-[#333] hover:text-[#333] border transition-all duration-300 cursor-pointer w-full"
+                    >
+                      SELECT OPTION
+                    </button>
+                  </div>
+                </td>
+
                 <td v-else class="p-4 px-1"></td>
                 <td class="p-4 px-8 text-right">
                   <span v-if="showTotal" class="text-sm font-bold"
@@ -192,7 +216,7 @@
           />
           <button
             @click="applyCoupon"
-            class="px-6 py-3 text-sm font-medium text-white bg-gray-800 hover:bg-gray-700 transition-all duration-300 cursor-pointer w-full "
+            class="px-6 py-3 text-sm font-medium text-white bg-[#333] hover:bg-white hover:border-[#333] hover:text-[#333] border transition-all duration-300 cursor-pointer w-full"
           >
             APPLY COUPON
           </button>
@@ -200,7 +224,7 @@
         <button
           v-if="showClearButton"
           @click="clearItems"
-          class="px-6 py-3 text-sm font-medium text-white bg-gray-800 hover:bg-gray-700 transition-all duration-300 cursor-pointer w-full sm:w-auto mt-4 sm:mt-0"
+          class="px-6 py-3 text-sm font-medium text-white bg-[#333] hover:bg-white hover:border-[#333] hover:text-[#333] border transition-all duration-300 cursor-pointer w-full sm:w-auto mt-4 sm:mt-0"
         >
           {{ clearButtonText }}
         </button>
@@ -210,7 +234,7 @@
 </template>
 
 <script setup>
-import { defineProps, defineEmits, toRef } from "vue";
+import { defineProps, defineEmits, toRef, ref } from "vue";
 
 const props = defineProps({
   items: {
@@ -257,6 +281,10 @@ const props = defineProps({
     type: String,
     default: "Remove item",
   },
+  emptyLogo: {
+    type: String,
+    default: "",
+  },
 });
 
 const emit = defineEmits([
@@ -269,6 +297,8 @@ const emit = defineEmits([
   "empty-action",
 ]);
 
+const showSelect = ref(false);
+
 const incrementQuantity = (item) => {
   emit("increment", item);
 };
@@ -277,6 +307,9 @@ const decrementQuantity = (item) => {
   if (item.quantity > 1) {
     emit("decrement", item);
   }
+};
+const addToCart = (item) => {
+  item.showSelect = true;
 };
 
 const updateQuantity = (item, event) => {
