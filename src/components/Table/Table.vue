@@ -192,7 +192,7 @@
           />
           <button
             @click="applyCoupon"
-            class="px-6 py-3 text-sm font-medium text-white bg-gray-800 hover:bg-gray-700 transition-all duration-300 cursor-pointer w-full sm:w-auto"
+            class="px-6 py-3 text-sm font-medium text-white bg-gray-800 hover:bg-gray-700 transition-all duration-300 cursor-pointer w-full "
           >
             APPLY COUPON
           </button>
