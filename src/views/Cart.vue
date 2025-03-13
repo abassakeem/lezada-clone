@@ -78,13 +78,17 @@ const selectedColor = ref("");
 const product = computed(() => oneproduct.value[0]);
 const quantity = ref(0);
 
-const increaseQuantity = () => {
-  quantity.value++;
+const incrementCartItem = (item) => {
+  const cartItem = cartItems.value.find((i) => i.id === item.id);
+  if (cartItem) {
+    cartItem.quantity++;
+  }
 };
 
-const decreaseQuantity = () => {
-  if (quantity.value > 0) {
-    quantity.value--;
+const decrementCartItem = (item) => {
+  const cartItem = cartItems.value.find((i) => i.id === item.id);
+  if (cartItem && cartItem.quantity > 1) {
+    cartItem.quantity--;
   }
 };
 
