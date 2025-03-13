@@ -85,6 +85,7 @@
                     </button>
                   </div>
                 </td>
+                
                 <td v-else class="p-4 px-1"></td>
                 <td class="p-4 px-8 text-right">
                   <span v-if="showTotal" class="text-sm font-bold"
