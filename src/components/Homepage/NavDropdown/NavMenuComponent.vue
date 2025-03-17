@@ -24,16 +24,16 @@
             >
               <router-link
                 :to="link"
-                class="text-[#7e7e7e] font-normal duration-500 hover:text-[#7e7e7e] border-b border-transparent hover:border-b-[#333]"
+                class="text-[#7e7e7e] font-normal duration-500 hover:text-[#7e7e7e] border-b border-transparent hover:border-b-[#333] capitalize"
               >
                 {{ link.title }}
 
-                <!-- <span
+                <span
                   v-if="link.img"
-                  class="absolute z-[100] left-20 opacity-0 scale-75 transition-all duration-300 group-hover:opacity-100 group-hover:scale-100"
+                  class="absolute z-[100] left-40 opacity-0 scale-75 transition-all duration-300 hover:opacity-100 group-hover:scale-150 w-100"
                 >
                   <img :src="link.img" class="size-14" />
-                </span> -->
+                </span>
               </router-link>
             </li>
           </ul>

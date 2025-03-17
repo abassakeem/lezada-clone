@@ -19,19 +19,85 @@ const navLinks = [
     subGroups: {
       groupOne: {
         header: "Home Group",
-        links: [{title:"Decor", img:"	https://lezada.jamstacktemplates.dev/assets/images/home-preview/decor.jpg"},"Decor", "Creative", "Perfumes", "Trending"],
+        links: [
+          {
+            title: "Decor",
+            img: "	https://lezada.jamstacktemplates.dev/assets/images/home-preview/decor.jpg",
+          },
+          {
+            title: "Creative",
+            img: "	https://lezada.jamstacktemplates.dev/assets/images/home-preview/creative.jpg",
+          },
+          {
+            title: "Perfumes",
+            img: "	https://lezada.jamstacktemplates.dev/assets/images/home-preview/perfumes.jpg",
+          },
+          {
+            title: "Trending",
+            img: "	https://lezada.jamstacktemplates.dev/assets/images/home-preview/trending.jpg",
+          },
+        ],
       },
       groupTwo: {
         header: "Home Group",
-        links: ["Essentials", "Accessories", "Lookbook", "Furniture"],
+        links: [
+          {
+            title: "Essentials",
+            img: "	https://lezada.jamstacktemplates.dev/assets/images/home-preview/essentials.jpg",
+          },
+
+          {
+            title: "Accessories",
+            img: "	https://lezada.jamstacktemplates.dev/assets/images/home-preview/accessories.jpg",
+          },
+          {
+            title: "Lookbook",
+            img: "	https://lezada.jamstacktemplates.dev/assets/images/home-preview/lookbook.jpg",
+          },
+          {
+            title: "Furniture",
+            img: "	https://lezada.jamstacktemplates.dev/assets/images/home-preview/furniture.jpg",
+          },
+        ],
       },
       groupThree: {
         header: "Home Group",
-        links: ["Smart Design", "Collection", "Jewelry", "Cosmetics"],
+        links: [
+          {
+            title: "smart design",
+            img: "	https://lezada.jamstacktemplates.dev/assets/images/home-preview/smart-design.jpg",
+          },
+          {
+            title: "collection",
+            img: "	https://lezada.jamstacktemplates.dev/assets/images/home-preview/collection.jpg",
+          },
+          {
+            title: "jewelry",
+            img: "	https://lezada.jamstacktemplates.dev/assets/images/home-preview/smart-design.jpg",
+          },
+          {
+            title: "Cosmetics",
+            img: "	https://lezada.jamstacktemplates.dev/assets/images/home-preview/collection.jpg",
+          },
+          "Smart Design",
+          "Collection",
+          "Jewelry",
+          "Cosmetics",
+        ],
       },
       groupFour: {
         header: "Home Group",
-        links: ["Swimsuit", "Special", "Concept"],
+        links: [
+          {
+            title: "Swimsuit",
+          },
+          {
+            title: "Special",
+          },
+          {
+            title: "Concept",
+          },
+        ],
       },
       groupFive: {
         header: "Featured",
@@ -45,19 +111,71 @@ const navLinks = [
     subGroups: {
       groupOne: {
         header: "Shop Group",
-        links: ["New Arrivals", "Best Sellers", "Sale Items", "Trending"],
+        links: [
+          {
+            title: "swim-suit",
+          },
+          {
+            title: "special",
+          },
+          {
+            title: "concept",
+          },
+          {
+            title: "",
+          },
+        ],
       },
       groupTwo: {
         header: "Shop Group",
-        links: ["Women", "Men", "Kids", "Accessories"],
+        links: [
+          {
+            title: "Women",
+          },
+          {
+            title: "Men",
+          },
+          {
+            title: "Kids",
+          },
+          {
+            title: "Accessories",
+          },
+        ],
       },
       groupThree: {
         header: "Shop Group",
-        links: ["Collections", "Seasonal", "Special", "Limited"],
+        links: [
+          {
+            title: "Collections",
+          },
+          {
+            title: "Seasonal",
+          },
+          {
+            title: "Special",
+          },
+          {
+            title: "Limited",
+          },
+        ],
       },
       groupFour: {
         header: "Shop Group",
-        links: ["Checkout","Ordertracking", "myaccount","login-register"],
+        links: [
+          {
+            title: "Checkout",
+          },
+          {
+            title: "Ordertracking",
+          },
+          {
+            title: "myaccount",
+          },
+          {
+            title: "login-register",
+          },
+        ],
       },
       groupFive: {
         header: "Featured",
@@ -71,19 +189,68 @@ const navLinks = [
     subGroups: {
       groupOne: {
         header: "Elements Group",
-        links: ["Typography", "Buttons", "Forms", "Icons"],
+        links: [
+          {
+            title: "Typography",
+          },
+          {
+            title: "Buttons",
+          },
+          {
+            title: "Forms",
+          },
+          {
+            title: "Icons",
+          },
+        ],
       },
       groupTwo: {
         header: "Elements Group",
-        links: ["Cards", "Tables", "Navigation", "Modals"],
+        links: [
+          {
+            title: "Cards",
+          },
+          {
+            title: "Tables",
+          },
+          {
+            title: "Navigation",
+          },
+          {
+            title: "Modals",
+          },
+        ],
       },
       groupThree: {
         header: "Elements Group",
-        links: ["Alerts", "Badges", "Progress", "Lists"],
+        links: [
+          {
+            title: "Alerts",
+          },
+          {
+            title: "Badges",
+          },
+          {
+            title: "Progress",
+          },
+          {
+            title: "Lists",
+          },
+        ],
       },
       groupFour: {
         header: "Elements Group",
-        links: ["Grid", "Layout", "Components"],
+        links: [
+          {
+            title: "Grid",
+          },
+          {
+            title: "Layout",
+          },
+          {
+            title: "Components",
+          },
+        ],
       },
       groupFive: {
         header: "Featured",
@@ -97,7 +264,20 @@ const navLinks = [
     subGroups: {
       groupOne: {
         header: "Pages Group",
-        links: ["About", "Contact", "FAQ", "Terms"],
+        links: [
+          {
+            title: "About",
+          },
+          {
+            title: "Contact",
+          },
+          {
+            title: "FAQ",
+          },
+          {
+            title: "Terms",
+          },
+        ],
       },
     },
   },
@@ -107,7 +287,20 @@ const navLinks = [
     subGroups: {
       groupOne: {
         header: "Blog Group",
-        links: ["Latest Posts", "Featured", "News", "Trends"],
+        links: [
+          {
+            title: "Latest Posts",
+          },
+          {
+            title: "Featured",
+          },
+          {
+            title: "News",
+          },
+          {
+            title: "Trends",
+          },
+        ],
       },
     },
   },
