@@ -9,12 +9,16 @@
         <form class="px-3 flex flex-col space-y-12 mt-3">
           <input
             type="text"
+            v-model="username"
+            value="test@example.com"
             placeholder="Username or email address"
             class="border-b-2 border-[#ccc] bg-transparent outline-none p-1"
           />
           <input
             type="password"
+            v-model="password"
             placeholder="Password"
+            value="password123"
             class="border-b-2 border-[#ccc] bg-transparent outline-none p-1"
           />
           <button
@@ -38,6 +42,37 @@
   </div>
 </template>
 
-<script setup></script>
+<script setup>
+import { ref } from "vue";
+import axios from 'axios'
+
+
+const data = ref(null);
+const loading = ref(false);
+const error = ref(null);
+const authenticated = ref(false);
+
+const login = async (username, password) => {
+  login.value = true;
+  error.value = null;
+  try {
+    const response = axios.post("http://134.209.223.106/api/login", {
+      username,
+      password,
+    });
+
+    const token = response.data.token;
+    localStorage.setItem("auth_token", token);
+    authenticated.value = true;
+
+    await fetchData();
+  } catch (err) {
+    error.value = err.message || "Login failed";
+    console.error("Login Error:", err);
+  } finally {
+    loading.value = false;
+  }
+};
+</script>
 
 <style></style>
