@@ -6,11 +6,13 @@
           <h1 class="lg:text-4xl text-#333 text-xl">Login</h1>
           <p class="text-[#777777] mt-3">Great to have you back!</p>
         </div>
-        <form class="px-3 flex flex-col space-y-12 mt-3">
+        <form
+          @submit.prevent="login"
+          class="px-3 flex flex-col space-y-12 mt-3"
+        >
           <input
             type="text"
-            v-model="username"
-            value="test@example.com"
+            v-model="email"
             placeholder="Username or email address"
             class="border-b-2 border-[#ccc] bg-transparent outline-none p-1"
           />
@@ -18,16 +20,18 @@
             type="password"
             v-model="password"
             placeholder="Password"
-            value="password123"
             class="border-b-2 border-[#ccc] bg-transparent outline-none p-1"
           />
           <button
+            type="submit"
             class="bg-[#333] border border-[#333] cursor-pointer text-sm hover:bg-transparent duration-500 hover:text-[#333] text-white px-[40px] py-[12px] self-start"
+            :disabled="loading"
           >
-            Login
+            {{ loading ? "Loading..." : "Login" }}
           </button>
-          <div class="flex self-center justify-center">
-           
+          <div v-if="error" class="text-red-500">{{ error }}</div>
+          <div v-if="authenticated" class="text-green-500">
+            Login successful!
           </div>
           <div class="flex items-center gap-2">
             <input type="checkbox" class="cursor-pointer" />
@@ -44,30 +48,32 @@
 
 <script setup>
 import { ref } from "vue";
-import axios from 'axios'
+import axios from "axios";
 
-
+const email = ref("test@example.com");
+const password = ref("password123");
 const data = ref(null);
 const loading = ref(false);
 const error = ref(null);
 const authenticated = ref(false);
 
-const login = async (username, password) => {
-  login.value = true;
+const login = async () => {
+  loading.value = true;
   error.value = null;
-  try {
-    const response = axios.post("http://134.209.223.106/api/login", {
-      username,
-      password,
-    });
 
+  try {
+    const response = await axios.post("http://134.209.223.106/api/login", {
+      email: email.value,
+      password: password.value,
+    });
+    console.log(response);
+    data.value = response.data;
     const token = response.data.token;
     localStorage.setItem("auth_token", token);
     authenticated.value = true;
-
-    await fetchData();
+    console.log("Login successful:", response.data);
   } catch (err) {
-    error.value = err.message || "Login failed";
+    error.value = err.response?.data?.message || "Login failed";
     console.error("Login Error:", err);
   } finally {
     loading.value = false;
