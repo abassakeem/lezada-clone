@@ -66,10 +66,12 @@ const login = async () => {
       email: email.value,
       password: password.value,
     });
-    console.log(response);
+    console.log("Original response",response);
     data.value = response.data;
-    const token = response.data.token;
+    const token = response.data.data.token;
     localStorage.setItem("auth_token", token);
+
+    
     authenticated.value = true;
     console.log("Login successful:", response.data);
   } catch (err) {

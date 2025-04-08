@@ -1,15 +1,21 @@
 <template>
   <div v-for="product in products" :key="product.id" class="space-y-4">
     <div class="relative group">
-       <router-link :to="{ name: 'product', params: {id: product.id}}">
+      <router-link :to="{ name: 'product', params: { id: product.id } }">
+        <div class="h-[500px] w-full relative group">
+          <img
+          :src="product.image"
+          :alt="product.name"
+          class="w-full h-full  hover:scale-101 cursor-pointer duration-500"
+        />
+        <img
+          :src="product.hover_image"
+          :alt="product.name"
+          class="w-full h-full hover:scale-101 cursor-pointer duration-500 absolute top-0 opacity-0 group-hover:opacity-100"
+        />
+        </div>
         
-
-      <img
-        :src="product.img"
-        :alt="product.name"
-        class="w-full h-auto hover:scale-101 cursor-pointer duration-500"
-      />
-</router-link>
+      </router-link>
       <div class="absolute top-4 left-4 space-y-3">
         <div
           class="bg-teal-400 w-10 h-10 flex items-center justify-center rounded-full"
@@ -72,14 +78,17 @@
             {{ product.name }}
           </span>
 
-          <router-link :to="{ name: 'product', params: {id: product.id}}"
+          <router-link
+            :to="{ name: 'product', params: { id: product.id } }"
             class="absolute inset-0 text-[#d3122a] font-bold opacity-0 group-hover:opacity-100 transition-opacity duration-500"
           >
             + Select option
           </router-link>
         </h3>
-
-        <div class="flex gap-2">
+        <span  class="font-bold"
+            >${{ product.price }}</span
+          >
+        <!-- <div class="flex gap-2">
           <span v-if="product.discount > 0" class="line-through text-gray-400"
             >${{ product.costPrice }}</span
           >
@@ -88,7 +97,7 @@
               calculateDiscountedPrice(product.costPrice, product.discount)
             }}</span
           >
-        </div>
+        </div> -->
       </div>
     </div>
   </div>

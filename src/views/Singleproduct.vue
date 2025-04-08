@@ -18,7 +18,7 @@
               <div v-if="product" class="space-y-4">
                 <div class="relative group">
                   <img
-                    :src="product.img"
+                    :src="product.image"
                     :alt="product.name"
                     class="w-full h-auto transition-transform duration-500 cursor-pointer"
                   />
@@ -82,42 +82,42 @@
                   <div class="flex space-x-2 min-w-max">
                     <div class="w-32 flex-shrink-0">
                       <img
-                        :src="product.img"
+                        :src="product.image"
                         :alt="product.name"
                         class="w-full h-auto transition-transform duration-500 cursor-pointer"
                       />
                     </div>
                     <div class="w-32 flex-shrink-0">
                       <img
-                        :src="product.img"
+                        :src="product.image"
                         :alt="product.name"
                         class="w-full h-auto transition-transform duration-500 cursor-pointer"
                       />
                     </div>
                     <div class="w-32 flex-shrink-0">
                       <img
-                        :src="product.img"
+                        :src="product.image"
                         :alt="product.name"
                         class="w-full h-auto transition-transform duration-500 cursor-pointer"
                       />
                     </div>
                     <div class="w-32 flex-shrink-0">
                       <img
-                        :src="product.img"
+                        :src="product.image"
                         :alt="product.name"
                         class="w-full h-auto transition-transform duration-500 cursor-pointer"
                       />
                     </div>
                     <div class="w-32 flex-shrink-0">
                       <img
-                        :src="product.img"
+                        :src="product.image"
                         :alt="product.name"
                         class="w-full h-auto transition-transform duration-500 cursor-pointer"
                       />
                     </div>
                     <div class="w-32 flex-shrink-0">
                       <img
-                        :src="product.img"
+                        :src="product.image"
                         :alt="product.name"
                         class="w-full h-auto transition-transform duration-500 cursor-pointer"
                       />
@@ -155,12 +155,10 @@
                   >${{ product.costPrice }}</span
                 >
                 <span class="text-xl font-bold"
-                  >${{
-                    calculateDiscountedPrice(
-                      product.costPrice,
-                      product.discount
-                    )
-                  }}</span
+                  >
+                     ${{product.price}}
+                    
+                  </span
                 >
               </div>
               <p class="text-gray-700 leading-relaxed">
@@ -265,7 +263,7 @@
                     <button
                       class="w-6 h-6 rounded-full transition-transform cursor-pointer text-[#777777]"
                     >
-                      {{ product.categories }}
+                      {{ product.category }}
                     </button>
                   </div>
                 </div>
@@ -358,32 +356,50 @@
 </template>
 
 <script setup>
-import { ref, computed } from "vue";
+import { ref, computed, onMounted } from "vue";
 import Footer from "@/components/Homepage/Footer.vue";
 import TopSection from "@/components/TopSection/TopSection.vue";
+import axios from "axios";
 
-const oneproduct = ref([
-  {
-    id: 1,
-    sizes: ["X", "XL", "L"],
-    colors: ["black", "blue", "red"],
-    name: "Lorem ipsum decor one",
-    img: "https://lezada.jamstacktemplates.dev/assets/images/product/decor/1.jpg",
-    discount: 20,
-    productType: "new",
-    costPrice: 100,
-    sku: "asdf101",
-    categories: "decor",
-    tags: "decor",
 
-    description:
-      "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Veritatis beatae nam cum eligendi similique rerum repellendus tempora dolores sapiente debitis quia ut exercitationem, ipsum nemo magni aliquid illo aspernatur omnis?Lorem ipsum, dolor sit amet consectetur adipisicing elit.",
-  },
-]);
+const product = ref([]);
+const loading = ref(false);
+const error = ref(null);
+const token_data = localStorage.getItem("auth_token");
+
+
+const getProduct= async()=>{
+  const loading = ref(true);
+
+  try{
+    const response =await  axios.get("http://134.209.223.106/api/products/1", {
+      headers: {
+        Authorization: `Bearer ${token_data}`,
+      },
+    })
+    console.log("product response", response.data.data)
+    product.value = response.data.data
+
+    const loading = ref(true);
+  }
+
+catch (err) {
+    console.error("Fetch Error:", err);
+    error.value = "Failed to fetch products.";
+  } finally {
+    loading.value = false;
+  }
+
+}
+
+onMounted(() => {
+  getProduct();
+});
+
 
 const selectedSize = ref("");
 const selectedColor = ref("");
-const product = computed(() => oneproduct.value[0]);
+
 const quantity = ref(0);
 
 const increaseQuantity = () => {
