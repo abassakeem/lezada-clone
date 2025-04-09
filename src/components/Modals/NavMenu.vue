@@ -1,4 +1,7 @@
-<template>
+<template><div v-if="modalsStore.isNavOpen"
+        class="fixed inset-0 bg-black/30"
+        @click="$emit('close')"
+      ></div>
   <Transition
     enter-active-class="duration-500 ease-out"
     enter-from-class="translate-x-full opacity-0"
@@ -8,10 +11,7 @@
     leave-to-class="translate-x-full opacity-0"
   >
     <div class="fixed inset-0 z-50" v-if="modalsStore.isNavOpen">
-      <div
-        class="fixed inset-0 bg-black/30 transition-opacity transform ease duration-500"
-        @click="$emit('close')"
-      ></div>
+      
 
       <!-- Main Menu -->
       <div
@@ -211,7 +211,6 @@
     </div>
   </Transition>
 </template>
-
 <script setup>
 import { useModalsStore } from "@/stores/modalsStore";
 import { ref } from "vue";

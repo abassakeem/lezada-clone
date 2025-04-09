@@ -209,7 +209,7 @@
         </div>
       </div>
 
-      <NavMenu v-if="modalsStore.isNavOpen" @close="modalsStore.closeNav" />
+      <NavMenu v-show="modalsStore.isNavOpen" @close="modalsStore.closeNav" />
       <SearchModal
         v-show="modalsStore.isSearchOpen"
         @close="modalsStore.closeSearch"
