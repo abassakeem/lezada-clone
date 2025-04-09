@@ -49,6 +49,7 @@
         <div class="lg:hidden flex py-6 items-center space-x-4">
           <router-link :to="{ name: 'wishlist' }" class="text-[#333] hover:text-gray-800 cursor-pointer text-xl">
             <svg
+            class="h-6 w-6"
               stroke="currentColor"
               fill="currentColor"
               stroke-width="0"
@@ -64,6 +65,7 @@
           </router-link>
           <router-link :to="{ name: 'cart' }" class="text-[#333] hover:text-gray-800 cursor-pointer text-xl">
             <svg
+            class="h-6 w-6"
               stroke="currentColor"
               fill="currentColor"
               stroke-width="0"
@@ -92,10 +94,12 @@
             </svg>
           </router-link>
           <button
+          
             @click="modalsStore.toggleNav"
             class="text-[#333] hover:text-gray-800 cursor-pointer text-xl"
           >
             <svg
+            class="h-6 w-6"
               stroke="currentColor"
               fill="currentColor"
               stroke-width="0"
