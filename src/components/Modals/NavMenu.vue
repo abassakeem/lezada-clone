@@ -76,13 +76,13 @@
             <div class="my-3">
               <div class="flex flex-col">
                 <label class="text-[#777]">Choose Language</label>
-                <select class="border border[0.5px] my-2 rounded-xl text-black">
+                <select class="border p-1 border[0.5px] my-2  text-black">
                   <option value="english">English</option>
                 </select>
               </div>
               <div class="flex flex-col">
                 <label class="text-[#777]">Choose Currency</label>
-                <select class="border border[0.5px] my-2 rounded-xl text-black">
+                <select class="border p-1 border[0.5px] my-2  text-black">
                   <option value="USD">USD</option>
                 </select>
               </div>
@@ -90,7 +90,7 @@
             </div>
 
             <div class="flex flex-col text-[#777] space-y-3 mb-24">
-              <router-link to="/login-register" class="flex gap-2 mt-3 items-center">
+              <router-link to="/login-register"  @click="$emit('close')" class="flex gap-2 mt-3 items-center">
                 <svg
                   stroke="currentColor"
                   fill="currentColor"
