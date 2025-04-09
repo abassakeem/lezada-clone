@@ -29,7 +29,7 @@ const router = createRouter({
       component: Auth,
     },
     {
-      path: '/product',
+      path: '/product/:id',
       name: 'product',
       component: Singleproduct,
     },

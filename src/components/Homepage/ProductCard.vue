@@ -1,5 +1,5 @@
 <template>
-  <div v-for="product in products" :key="product.id" class="space-y-4">
+  <div v-for="product in products" :key="product.id" class="space-y-4" @click="()=>console.log(product.id)">
     <div class="relative group">
       <router-link :to="{ name: 'product', params: { id: product.id } }">
         <div class="h-[500px] w-full relative group">

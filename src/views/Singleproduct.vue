@@ -360,7 +360,11 @@ import { ref, computed, onMounted } from "vue";
 import Footer from "@/components/Homepage/Footer.vue";
 import TopSection from "@/components/TopSection/TopSection.vue";
 import axios from "axios";
+import { useRoute } from "vue-router";
 
+
+
+const route = useRoute();
 
 const product = ref([]);
 const loading = ref(false);
@@ -369,10 +373,10 @@ const token_data = localStorage.getItem("auth_token");
 
 
 const getProduct= async()=>{
-  const loading = ref(true);
+   loading.value = ref(true);
 
   try{
-    const response =await  axios.get("http://134.209.223.106/api/products/1", {
+    const response =await  axios.get(`http://134.209.223.106/api/products/${route.params.id}`, {
       headers: {
         Authorization: `Bearer ${token_data}`,
       },
