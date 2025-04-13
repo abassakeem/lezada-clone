@@ -1,6 +1,12 @@
 <template>
   <div class="mb-6">
-    <header class="bg-white px-3 lg:px-6 w-full" :class="['fixed top-0 left-0 transition-shadow duration-500 z-50', isScrolled ? 'shadow-xl' : 'shadow-none']">
+    <header
+      class="bg-white px-3 lg:px-6 w-full"
+      :class="[
+        'fixed top-0 left-0 transition-shadow duration-500 z-50',
+        isScrolled ? 'shadow-xl' : 'shadow-none',
+      ]"
+    >
       <div class="container mx-auto lg:px-6 flex justify-between items-center">
         <a href="/" class="text-[#7e7e7e] font-bold">
           <img
@@ -24,7 +30,7 @@
                 <Dropdown :label="link.label" />
               </div>
             </div>
-
+            <div></div>
             <svg
               stroke="currentColor"
               fill="#ededed"
@@ -47,9 +53,12 @@
         </nav>
 
         <div class="lg:hidden flex py-6 items-center space-x-4">
-          <router-link :to="{ name: 'wishlist' }" class="text-[#333] hover:text-gray-800 cursor-pointer text-xl">
+          <router-link
+            :to="{ name: 'wishlist' }"
+            class="text-[#333] hover:text-gray-800 cursor-pointer text-xl"
+          >
             <svg
-            class="h-6 w-6"
+              class="h-6 w-6"
               stroke="currentColor"
               fill="currentColor"
               stroke-width="0"
@@ -63,9 +72,12 @@
               ></path>
             </svg>
           </router-link>
-          <router-link :to="{ name: 'cart' }" class="text-[#333] hover:text-gray-800 cursor-pointer text-xl">
+          <router-link
+            :to="{ name: 'cart' }"
+            class="text-[#333] hover:text-gray-800 cursor-pointer text-xl"
+          >
             <svg
-            class="h-6 w-6"
+              class="h-6 w-6"
               stroke="currentColor"
               fill="currentColor"
               stroke-width="0"
@@ -94,12 +106,11 @@
             </svg>
           </router-link>
           <button
-          
-            @click="modalsStore.toggleNav"
+            @click="modalsStore.toggleNav()"
             class="text-[#333] hover:text-gray-800 cursor-pointer text-xl"
           >
             <svg
-            class="h-6 w-6"
+              class="h-6 w-6"
               stroke="currentColor"
               fill="currentColor"
               stroke-width="0"
@@ -117,9 +128,23 @@
 
         <div class="hidden lg:block">
           <div class="flex items-center justify-center space-x-8 text-xl">
+            <div>
+              <div v-if="userStore.user" class="group relative">
+                Hi, {{ userStore.user.name }}
+
+                <div
+                  class="opacity-0 absolute top-[25px] bg-yellow-50 w-full text-center group-hover:opacity-100 duration-500"
+                >
+                  <button class="cursor-pointer" @click="userStore.logout()">
+                    Logout
+                  </button>
+                </div>
+              </div>
+              <span v-else>Guest</span>
+            </div>
             <div class="relative flex items-center">
               <button
-                @click="modalsStore.toggleSearch"
+                @click="modalsStore.toggleSearch()"
                 class="text-[#333] hover:text-gray-800 cursor-pointer"
               >
                 <svg
@@ -138,6 +163,7 @@
               </button>
             </div>
             <router-link
+              v-if="!userStore.user"
               :to="{ name: 'login-register' }"
               class="text-[#333] hover:text-gray-800 cursor-pointer"
             >
@@ -156,7 +182,7 @@
               </svg>
             </router-link>
             <button
-              @click="modalsStore.toggleWishlist"
+              @click="modalsStore.toggleWishlist()"
               class="text-[#333] hover:text-gray-800 cursor-pointer"
             >
               <svg
@@ -174,7 +200,7 @@
               </svg>
             </button>
             <button
-              @click="modalsStore.toggleCart"
+              @click="modalsStore.toggleCart()"
               class="text-[#333] hover:text-gray-800 cursor-pointer"
             >
               <svg
@@ -227,7 +253,8 @@
 </template>
 
 <script setup>
-import { onMounted, onUnmounted, ref } from "vue";
+import { useUserStore } from "@/stores/userStore";
+import { computed, onMounted, onUnmounted, ref } from "vue";
 import { useModalsStore } from "@/stores/modalsStore";
 import NavMenu from "@/components/Modals/NavMenu.vue";
 import SearchModal from "./Modals/SearchModal.vue";
@@ -236,6 +263,7 @@ import CartModal from "./Modals/CartModal.vue";
 import WishListModal from "./Modals/WishListModal.vue";
 
 const modalsStore = useModalsStore();
+const userStore = useUserStore();
 const isScrolled = ref(false);
 
 const navLinks = [
@@ -245,6 +273,9 @@ const navLinks = [
   { label: "Pages", url: "" },
   { label: "Blog", url: "/blog" },
 ];
+
+const profilePic = computed(() => userStore.user?.name);
+console.log(profilePic, "profile");
 
 const handleScroll = () => {
   isScrolled.value = window.scrollY > 10;

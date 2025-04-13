@@ -104,7 +104,7 @@
 <script setup>
 import { ref, reactive } from "vue";
 import axios from "axios";
-
+import Swal from "sweetalert2";
 
 const userData = reactive({
   name: "Test User",
@@ -117,6 +117,17 @@ const userData = reactive({
 const loading = ref(false);
 const error = ref(null);
 const success = ref(null);
+const regesteredModal = () => {
+  Swal.fire({
+    title: "Registration successful!",
+
+    imageUrl:
+      "https://cdnl.iconscout.com/lottie/premium/thumb/thumbs-up-animation-download-in-lottie-json-gif-static-svg-file-formats--like-logo-thumb-cute-hand-gesture-pack-sign-symbols-animations-4639088.gif",
+
+    imageAlt: "Custom image",
+  });
+};
+
 
 const register = async () => {
   loading.value = true;
@@ -132,19 +143,26 @@ const register = async () => {
     console.log("Registration successful:", response.data);
     success.value = "Registration successful! You can now log in.";
 
-    
     if (response.data.token) {
       localStorage.setItem("auth_token", response.data.token);
     }
 
-    
     // setTimeout(() => {
     //   window.location.href = '/';
     // }, 2000);
+    regesteredModal();
   } catch (err) {
     console.error("Registration Error:", err);
-    error.value =
-      err.response?.data?.message || "Registration failed. Please try again.";
+    const apiMessage = err.response?.data?.message || "Something went wrong.";
+
+    error.value = apiMessage;
+
+    Swal.fire({
+      title: "Registration Failed",
+      text: apiMessage, 
+      icon: "error",
+      confirmButtonText: "Retry",
+    });
   } finally {
     loading.value = false;
   }

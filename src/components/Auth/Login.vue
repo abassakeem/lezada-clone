@@ -49,6 +49,9 @@
 <script setup>
 import { ref } from "vue";
 import axios from "axios";
+import Swal from "sweetalert2";
+import { useUserStore } from '@/stores/userStore'
+
 
 const email = ref("test@example.com");
 const password = ref("password123");
@@ -56,6 +59,27 @@ const data = ref(null);
 const loading = ref(false);
 const error = ref(null);
 const authenticated = ref(false);
+const userStore = useUserStore()
+const loggedInModal = () => {
+  Swal.fire({
+    title: "Login successful!",
+
+    imageUrl:
+      "https://cdnl.iconscout.com/lottie/premium/thumb/thumbs-up-animation-download-in-lottie-json-gif-static-svg-file-formats--like-logo-thumb-cute-hand-gesture-pack-sign-symbols-animations-4639088.gif",
+
+    imageAlt: "Custom image",
+  });
+};
+const failedLoggedInModal = () => {
+  Swal.fire({
+    title: "Login Failed!",
+
+    imageUrl: "https://media.tenor.com/3lKzNv5CEg4AAAAM/shopping-cart-fail.gif",
+
+    imageAlt: "Custom image",
+    confirmButtonText: "Retry",
+  });
+};
 
 const login = async () => {
   loading.value = true;
@@ -66,16 +90,18 @@ const login = async () => {
       email: email.value,
       password: password.value,
     });
-    console.log("Original response",response);
+    console.log("Original response", response);
     data.value = response.data;
     const token = response.data.data.token;
     localStorage.setItem("auth_token", token);
-
-    
+    console.log("user data",response.data.data.user)
+    userStore.setUser(response.data.data.user)
     authenticated.value = true;
+    loggedInModal();
     console.log("Login successful:", response.data);
   } catch (err) {
     error.value = err.response?.data?.message || "Login failed";
+    failedLoggedInModal();
     console.error("Login Error:", err);
   } finally {
     loading.value = false;
