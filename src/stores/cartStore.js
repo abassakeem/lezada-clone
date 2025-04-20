@@ -23,7 +23,12 @@ export const useCartStore = defineStore("cartStore", {
     async getCartItems() {
       this.loading = true;
       try {
-        const res = await fetch(`${API_URL}/cart`);
+        const res = await axios.get(`${API_URL}/cart`, {
+          headers: {
+            Authorization: `Bearer ${token_data}`,
+          },
+        });
+        console.log("success in getting")
         const data = await res.json();
         this.cartItems = data;
       } catch (error) {
