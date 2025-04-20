@@ -16,7 +16,8 @@ export const useUserStore = defineStore('userStore', {
       this.error = null
 
       try {
-        const response = await axios.get('http://134.209.223.106/api/user')
+        const apiUrl = import.meta.env.VITE_API_URL
+        const response = await axios.get(`${apiUrl}/user`)
         const userData = response.data.data.user
 
         console.log('User data:', userData)

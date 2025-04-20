@@ -18,6 +18,7 @@
               <div v-if="product" class="space-y-4">
                 <div class="relative group">
                   <img
+                    @click="handleAddToCart"
                     :src="product.image"
                     :alt="product.name"
                     class="w-full h-auto transition-transform duration-500 cursor-pointer"
@@ -154,12 +155,7 @@
                 <span v-if="product.discount" class="text-gray-400 line-through"
                   >${{ product.costPrice }}</span
                 >
-                <span class="text-xl font-bold"
-                  >
-                     ${{product.price}}
-                    
-                  </span
-                >
+                <span class="text-xl font-bold"> ${{ product.price }} </span>
               </div>
               <p class="text-gray-700 leading-relaxed">
                 {{ product.description }}
@@ -224,6 +220,7 @@
 
                 <div class="mt-4 flex items-center gap-2">
                   <button
+                    @click="handleAddToCart(product)"
                     class="bg-[#333] text-white px-10 py-3 h-12 cursor-pointer"
                   >
                     ADD TO CART
@@ -361,57 +358,50 @@ import Footer from "@/components/Homepage/Footer.vue";
 import TopSection from "@/components/TopSection/TopSection.vue";
 import axios from "axios";
 import { useRoute } from "vue-router";
-
-
+import { useCartStore } from "@/stores/cartStore";
 
 const route = useRoute();
-
+const cartStore = useCartStore();
 const product = ref([]);
 const loading = ref(false);
 const error = ref(null);
 const token_data = localStorage.getItem("auth_token");
 
+const getProduct = async () => {
+  loading.value = ref(true);
 
-const getProduct= async()=>{
-   loading.value = ref(true);
-
-  try{
-    const response =await  axios.get(`http://134.209.223.106/api/products/${route.params.id}`, {
-      headers: {
-        Authorization: `Bearer ${token_data}`,
-      },
-    })
-    console.log("product response", response.data.data)
-    product.value = response.data.data
+  try {
+    const response = await axios.get(
+      `http://134.209.223.106/api/products/${route.params.id}`,
+      {
+        headers: {
+          Authorization: `Bearer ${token_data}`,
+        },
+      }
+    );
+    console.log("product response", response.data.data);
+    product.value = response.data.data;
 
     const loading = ref(true);
-  }
-
-catch (err) {
+  } catch (err) {
     console.error("Fetch Error:", err);
     error.value = "Failed to fetch products.";
   } finally {
     loading.value = false;
   }
-
-}
-
-onMounted(() => {
-  getProduct();
-});
-
+};
 
 const selectedSize = ref("");
 const selectedColor = ref("");
 
-const quantity = ref(0);
+const quantity = ref(1);
 
 const increaseQuantity = () => {
   quantity.value++;
 };
 
 const decreaseQuantity = () => {
-  if (quantity.value > 0) {
+  if (quantity.value > 1) {
     quantity.value--;
   }
 };
@@ -429,4 +419,24 @@ const toggleWishlist = (product) => {
 const toggleCompare = (product) => {
   console.log("Toggle compare for product:", product.id);
 };
+
+const handleAddToCart = (product) => {
+  // Don't allow adding if quantity is 0
+  if (quantity.value <= 0) {
+    console.error("Please select at least 1 item");
+    return;
+  }
+
+  const cartItem = {
+    product_id: product.id,
+    quantity: quantity.value,
+   
+  };
+
+  cartStore.addCartItems(cartItem);
+};
+
+onMounted(() => {
+  getProduct();
+});
 </script>

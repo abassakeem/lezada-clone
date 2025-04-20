@@ -135,8 +135,10 @@ const register = async () => {
   success.value = null;
 
   try {
+    const apiUrl = import.meta.env.VITE_API_URL
+      //  response = await axios.get(`${apiUrl}/user`)
     const response = await axios.post(
-      "http://134.209.223.106/api/register",
+     `${apiUrl}/register`,
       userData
     );
 
