@@ -13,7 +13,7 @@
       <!-- Main Content -->
 
       <Table
-       :emptyLogo="emptyLogo"
+        :emptyLogo="emptyLogo"
         :items="cartItems"
         emptyMessage="Your cart is empty"
         showEmptyActionButton
@@ -28,56 +28,29 @@
 </template>
 
 <script setup>
-import { ref, computed } from "vue";
+import { ref, computed, onMounted } from "vue";
 import Footer from "@/components/Homepage/Footer.vue";
 import TopSection from "@/components/TopSection/TopSection.vue";
 import Table from "@/components/Table/Table.vue";
+import { useCartStore } from "@/stores/cartStore";
 
+const cartItems = computed(() => {
+  const rawData = cartStore.cartItems?.data?.data?.data || [];
+  return rawData.map((entry) => ({
+    id: entry.id,
+    name: entry.product.name,
+    image: entry.product.image,
+    price: parseFloat(entry.product.price),
+    quantity: entry.quantity,
+  }));
+});
 
+const cartStore = useCartStore();
 
-const cartItems = ref([
-  {
-    id: 1,
-    name: "Lorem ipsum fashion ten",
-    price: 40.5,
-    quantity: 1,
-    image:
-      "https://lezada.jamstacktemplates.dev/assets/images/product/decor/1.jpg",
-  },
-  {
-    id: 2,
-    name: "Lorem ipsum decor eight",
-    price: 15.0,
-    quantity: 1,
-    image:
-      "https://lezada.jamstacktemplates.dev/assets/images/product/decor/1.jpg",
-  },
-]);
-
-
-const oneproduct = ref([
-  {
-    id: 1,
-    sizes: ["X", "XL", "L"],
-    colors: ["black", "blue", "red"],
-    name: "Lorem ipsum decor one",
-    img: "https://lezada.jamstacktemplates.dev/assets/images/product/decor/1.jpg",
-    discount: 20,
-    productType: "new",
-    costPrice: 100,
-    sku: "asdf101",
-    categories: "decor",
-    tags: "decor",
-
-    description:
-      "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Veritatis beatae nam cum eligendi similique rerum repellendus tempora dolores sapiente debitis quia ut exercitationem, ipsum nemo magni aliquid illo aspernatur omnis?Lorem ipsum, dolor sit amet consectetur adipisicing elit.",
-  },
-]);
-
-const selectedSize = ref("");
-const selectedColor = ref("");
-const product = computed(() => oneproduct.value[0]);
-const quantity = ref(0);
+onMounted(async () => {
+  await cartStore.getCartItems();
+  console.log("Cart Items from store:", cartStore.cartItems.data.data);
+});
 
 const incrementCartItem = (item) => {
   const cartItem = cartItems.value.find((i) => i.id === item.id);
@@ -110,11 +83,13 @@ const toggleCompare = (product) => {
   console.log("Toggle compare for product:", product.id);
 };
 
-const removeFromCart = (itemId) => {
-  cartItems.value = cartItems.value.filter((item) => item.id !== itemId);
-};
+// const removeFromCart = async (itemId) => {
+//   await cartStore.removeItemFromCart(itemId);
+//   await cartStore.getCartItems(); 
+// };
 
-const clearCart = () => {
-  cartItems.value = [];
-};
+// const clearCart = async () => {
+//   await cartStore.clearCart(); 
+//   await cartStore.getCartItems(); 
+// };
 </script>

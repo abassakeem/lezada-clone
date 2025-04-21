@@ -31,33 +31,29 @@
 
 <script setup>
 import TopSection from "@/components/TopSection/TopSection.vue";
-import { ref } from "vue";
+import { computed, ref } from "vue";
 import Table from "@/components/Table/Table.vue";
-
+import { useWishlistStore } from "@/stores/wishlistStore";
 const props = defineProps({
   Items: {
     type: Array,
     required: true,
   },
 });
-const wishlistItems = ref([
-  {
-    id: 1,
-    name: "Lorem ipsum fashion ten",
-    price: 40.5,
-    quantity: 1,
-    image:
-      "https://lezada.jamstacktemplates.dev/assets/images/product/decor/1.jpg",
-  },
-  {
-    id: 2,
-    name: "Lorem ipsum decor eight",
-    price: 15.0,
-    quantity: 1,
-    image:
-      "https://lezada.jamstacktemplates.dev/assets/images/product/decor/1.jpg",
-  },
-]);
+
+const wishlistItems = computed(() => {
+  const rawData = wishlistStore.wishlistItems?.data?.data?.data || [];
+  console.log(rawData.length, "raw dog data");
+  return rawData.map((entry) => ({
+    id: entry.id,
+    name: entry.product.name,
+    image: entry.product.image,
+    price: parseFloat(entry.product.price),
+    quantity: entry.quantity,
+  }));
+});
+
+const wishlistStore = useWishlistStore();
 
 const emptyLogo = ref(`
   <svg stroke="currentColor" class="text-[100px] md:text-8xl" fill="currentColor" stroke-width="0" viewBox="0 0 512 512" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg">

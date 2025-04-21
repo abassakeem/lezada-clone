@@ -6,6 +6,7 @@
         v-if="items.length === 0"
         class="py-12 text-center border border-[#e6e6e6]"
       >
+    
         <div class=" flex items-center justify-center" v-html="emptyLogo"></div>
         <p class="text-lg text-gray-500">{{ emptyMessage }}</p>
         <button
@@ -17,6 +18,7 @@
         </button>
       </div>
       <div class="" v-else>
+       
         <!-- Desktop table view (hidden on small screens) -->
         <div class="mb-8 border border-[#e6e6e6] hidden md:block">
           <table class="w-full">
@@ -200,41 +202,82 @@
           </TransitionGroup>
         </div>
       </div>
-      <!-- Action buttons -->
-      <div
-        v-if="items.length > 0 && showActionButtons"
-        class="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-4"
-      >
+      
+      <!-- Cart Summary Section (Desktop & Mobile) -->
+      <div class="flex flex-col md:flex-row md:justify-between mt-8 w-full" v-if="items.length > 0">
+        <!-- Action buttons on left side -->
         <div
-          v-if="showCouponInput"
-          class="flex flex-col sm:flex-row sm:items-center gap-4"
+          v-if="showActionButtons"
+          class="flex flex-col justify-between w-full sm:flex-row sm:items-center gap-4 mb-6 md:mb-0"
         >
-          <input
-            type="text"
-            placeholder="Enter your coupon code"
-            class="p-3 border-b border-[#e6e6e6] w-full sm:min-w-[250px] outline-none active:border-[#333] focus:border-[#333]"
-          />
-          <button
-            @click="applyCoupon"
-            class="px-6 py-3 text-sm font-medium text-white bg-[#333] hover:bg-white hover:border-[#333] hover:text-[#333] border transition-all duration-300 cursor-pointer w-full"
+          <div
+            v-if="showCouponInput"
+            class="flex flex-col sm:flex-row sm:items-center gap-4"
           >
-            APPLY COUPON
+            <input
+              type="text"
+              placeholder="Enter your coupon code"
+              class="p-3 border-b border-[#e6e6e6] w-full sm:min-w-[250px] outline-none active:border-[#333] focus:border-[#333]"
+            />
+            <button
+              @click="applyCoupon"
+              class="px-6 py-3 text-sm w-full font-medium text-white bg-[#333] hover:bg-white hover:border-[#333] hover:text-[#333] border transition-all duration-300 cursor-pointer "
+            >
+              APPLY COUPON
+            </button>
+          </div>
+          <button
+            v-if="showClearButton"
+            @click="clearItems"
+            class="px-6 py-3 text-sm font-medium text-white bg-[#333] hover:bg-white hover:border-[#333] hover:text-[#333] border transition-all duration-300 cursor-pointer w-full sm:w-auto mt-4 sm:mt-0"
+          >
+            {{ clearButtonText }}
           </button>
         </div>
-        <button
-          v-if="showClearButton"
-          @click="clearItems"
-          class="px-6 py-3 text-sm font-medium text-white bg-[#333] hover:bg-white hover:border-[#333] hover:text-[#333] border transition-all duration-300 cursor-pointer w-full sm:w-auto mt-4 sm:mt-0"
-        >
-          {{ clearButtonText }}
-        </button>
+        
+        <!-- Cart Totals table on right side -->
+        
       </div>
-    </div>
+      <div class="flex flex-col justify-end items-end">
+      <div class="w-full md:w-1/3 mt-6   bg-[#f7f7f7] ">
+          <h3 class="text-lg font-bold p-4 ">CART TOTALS</h3>
+          <table class="w-full">
+            <tr class="">
+              <td class="p-6 text-[#777]">Subtotal</td>
+              <td class="p-6 text-right font-bold">${{ calculateSubtotal() }}</td>
+            </tr>
+            <tr class="border-b border-[#e6e6e6]" v-if="discount > 0">
+              <td class="p-6 text-[#777]">Discount</td>
+              <td class="p-6 text-right font-bold text-green-600">-${{ discount.toFixed(2) }}</td>
+            </tr>
+            <tr class="border-b border-[#e6e6e6]" v-if="shipping > 0">
+              <td class="p-6 text-[#777]">Shipping</td>
+              <td class="p-6 text-right font-bold">${{ shipping.toFixed(2) }}</td>
+            </tr>
+            <tr class="border-b border-[#e6e6e6]" v-if="tax > 0">
+              <td class="p-6 text-[#777]">Tax</td>
+              <td class="p-6 text-right font-bold">${{ tax.toFixed(2) }}</td>
+            </tr>
+            <tr>
+              <td class="p-6 text-[#333] font-bold">Total</td>
+              <td class="p-6 text-right font-bold">${{ calculateTotal() }}</td>
+            </tr>
+          </table>
+          <div class="p-4">
+            <router-link to="/checkout"
+              @click="proceedToCheckout"
+              class="px-6 py-3 text-sm font-medium text-white bg-[#333] hover:bg-white hover:border-[#333] hover:text-[#333] border transition-all duration-300 cursor-pointer w-full"
+            >
+              PROCEED TO CHECKOUT
+            </router-link>
+          </div>
+        </div>
+    </div></div>
   </div>
 </template>
 
 <script setup>
-import { defineProps, defineEmits, toRef, ref } from "vue";
+import { defineProps, defineEmits, toRef, ref, computed } from "vue";
 
 const props = defineProps({
   items: {
@@ -285,6 +328,18 @@ const props = defineProps({
     type: String,
     default: "",
   },
+  shipping: {
+    type: Number,
+    default: 0,
+  },
+  discount: {
+    type: Number,
+    default: 0,
+  },
+  tax: {
+    type: Number,
+    default: 0,
+  }
 });
 
 const emit = defineEmits([
@@ -295,6 +350,7 @@ const emit = defineEmits([
   "clear",
   "apply-coupon",
   "empty-action",
+  "checkout"
 ]);
 
 const showSelect = ref(false);
@@ -308,6 +364,7 @@ const decrementQuantity = (item) => {
     emit("decrement", item);
   }
 };
+
 const addToCart = (item) => {
   item.showSelect = true;
 };
@@ -319,6 +376,18 @@ const updateQuantity = (item, event) => {
 
 const calculateItemTotal = (item) => {
   return (item.price * (item.quantity || 1)).toFixed(2);
+};
+
+const calculateSubtotal = () => {
+  return props.items
+    .reduce((sum, item) => sum + item.price * (item.quantity || 1), 0)
+    .toFixed(2);
+};
+
+const calculateTotal = () => {
+  const subtotal = parseFloat(calculateSubtotal());
+  const total = subtotal + props.shipping + props.tax - props.discount;
+  return total.toFixed(2);
 };
 
 const removeItem = (itemId) => {
@@ -336,6 +405,8 @@ const applyCoupon = () => {
 const emptyActionCallback = () => {
   emit("empty-action");
 };
+
+
 </script>
 
 <style scoped>

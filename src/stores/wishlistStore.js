@@ -3,9 +3,9 @@ import axios from "axios";
 
 const API_URL = import.meta.env.VITE_API_URL;
 
-export const useCartStore = defineStore("cartStore", {
+export const useWishlistStore = defineStore("wishlistStore", {
   state: () => ({
-    cartItems: {
+    wishlistItems: {
       data: [],
     },
     loading: false,
@@ -14,10 +14,10 @@ export const useCartStore = defineStore("cartStore", {
 
   getters: {
     favCount(state) {
-      return state.cartItems.data.reduce((p, c) => (c.isfav ? p + 1 : p), 0);
+      return state.wishlistItems.data.reduce((p, c) => (c.isfav ? p + 1 : p), 0);
     },
     totalCount(state) {
-      return state.cartItems.data.length;
+      return state.wishlistItems.data.length;
     },
   },
 
@@ -29,29 +29,29 @@ export const useCartStore = defineStore("cartStore", {
       }
       return token;
     },
-    async getCartItems() {
+    async getWishlistItems() {
       this.loading = true;
       try {
         const token = this.getAuthToken();
 
-        const res = await axios.get(`${API_URL}/cart`, {
+        const res = await axios.get(`${API_URL}/wishlist`, {
           headers: {
             Authorization: `Bearer ${token}`,
           },
         });
-        console.log("Success in getting cart items");
-        this.cartItems.data.data = res.data;
+        console.log("Success in getting wishlist items");
+        this.wishlistItems.data.data = res.data;
       } catch (error) {
-        console.error("Fetch cart error:", error);
+        console.error("Fetch wishlist error:", error);
         this.error = error;
       } finally {
         this.loading = false;
       }
     },
 
-    async addCartItems(newItem) {
+    async addWishlistItems(newItem) {
       try {
-        console.log("Adding to cart:", newItem);
+        console.log("Adding to wishlist:", newItem);
         const token = this.getAuthToken();
 
         if (!token) {
@@ -59,21 +59,21 @@ export const useCartStore = defineStore("cartStore", {
           return;
         }
 
-        const res = await axios.post(`${API_URL}/cart/add`, newItem, {
+        const res = await axios.post(`${API_URL}/wishlist/add`, newItem, {
           headers: {
             Authorization: `Bearer ${token}`,
             "Content-Type": "application/json",
           },
         });
 
-        console.log("Item added to cart successfully:", res.data);
-        // Optional: Refresh cart after adding
-        await this.getCartItems();
+        console.log("Item added to wishlist successfully:", res.data);
+        
+        await this.getWishlistItems();
         return res.data;
       } catch (err) {
         if (err.response) {
           console.error(
-            "Add to cart error:",
+            "Add to wishlist error:",
             err.response.status,
             err.response.data
           );
@@ -89,15 +89,15 @@ export const useCartStore = defineStore("cartStore", {
       }
     },
 
-    async deleteCartItems(id) {
+    async deleteWishlistItems(id) {
       try {
         const token = this.getAuthToken();
-        await axios.delete(`${API_URL}/cart/${id}`, {
+        await axios.delete(`${API_URL}/wishlist/${id}`, {
           headers: {
             Authorization: `Bearer ${token}`,
           },
         });
-        this.cartItems.data = this.cartItems.data.filter(
+        this.wishlistItems.data = this.wishlistItems.data.filter(
           (item) => item.id !== id
         );
       } catch (error) {
@@ -105,25 +105,6 @@ export const useCartStore = defineStore("cartStore", {
       }
     },
 
-    async updateCart() {
-      this.loading = true;
-
-      try {
-        const token = this.getAuthToken();
-        for (const item of this.cartItems.data) {
-          await axios.delete(`${API_URL}/cart/${item.id}`, {
-            headers: {
-              Authorization: `Bearer ${token}`,
-            },
-          });
-        }
-        this.cartItems.data = [];
-      } catch (error) {
-        console.error("Error resetting cart:", error);
-        this.error = error;
-      } finally {
-        this.loading = false;
-      }
-    },
+   
   },
 });

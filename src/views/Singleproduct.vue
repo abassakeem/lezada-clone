@@ -225,7 +225,7 @@
                   >
                     ADD TO CART
                   </button>
-                  <button
+                  <button  @click="handleAddToWishlist(product)"
                     class="bg-transparent border-[#d8d8d8] border h-12 w-12 flex items-center justify-center cursor-pointer hover:bg-gray-100 transition-colors"
                   >
                     <svg class="h-4 w-4" viewBox="0 0 512 512">
@@ -359,9 +359,11 @@ import TopSection from "@/components/TopSection/TopSection.vue";
 import axios from "axios";
 import { useRoute } from "vue-router";
 import { useCartStore } from "@/stores/cartStore";
+import { useWishlistStore } from "@/stores/wishlistStore";
 
 const route = useRoute();
 const cartStore = useCartStore();
+const wishlistStore = useWishlistStore();
 const product = ref([]);
 const loading = ref(false);
 const error = ref(null);
@@ -434,6 +436,16 @@ const handleAddToCart = (product) => {
   };
 
   cartStore.addCartItems(cartItem);
+};
+const handleAddToWishlist = (product) => {
+ 
+  const wishlistItem  = {
+    product_id: product.id,
+    
+   
+  };
+
+  wishlistStore.addWishlistItems(wishlistItem);
 };
 
 onMounted(() => {
