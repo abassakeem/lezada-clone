@@ -213,7 +213,7 @@
             </button>
             <button
               @click="modalsStore.toggleCart()"
-              class="text-[#333] hover:text-gray-800 cursor-pointer"
+              class="text-[#333] hover:text-gray-800 cursor-pointer relative"
             >
               <svg
                 stroke="currentColor"
@@ -242,6 +242,12 @@
                   d="M463.8 132.2c-.7-2.4-2.8-4-5.2-4.2L132.9 96.5c-2.8-.3-6.2-2.1-7.5-4.7-3.8-7.1-6.2-11.1-12.2-18.6-7.7-9.4-22.2-9.1-48.8-9.3-9-.1-16.3 5.2-16.3 14.1 0 8.7 6.9 14.1 15.6 14.1s21.3.5 26 1.9c4.7 1.4 8.5 9.1 9.9 15.8 0 .1 0 .2.1.3.2 1.2 2 10.2 2 10.3l40 211.6c2.4 14.5 7.3 26.5 14.5 35.7 8.4 10.8 19.5 16.2 32.9 16.2h236.6c7.6 0 14.1-5.8 14.4-13.4.4-8-6-14.6-14-14.6H188.9c-2 0-4.9 0-8.3-2.8-3.5-3-8.3-9.9-11.5-26l-4.3-23.7c0-.3.1-.5.4-.6l277.7-47c2.6-.4 4.6-2.5 4.9-5.2l16-115.8c.2-.8.2-1.7 0-2.6z"
                 ></path>
               </svg>
+              <span
+                v-if="wishlistCount > 0"
+                class="absolute -top-2 -right-2 bg-red-500 text-white text-xs font-bold rounded-full w-5 h-5 flex items-center justify-center"
+              >
+                {{ cartCount }}
+              </span>
             </button>
           </div>
         </div>
@@ -275,11 +281,15 @@ import CartModal from "./Modals/CartModal.vue";
 import WishListModal from "./Modals/WishListModal.vue";
 import { useWishlistStore } from "@/stores/wishlistStore";
 
+import {useCartStore} from "@/stores/cartStore"
+
 const wishlistStore = useWishlistStore();
+const cartStore = useCartStore()
 const modalsStore = useModalsStore();
 const userStore = useUserStore();
 const isScrolled = ref(false);
 const wishlistCount = ref(0);
+const cartCount = ref(0);
 
 const navLinks = [
   { label: "Home", url: "/" },
@@ -293,6 +303,9 @@ const navLinks = [
 const wishlistItems = computed(() => {
   return wishlistStore.wishlistItems?.data?.data?.data || [];
 });
+const cartItems = computed(() => {
+  return cartStore.cartItems?.data?.data?.data || [];
+});
 
 // Watch for changes in the wishlist items
 watch(
@@ -302,13 +315,29 @@ watch(
   },
   { deep: true }
 );
+// Watch for changes in the cart items
+watch(
+  cartItems,
+  (newItems) => {
+    cartCount.value = newItems.length;
+  },
+  { deep: true }
+);
 
-// Watch directly for changes in the entire wishlist store
+
 watch(
   () => wishlistStore.wishlistItems,
   (newWishlist) => {
     const items = newWishlist?.data?.data?.data || [];
     wishlistCount.value = items.length;
+  },
+  { deep: true }
+);
+watch(
+  () => cartStore.cartItems,
+  (newCart) => {
+    const items = newCart?.data?.data?.data || [];
+    cartCount.value = items.length;
   },
   { deep: true }
 );
@@ -322,11 +351,11 @@ const handleScroll = () => {
 onMounted(() => {
   window.addEventListener("scroll", handleScroll);
 
-  // Initial load of wishlist count
+  
   wishlistCount.value =
     wishlistStore.wishlistItems?.data?.data?.data?.length || 0;
 
-  // Subscribe to any changes in the wishlist store
+  
   const unsubscribe = wishlistStore.$subscribe((mutation, state) => {
     const items = state.wishlistItems?.data?.data?.data || [];
     wishlistCount.value = items.length;
