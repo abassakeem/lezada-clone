@@ -21,6 +21,7 @@
       <h6 class="text-[#333] text-2xl">{{ product.header }}</h6>
       <p class="text-[#777] text-sm">{{ product.summary }}</p>
       <router-link
+        :to="`/singleblog?id=${product.id}`"
         class="underline uppercase text-[#333] mt-2 font-medium text-xs cursor-pointer hover:text-[#D3122A] duration-500"
         >Read more</router-link
       >

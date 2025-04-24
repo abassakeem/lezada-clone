@@ -1,47 +1,34 @@
 import { defineStore } from "pinia";
 import axios from "axios";
+import api from "@/service/axios";
 
 const API_URL = import.meta.env.VITE_API_URL;
 
 export const useCartStore = defineStore("cartStore", {
   state: () => ({
-    cartItems: {
-      data: [],
-    },
+    cartItems: [],
     loading: false,
     error: null,
   }),
 
   getters: {
     favCount(state) {
-      return state.cartItems.data.reduce((p, c) => (c.isfav ? p + 1 : p), 0);
+      return state.cartItems.reduce((p, c) => (c.isfav ? p + 1 : p), 0);
     },
     totalCount(state) {
-      return state.cartItems.data.length;
+      return state.cartItems.length;
     },
   },
 
   actions: {
-    getAuthToken() {
-      const token = localStorage.getItem("auth_token");
-      if (!token) {
-        throw new Error("Authentication token not found");
-      }
-      return token;
-    },
+    
     async getCartItems() {
       this.loading = true;
       try {
-        const token = this.getAuthToken();
-
-        const res = await axios.get(`${API_URL}/cart`, {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        });
+        const res = await api.get(`/cart`);
         console.log("Success in getting cart items");
-        this.cartItems.data.data = res.data;
-        console.log(this.cartItems.data.data);
+        console.log(res.data);
+        this.cartItems = res.data.data;
       } catch (error) {
         console.error("Fetch cart error:", error);
         this.error = error;
@@ -55,17 +42,7 @@ export const useCartStore = defineStore("cartStore", {
         console.log("Adding to cart:", newItem);
         const token = this.getAuthToken();
 
-        if (!token) {
-          console.error("Authentication token not found");
-          return;
-        }
-
-        const res = await axios.post(`${API_URL}/cart/add`, newItem, {
-          headers: {
-            Authorization: `Bearer ${token}`,
-            "Content-Type": "application/json",
-          },
-        });
+        const res = await api.post(`/cart/add`, newItem);
 
         console.log("Item added to cart successfully:", res.data);
         // Optional: Refresh cart after adding
@@ -98,7 +75,7 @@ export const useCartStore = defineStore("cartStore", {
             Authorization: `Bearer ${token}`,
           },
         });
-        this.cartItems.data = this.cartItems.data.filter(
+        this.cartItems = this.cartItems.filter(
           (item) => item.id !== id
         );
       } catch (error) {
@@ -111,14 +88,14 @@ export const useCartStore = defineStore("cartStore", {
 
       try {
         const token = this.getAuthToken();
-        for (const item of this.cartItems.data) {
+        for (const item of this.cartItems) {
           await axios.delete(`${API_URL}/cart/${item.id}`, {
             headers: {
               Authorization: `Bearer ${token}`,
             },
           });
         }
-        this.cartItems.data = [];
+        this.cartItems = [];
       } catch (error) {
         console.error("Error resetting cart:", error);
         this.error = error;

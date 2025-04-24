@@ -37,7 +37,7 @@
             <input type="checkbox" class="cursor-pointer" />
             <label class="text-[#777777] cursor-pointer">Remember me</label>
           </div>
-          <router-link class="text-[#777777] hover:text-[#333]">
+          <router-link to="/forgot-password" class="text-[#777777] hover:text-[#333]">
             Lost your password?
           </router-link>
         </form>
@@ -52,15 +52,20 @@ import axios from "axios";
 import Swal from "sweetalert2";
 import { useUserStore } from "@/stores/userStore";
 import { useRouter } from "vue-router";
+import { useCartStore } from "@/stores/cartStore";
+import { useWishlistStore } from "@/stores/wishlistStore";
+import api from "@/service/axios";
 
-const email = ref("test@example.com");
-const password = ref("password123");
+const email = ref("akeem@gmail.com");
+const password = ref("password1234");
 const data = ref(null);
 const loading = ref(false);
 const error = ref(null);
 const authenticated = ref(false);
 const userStore = useUserStore();
 const router = useRouter();
+const cartStore = useCartStore();
+const wishlistStore = useWishlistStore();
 const loggedInModal = () => {
   Swal.fire({
     title: "Login successful!",
@@ -82,25 +87,31 @@ const failedLoggedInModal = () => {
   });
 };
 
+
 const login = async () => {
   loading.value = true;
   error.value = null;
 
   try {
-    const apiUrl = import.meta.env.VITE_API_URL
-    const response = await axios.post(`${apiUrl}/login`, {
+    const response = await api.post(`/login`, {
       email: email.value,
       password: password.value,
     });
     console.log("Original response", response);
     data.value = response.data;
     const token = response.data.data.token;
+    const user = response.data.data.user;
     localStorage.setItem("auth_token", token);
+    localStorage.setItem("user", JSON.stringify(user));
     console.log("user data", response.data.data.user);
     userStore.setUser(response.data.data.user);
     authenticated.value = true;
     loggedInModal();
     console.log("Login successful:", response.data);
+    await Promise.all([
+      cartStore.getCartItems(),
+      wishlistStore.getWishlistItems()
+    ])
     router.push("/");
   } catch (err) {
     error.value = err.response?.data?.message || "Login failed";

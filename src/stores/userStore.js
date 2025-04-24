@@ -9,6 +9,14 @@ export const useUserStore = defineStore('userStore', {
     error: null,
     authenticated: false,
   }),
+  getters: {
+    isAuthenticated() {
+      return localStorage.getItem('auth_token') !== null
+    },
+    getUserGetter() {
+      return this.user ?? JSON.parse(localStorage.getItem("user"));
+    }
+  },
 
   actions: {
     async getUser() {
@@ -42,6 +50,7 @@ export const useUserStore = defineStore('userStore', {
       this.user = null
       this.token = null
       localStorage.removeItem('auth_token') 
+      localStorage.removeItem('user') 
       window.location.href = '/login-register'
     },
 

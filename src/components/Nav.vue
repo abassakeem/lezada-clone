@@ -1,12 +1,12 @@
 <template>
   <div class="mb-6">
     <header
-      class="bg-white px-3 lg:px-6 w-full"
-      :class="[
-        'fixed top-0 left-0 transition-shadow duration-500 z-50',
-        isScrolled ? 'shadow-xl' : 'shadow-none',
+    class="bg-white px-3 lg:px-6 w-full"
+    :class="[
+      'fixed top-0 left-0 transition-shadow duration-500 z-50',
+      isScrolled ? 'shadow-xl' : 'shadow-none',
       ]"
-    >
+      >
       <div class="container mx-auto lg:px-6 flex justify-between items-center">
         <a href="/" class="text-[#7e7e7e] font-bold">
           <img
@@ -72,10 +72,10 @@
               ></path>
             </svg>
             <span
-              v-if="wishlistCount > 0"
+              v-if="wishlistItemsCount > 0"
               class="absolute -top-2 -right-2 bg-red-500 text-white text-xs font-bold rounded-full w-5 h-5 flex items-center justify-center"
             >
-              {{ wishlistCount }}
+              {{ wishlistItemsCount }}
             </span>
           </router-link>
           <router-link
@@ -135,8 +135,8 @@
         <div class="hidden lg:block">
           <div class="flex items-center justify-center space-x-8 text-xl">
             <div>
-              <div v-if="userStore.user" class="group relative">
-                Hi, {{ userStore.user.name }}
+              <div v-if="userStore.getUserGetter" class="group relative">
+                Hi, {{ userStore.getUserGetter.name }}
 
                 <div
                   class="opacity-0 absolute top-[25px] bg-yellow-50 w-full text-center group-hover:opacity-100 duration-500"
@@ -205,10 +205,10 @@
                 ></path>
               </svg>
               <span
-                v-if="wishlistCount > 0"
+                v-if="wishlistItemsCount > 0"
                 class="absolute -top-2 -right-2 bg-red-500 text-white text-xs font-bold rounded-full w-5 h-5 flex items-center justify-center"
               >
-                {{ wishlistCount }}
+                {{ wishlistItemsCount }}
               </span>
             </button>
             <button
@@ -243,17 +243,17 @@
                 ></path>
               </svg>
               <span
-                v-if="wishlistCount > 0"
+                v-if="cartItemsCount > 0"
                 class="absolute -top-2 -right-2 bg-red-500 text-white text-xs font-bold rounded-full w-5 h-5 flex items-center justify-center"
               >
-                {{ cartCount }}
+                {{ cartItemsCount }}
               </span>
             </button>
           </div>
         </div>
       </div>
 
-      <NavMenu v-show="modalsStore.isNavOpen" @close="modalsStore.closeNav" />
+      <!-- <NavMenu v-show="modalsStore.isNavOpen" @close="modalsStore.closeNav" /> -->
       <SearchModal
         v-show="modalsStore.isSearchOpen"
         @close="modalsStore.closeSearch"
@@ -288,8 +288,6 @@ const cartStore = useCartStore()
 const modalsStore = useModalsStore();
 const userStore = useUserStore();
 const isScrolled = ref(false);
-const wishlistCount = ref(0);
-const cartCount = ref(0);
 
 const navLinks = [
   { label: "Home", url: "/" },
@@ -299,48 +297,21 @@ const navLinks = [
   { label: "Blog", url: "/blog" },
 ];
 
+// onMounted(async () => {
+//   console.log('Nav Mounted')
+ 
+// })
 
-const wishlistItems = computed(() => {
-  return wishlistStore.wishlistItems?.data?.data?.data || [];
+
+
+const wishlistItemsCount = computed(() => {
+  return wishlistStore.totalCount;
 });
-const cartItems = computed(() => {
-  return cartStore.cartItems?.data?.data?.data || [];
+const cartItemsCount = computed(() => {
+  return cartStore.totalCount;
 });
 
 
-watch(
-  wishlistItems,
-  (newItems) => {
-    wishlistCount.value = newItems.length;
-  },
-  { deep: true }
-);
-
-watch(
-  cartItems,
-  (newItems) => {
-    cartCount.value = newItems.length;
-  },
-  { deep: true }
-);
-
-
-watch(
-  () => wishlistStore.wishlistItems,
-  (newWishlist) => {
-    const items = newWishlist?.data?.data?.data || [];
-    wishlistCount.value = items.length;
-  },
-  { deep: true }
-);
-watch(
-  () => cartStore.cartItems,
-  (newCart) => {
-    const items = newCart?.data?.data?.data || [];
-    cartCount.value = items.length;
-  },
-  { deep: true }
-);
 
 const profilePic = computed(() => userStore.user?.name);
 
@@ -348,17 +319,21 @@ const handleScroll = () => {
   isScrolled.value = window.scrollY > 10;
 };
 
-onMounted(() => {
-  window.addEventListener("scroll", handleScroll);
-
+onMounted(async () => {
   
-  wishlistCount.value =
-    wishlistStore.wishlistItems?.data?.data?.data?.length || 0;
+  window.addEventListener("scroll", handleScroll);
+  await Promise.all([
+    cartStore.getCartItems(),
+    wishlistStore.getWishlistItems()
+  ])
+  
+  // wishlistCount.value =
+  //   wishlistStore.wishlistItems?.data?.data?.data?.length || 0;
 
   
   const unsubscribe = wishlistStore.$subscribe((mutation, state) => {
     const items = state.wishlistItems?.data?.data?.data || [];
-    wishlistCount.value = items.length;
+    // wishlistCount.value = items.length;
   });
 });
 

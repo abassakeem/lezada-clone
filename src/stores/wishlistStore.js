@@ -1,5 +1,6 @@
 import { defineStore } from "pinia";
 import axios from "axios";
+import api from "@/service/axios";
 
 const API_URL = import.meta.env.VITE_API_URL;
 
@@ -20,25 +21,12 @@ export const useWishlistStore = defineStore("wishlistStore", {
   },
 
   actions: {
-    getAuthToken() {
-      const token = localStorage.getItem("auth_token");
-      if (!token) {
-        throw new Error("Authentication token not found");
-      }
-      return token;
-    },
     async getWishlistItems() {
       this.loading = true;
       try {
-        const token = this.getAuthToken();
-
-        const res = await axios.get(`${API_URL}/wishlist`, {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        });
+        const res = await api.get(`wishlist`);
         console.log("Success in getting wishlist items");
-        this.wishlistItems.data = res.data;
+        this.wishlistItems = res.data.data;
       } catch (error) {
         console.error("Fetch wishlist error:", error);
         this.error = error;

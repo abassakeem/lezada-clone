@@ -79,10 +79,6 @@ const navLinks = [
             title: "Cosmetics",
             img: "	https://lezada.jamstacktemplates.dev/assets/images/home-preview/collection.jpg",
           },
-          "Smart Design",
-          "Collection",
-          "Jewelry",
-          "Cosmetics",
         ],
       },
       groupFour: {

@@ -15,22 +15,22 @@
             class="text-[#7e7e7e] text-sm flex flex-col lg:flex-row lg:space-x-12 space-y-4 lg:space-y-0"
           >
             <li class="uppercase hover:text-black transition-colors">
-              <router-link>ABOUT US</router-link>
+              <a>ABOUT US</a>
             </li>
             <li class="uppercase hover:text-black transition-colors">
-              <router-link>STORE LOCATION</router-link>
+              <a>STORE LOCATION</a>
             </li>
             <li class="uppercase hover:text-black transition-colors">
-              <router-link>CONTACT</router-link>
+              <a>CONTACT</a>
             </li>
             <li class="uppercase hover:text-black transition-colors">
-              <router-link>SUPPORT</router-link>
+              <a>SUPPORT</a>
             </li>
             <li class="uppercase hover:text-black transition-colors">
-              <router-link>POLICY</router-link>
+              <a>POLICY</a>
             </li>
             <li class="uppercase hover:text-black transition-colors">
-              <router-link>FAQS</router-link>
+              <a>FAQS</a>
             </li>
           </ul>
 

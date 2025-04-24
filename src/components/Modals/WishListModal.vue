@@ -9,7 +9,7 @@
   >
     <div class="">
       <div
-        v-if="isWishlistOpen"
+        v-if="modalsStore.isWishlistOpen"
         class="fixed inset-0 bg-black/10 z-40"
         @click="modalsStore.toggleWishlist"
       ></div>
@@ -117,7 +117,7 @@ import { ref } from "vue";
 import { useModalsStore } from "@/stores/modalsStore";
 
 const modalsStore = useModalsStore();
-
+const isWIshlistOpen = ref(false);
 const products = ref([
   {
     id: 1,
