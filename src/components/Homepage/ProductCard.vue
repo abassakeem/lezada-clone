@@ -32,7 +32,7 @@
       <div
         class="absolute top-4 right-4 opacity-0 invisible cursor-pointer group-hover:opacity-100 group-hover:visible transition-all duration-500"
       >
-        <button
+        <button @click="handleAddToWishlist(product)"
           class="bg-white p-3 cursor-pointer hover:bg-gray-100 transition-colors mb-3 block"
         >
           <svg class="h-4 w-4" viewBox="0 0 512 512">
@@ -104,6 +104,8 @@
 </template>
 
 <script setup>
+
+import { useWishlistStore } from '@/stores/wishlistStore';
 defineProps({
   products: {
     type: Array,
@@ -118,5 +120,15 @@ defineProps({
 const calculateDiscountedPrice = (costPrice, discount) => {
   const discountAmount = (costPrice * discount) / 100;
   return costPrice - discountAmount;
+};
+
+const wishlistStore = useWishlistStore()
+
+const handleAddToWishlist = (product) => {
+  const wishlistItem = {
+    product_id: product.id,
+  };
+
+  wishlistStore.addWishlistItems(wishlistItem);
 };
 </script>

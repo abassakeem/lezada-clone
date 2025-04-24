@@ -41,6 +41,7 @@ export const useCartStore = defineStore("cartStore", {
         });
         console.log("Success in getting cart items");
         this.cartItems.data.data = res.data;
+        console.log(this.cartItems.data.data);
       } catch (error) {
         console.error("Fetch cart error:", error);
         this.error = error;

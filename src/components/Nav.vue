@@ -299,7 +299,7 @@ const navLinks = [
   { label: "Blog", url: "/blog" },
 ];
 
-// Create a computed property to access wishlist items
+
 const wishlistItems = computed(() => {
   return wishlistStore.wishlistItems?.data?.data?.data || [];
 });
@@ -307,7 +307,7 @@ const cartItems = computed(() => {
   return cartStore.cartItems?.data?.data?.data || [];
 });
 
-// Watch for changes in the wishlist items
+
 watch(
   wishlistItems,
   (newItems) => {
@@ -315,7 +315,7 @@ watch(
   },
   { deep: true }
 );
-// Watch for changes in the cart items
+
 watch(
   cartItems,
   (newItems) => {

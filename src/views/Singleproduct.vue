@@ -225,7 +225,8 @@
                   >
                     ADD TO CART
                   </button>
-                  <button  @click="handleAddToWishlist(product)"
+                  <button
+                    @click="handleAddToWishlist(product)"
                     class="bg-transparent border-[#d8d8d8] border h-12 w-12 flex items-center justify-center cursor-pointer hover:bg-gray-100 transition-colors"
                   >
                     <svg class="h-4 w-4" viewBox="0 0 512 512">
@@ -432,17 +433,13 @@ const handleAddToCart = (product) => {
   const cartItem = {
     product_id: product.id,
     quantity: quantity.value,
-   
   };
 
   cartStore.addCartItems(cartItem);
 };
 const handleAddToWishlist = (product) => {
- 
-  const wishlistItem  = {
+  const wishlistItem = {
     product_id: product.id,
-    
-   
   };
 
   wishlistStore.addWishlistItems(wishlistItem);

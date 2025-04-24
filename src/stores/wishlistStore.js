@@ -5,19 +5,17 @@ const API_URL = import.meta.env.VITE_API_URL;
 
 export const useWishlistStore = defineStore("wishlistStore", {
   state: () => ({
-    wishlistItems: {
-      data: [],
-    },
+    wishlistItems: [],
     loading: false,
     error: null,
   }),
 
   getters: {
     favCount(state) {
-      return state.wishlistItems.data.reduce((p, c) => (c.isfav ? p + 1 : p), 0);
+      return state.wishlistItems.reduce((p, c) => (c.isfav ? p + 1 : p), 0);
     },
     totalCount(state) {
-      return state.wishlistItems.data.length;
+      return state.wishlistItems.length;
     },
   },
 
@@ -40,7 +38,7 @@ export const useWishlistStore = defineStore("wishlistStore", {
           },
         });
         console.log("Success in getting wishlist items");
-        this.wishlistItems.data.data = res.data;
+        this.wishlistItems.data = res.data;
       } catch (error) {
         console.error("Fetch wishlist error:", error);
         this.error = error;
@@ -97,7 +95,7 @@ export const useWishlistStore = defineStore("wishlistStore", {
             Authorization: `Bearer ${token}`,
           },
         });
-        this.wishlistItems.data = this.wishlistItems.data.filter(
+        this.wishlistItems = this.wishlistItems.filter(
           (item) => item.id !== id
         );
       } catch (error) {
