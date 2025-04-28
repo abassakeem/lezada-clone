@@ -238,7 +238,7 @@
         <!-- Cart Totals table on right side -->
         
       </div>
-      <div class="flex flex-col justify-end items-end">
+      <div class="flex flex-col justify-end items-end" v-if="items.length > 0">
       <div class="w-full md:w-1/3 mt-6   bg-[#f7f7f7] ">
           <h3 class="text-lg font-bold p-4 ">CART TOTALS</h3>
           <table class="w-full">
