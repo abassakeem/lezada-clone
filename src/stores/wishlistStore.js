@@ -65,21 +65,20 @@ export const useWishlistStore = defineStore("wishlistStore", {
       }
     },
 
-    // async deleteWishlistItems(id) {
-    //   try {
-    //     const token = this.getAuthToken();
-    //     await axios.delete(`${API_URL}/wishlist/${id}`, {
-    //       headers: {
-    //         Authorization: `Bearer ${token}`,
-    //       },
-    //     });
-    //     this.wishlistItems = this.wishlistItems.filter(
-    //       (item) => item.id !== id
-    //     );
-    //   } catch (error) {
-    //     console.error("Delete error:", error);
-    //   }
-    // },
+    async deleteWishlistItems(id) {
+      try {
+       
+        const res = await api.delete(`/wishlist/${id}`);
+        // this.wishlistItems = this.wishlistItems.filter(
+        //   (item) => item.id !== id
+        // );
+        console.log(res)
+
+        await this.getWishlistItems()
+      } catch (error) {
+        console.error("Delete error:", error);
+      }
+    },
 
    
   },

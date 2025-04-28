@@ -83,13 +83,12 @@ const toggleCompare = (product) => {
   console.log("Toggle compare for product:", product.id);
 };
 
-// const removeFromCart = async (itemId) => {
-//   await cartStore.removeItemFromCart(itemId);
-//   await cartStore.getCartItems(); 
-// };
+const removeFromCart = async (id) => {
+  cartStore.deleteCartItems(id);
+};
 
 // const clearCart = async () => {
-//   await cartStore.clearCart(); 
-//   await cartStore.getCartItems(); 
+//   await cartStore.clearCart();
+//   await cartStore.getCartItems();
 // };
 </script>

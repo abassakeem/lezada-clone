@@ -79,10 +79,8 @@ const calculateItemTotal = (item) => {
   return (item.price * (item.quantity || 1)).toFixed(2);
 };
 
-const removeFromWishlist = (itemId) => {
-  wishlistItems.value = wishlistItems.value.filter(
-    (item) => item.id !== itemId
-  );
+const removeFromWishlist = (id) => {
+  wishlistStore.deleteWishlistItems(id)
 };
 
 const clearWishlist = () => {

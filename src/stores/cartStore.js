@@ -21,7 +21,6 @@ export const useCartStore = defineStore("cartStore", {
   },
 
   actions: {
-    
     async getCartItems() {
       this.loading = true;
       try {
@@ -40,12 +39,11 @@ export const useCartStore = defineStore("cartStore", {
     async addCartItems(newItem) {
       try {
         console.log("Adding to cart:", newItem);
-      
 
         const res = await api.post(`/cart/add`, newItem);
 
         console.log("Item added to cart successfully:", res.data);
-        
+
         await this.getCartItems();
         return res.data;
       } catch (err) {
@@ -69,39 +67,34 @@ export const useCartStore = defineStore("cartStore", {
 
     async deleteCartItems(id) {
       try {
-        const token = this.getAuthToken();
-        await axios.delete(`${API_URL}/cart/${id}`, {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        });
-        this.cartItems = this.cartItems.filter(
-          (item) => item.id !== id
-        );
+        const res = await api.delete(`/cart/${id}`);
+        // this.cartItems = this.cartItems.filter((item) => item.id !== id);
+        console.log(res);
+        await this.getCartItems();
       } catch (error) {
         console.error("Delete error:", error);
       }
     },
 
-    async updateCart() {
-      this.loading = true;
+    // async updateCart() {
+    //   this.loading = true;
 
-      try {
-        const token = this.getAuthToken();
-        for (const item of this.cartItems) {
-          await axios.delete(`${API_URL}/cart/${item.id}`, {
-            headers: {
-              Authorization: `Bearer ${token}`,
-            },
-          });
-        }
-        this.cartItems = [];
-      } catch (error) {
-        console.error("Error resetting cart:", error);
-        this.error = error;
-      } finally {
-        this.loading = false;
-      }
-    },
+    //   try {
+    //     const token = this.getAuthToken();
+    //     for (const item of this.cartItems) {
+    //       await axios.delete(`${API_URL}/cart/${item.id}`, {
+    //         headers: {
+    //           Authorization: `Bearer ${token}`,
+    //         },
+    //       });
+    //     }
+    //     this.cartItems = [];
+    //   } catch (error) {
+    //     console.error("Error resetting cart:", error);
+    //     this.error = error;
+    //   } finally {
+    //     this.loading = false;
+    //   }
+    // },
   },
 });
