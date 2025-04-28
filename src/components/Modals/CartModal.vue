@@ -64,14 +64,14 @@
                   <div class="flex justify-between gap-4">
                     <div class="flex-shrink-0">
                       <img
-                        :src="product.img"
-                        class="h-[100px] w-[100px] object-cover"
+                        :src="product.image"
+                        class="h-[75px] w-[100px] object-cover"
                       />
                     </div>
 
                     <div class="flex-1 truncate">
                       <div class="flex-1 truncate">
-                        {{ product.title }}
+                        {{ product.name }}
                       </div>
                       <div class="flex-1 font-bold truncate">
                         ${{ product.price }}
@@ -139,20 +139,18 @@ import { useCartStore } from "@/stores/cartStore";
 const modalsStore = useModalsStore();
 const cartStore = useCartStore();
 
-const products = ref([
-  {
-    id: 1,
-    img: "https://lezada.jamstacktemplates.dev/assets/images/product/fashion/10.jpg",
-    title: "lorem ipsum yyyyyyyyyyyyyyyyyyyyyyyyyy 2",
-    price: "23.24",
-  },
-  {
-    id: 2,
-    img: "https://lezada.jamstacktemplates.dev/assets/images/product/fashion/10.jpg",
-    title: "lorem ipsum 1",
-    price: "45.34",
-  },
-]);
+const products = computed(() => {
+  const rawData = cartStore.cartItems || [];
+  return rawData.map((entry) => ({
+    id: entry.id,
+    name: entry.product.name,
+    image: entry.product.image,
+    price: parseFloat(entry.product.price),
+    quantity: entry.quantity,
+  }));
+});
+
+
 
 const totalAmount = computed(() => {
   return products.value

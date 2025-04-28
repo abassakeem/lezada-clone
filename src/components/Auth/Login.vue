@@ -37,7 +37,10 @@
             <input type="checkbox" class="cursor-pointer" />
             <label class="text-[#777777] cursor-pointer">Remember me</label>
           </div>
-          <router-link to="/forgot-password" class="text-[#777777] hover:text-[#333]">
+          <router-link
+            to="/forgot-password"
+            class="text-[#777777] hover:text-[#333]"
+          >
             Lost your password?
           </router-link>
         </form>
@@ -71,7 +74,7 @@ const loggedInModal = () => {
     title: "Login successful!",
 
     imageUrl:
-      "https://cdnl.iconscout.com/lottie/premium/thumb/thumbs-up-animation-download-in-lottie-json-gif-static-svg-file-formats--like-logo-thumb-cute-hand-gesture-pack-sign-symbols-animations-4639088.gif",
+      "https://i.pinimg.com/originals/4a/10/e3/4a10e39ee8325a06daf00881ac321b2f.gif",
 
     imageAlt: "Custom image",
   });
@@ -80,13 +83,11 @@ const failedLoggedInModal = () => {
   Swal.fire({
     title: "Login Failed!",
 
-    imageUrl: "https://media.tenor.com/3lKzNv5CEg4AAAAM/shopping-cart-fail.gif",
+    icon: "error",
 
-    imageAlt: "Custom image",
     confirmButtonText: "Retry",
   });
 };
-
 
 const login = async () => {
   loading.value = true;
@@ -110,8 +111,8 @@ const login = async () => {
     console.log("Login successful:", response.data);
     await Promise.all([
       cartStore.getCartItems(),
-      wishlistStore.getWishlistItems()
-    ])
+      wishlistStore.getWishlistItems(),
+    ]);
     router.push("/");
   } catch (err) {
     error.value = err.response?.data?.message || "Login failed";

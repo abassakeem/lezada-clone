@@ -40,12 +40,12 @@ export const useCartStore = defineStore("cartStore", {
     async addCartItems(newItem) {
       try {
         console.log("Adding to cart:", newItem);
-        const token = this.getAuthToken();
+      
 
         const res = await api.post(`/cart/add`, newItem);
 
         console.log("Item added to cart successfully:", res.data);
-        // Optional: Refresh cart after adding
+        
         await this.getCartItems();
         return res.data;
       } catch (err) {

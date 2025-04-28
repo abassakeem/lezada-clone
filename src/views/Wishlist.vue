@@ -42,7 +42,7 @@ const props = defineProps({
 });
 
 const wishlistItems = computed(() => {
-  const rawData = wishlistStore.wishlistItems?.data?.data?.data || [];
+  const rawData = wishlistStore.wishlistItems || [];
   console.log(rawData.length, "raw dog data");
   return rawData.map((entry) => ({
     id: entry.id,

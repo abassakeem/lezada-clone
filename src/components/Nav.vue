@@ -1,13 +1,15 @@
 <template>
   <div class="mb-6">
     <header
-    class="bg-white px-3 lg:px-6 w-full"
-    :class="[
-      'fixed top-0 left-0 transition-shadow duration-500 z-50',
-      isScrolled ? 'shadow-xl' : 'shadow-none',
+      class="bg-white px-3 lg:px-6 w-full"
+      :class="[
+        'fixed top-0 left-0 transition-shadow duration-500 z-50',
+        isScrolled ? 'shadow-xl' : 'shadow-none',
       ]"
+    >
+      <div
+        class="container mx-auto lg:px-6 space-x-4 flex justify-between items-center"
       >
-      <div class="container mx-auto lg:px-6 flex justify-between items-center">
         <a href="/" class="text-[#7e7e7e] font-bold">
           <img
             src="https://lezada.jamstacktemplates.dev/assets/images/logo.png"
@@ -135,13 +137,19 @@
         <div class="hidden lg:block">
           <div class="flex items-center justify-center space-x-8 text-xl">
             <div>
-              <div v-if="userStore.getUserGetter" class="group relative">
-                Hi, {{ userStore.getUserGetter.name }}
+              <div
+                v-if="userStore.getUserGetter?.name"
+                class="group min-w-contain text-xs md:text-lg relative cursor-pointer max-w-fit text-center"
+              >
+                Hi, {{ firstName }}
 
                 <div
-                  class="opacity-0 absolute top-[25px] bg-yellow-50 w-full text-center group-hover:opacity-100 duration-500"
+                  class="opacity-0 absolute -bottom-[40px] bg-white shadow w-full text-center group-hover:opacity-100 duration-500"
                 >
-                  <button class="cursor-pointer" @click="userStore.logout()">
+                  <button
+                    class="cursor-pointer bg-white text-sm p-2 px-4 hover:underline duration-300"
+                    @click="userStore.logout()"
+                  >
                     Logout
                   </button>
                 </div>
@@ -281,14 +289,21 @@ import CartModal from "./Modals/CartModal.vue";
 import WishListModal from "./Modals/WishListModal.vue";
 import { useWishlistStore } from "@/stores/wishlistStore";
 
-import {useCartStore} from "@/stores/cartStore"
+import { useCartStore } from "@/stores/cartStore";
 
+
+const isAuthenticated = computed(() => {
+  return !!localStorage.getItem('auth_token');
+});
 const wishlistStore = useWishlistStore();
-const cartStore = useCartStore()
+const cartStore = useCartStore();
 const modalsStore = useModalsStore();
 const userStore = useUserStore();
 const isScrolled = ref(false);
-
+const firstName = computed(() => {
+  const name = userStore.getUserGetter.name;
+  return name ? name.split(" ")[0] : "";
+});
 const navLinks = [
   { label: "Home", url: "/" },
   { label: "Shop", url: "/shop" },
@@ -299,10 +314,8 @@ const navLinks = [
 
 // onMounted(async () => {
 //   console.log('Nav Mounted')
- 
+
 // })
-
-
 
 const wishlistItemsCount = computed(() => {
   return wishlistStore.totalCount;
@@ -311,8 +324,6 @@ const cartItemsCount = computed(() => {
   return cartStore.totalCount;
 });
 
-
-
 const profilePic = computed(() => userStore.user?.name);
 
 const handleScroll = () => {
@@ -320,17 +331,15 @@ const handleScroll = () => {
 };
 
 onMounted(async () => {
-  
   window.addEventListener("scroll", handleScroll);
   await Promise.all([
     cartStore.getCartItems(),
-    wishlistStore.getWishlistItems()
-  ])
-  
+    wishlistStore.getWishlistItems(),
+  ]);
+
   // wishlistCount.value =
   //   wishlistStore.wishlistItems?.data?.data?.data?.length || 0;
 
-  
   const unsubscribe = wishlistStore.$subscribe((mutation, state) => {
     const items = state.wishlistItems?.data?.data?.data || [];
     // wishlistCount.value = items.length;

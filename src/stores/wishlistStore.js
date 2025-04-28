@@ -38,24 +38,14 @@ export const useWishlistStore = defineStore("wishlistStore", {
     async addWishlistItems(newItem) {
       try {
         console.log("Adding to wishlist:", newItem);
-        const token = this.getAuthToken();
+        
 
-        if (!token) {
-          console.error("Authentication token not found");
-          return;
-        }
-
-        const res = await axios.post(`${API_URL}/wishlist/add`, newItem, {
-          headers: {
-            Authorization: `Bearer ${token}`,
-            "Content-Type": "application/json",
-          },
-        });
+        const res = await api.post(`/wishlist/add`, newItem)
 
         console.log("Item added to wishlist successfully:", res.data);
         
         await this.getWishlistItems();
-        return res.data;
+        return res.data.data;
       } catch (err) {
         if (err.response) {
           console.error(
@@ -75,21 +65,21 @@ export const useWishlistStore = defineStore("wishlistStore", {
       }
     },
 
-    async deleteWishlistItems(id) {
-      try {
-        const token = this.getAuthToken();
-        await axios.delete(`${API_URL}/wishlist/${id}`, {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        });
-        this.wishlistItems = this.wishlistItems.filter(
-          (item) => item.id !== id
-        );
-      } catch (error) {
-        console.error("Delete error:", error);
-      }
-    },
+    // async deleteWishlistItems(id) {
+    //   try {
+    //     const token = this.getAuthToken();
+    //     await axios.delete(`${API_URL}/wishlist/${id}`, {
+    //       headers: {
+    //         Authorization: `Bearer ${token}`,
+    //       },
+    //     });
+    //     this.wishlistItems = this.wishlistItems.filter(
+    //       (item) => item.id !== id
+    //     );
+    //   } catch (error) {
+    //     console.error("Delete error:", error);
+    //   }
+    // },
 
    
   },

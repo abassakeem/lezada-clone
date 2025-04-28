@@ -35,7 +35,7 @@ import Table from "@/components/Table/Table.vue";
 import { useCartStore } from "@/stores/cartStore";
 
 const cartItems = computed(() => {
-  const rawData = cartStore.cartItems?.data?.data?.data || [];
+  const rawData = cartStore.cartItems || [];
   return rawData.map((entry) => ({
     id: entry.id,
     name: entry.product.name,

@@ -122,7 +122,7 @@ const regesteredModal = () => {
     title: "Registration successful!",
 
     imageUrl:
-      "https://cdnl.iconscout.com/lottie/premium/thumb/thumbs-up-animation-download-in-lottie-json-gif-static-svg-file-formats--like-logo-thumb-cute-hand-gesture-pack-sign-symbols-animations-4639088.gif",
+      "https://i.pinimg.com/originals/4a/10/e3/4a10e39ee8325a06daf00881ac321b2f.gif",
 
     imageAlt: "Custom image",
   });
