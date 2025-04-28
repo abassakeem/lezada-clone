@@ -139,7 +139,7 @@
             <div>
               <div
                 v-if="userStore.getUserGetter?.name"
-                class="group min-w-contain text-xs md:text-lg relative cursor-pointer max-w-fit text-center"
+                class="group min-w-contain text-xs md:text-md relative cursor-pointer max-w-fit text-center"
               >
                 Hi, {{ firstName }}
 
