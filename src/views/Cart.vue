@@ -21,7 +21,7 @@
         @increment="incrementCartItem"
         @decrement="decrementCartItem"
         @remove="removeFromCart"
-        @clear="clearCart"
+       
       />
     </TopSection>
   </div>
@@ -87,8 +87,5 @@ const removeFromCart = async (id) => {
   cartStore.deleteCartItems(id);
 };
 
-// const clearCart = async () => {
-//   await cartStore.clearCart();
-//   await cartStore.getCartItems();
-// };
+
 </script>

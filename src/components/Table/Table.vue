@@ -228,7 +228,7 @@
           </div>
           <button
             v-if="showClearButton"
-            @click="clearItems"
+            
             class="px-6 py-3 text-sm font-medium text-white bg-[#333] hover:bg-white hover:border-[#333] hover:text-[#333] border transition-all duration-300 cursor-pointer w-full sm:w-auto mt-4 sm:mt-0"
           >
             {{ clearButtonText }}
